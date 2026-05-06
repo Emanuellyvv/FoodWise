@@ -1,7 +1,7 @@
 /*Container comum a todas ás páginas*/
 #container {
-    width: 100%;
-    height: 100%;
+    width: 98%;
+    height: 98%;
     background-color: #f4f7e6;
     font-family: 'DM Serif Display', serif;
 }

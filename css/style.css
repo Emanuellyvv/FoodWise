@@ -106,6 +106,7 @@
     height: 100%;
     object-fit: cover; /* Garante que a imagem cubra todo o espaço disponível */
 }
+/*Rodapé comum a todas as páginas*/
 .footer {
     background-color: #445b30;
     padding: 9px 50px;

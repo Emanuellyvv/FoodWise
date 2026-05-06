@@ -115,6 +115,7 @@
     left: 0; /* Alinha à esquerda */
     right: 0; /* Alinha à direita */
     bottom: 0; /* Posiciona no fundo da janela */
+    font-size: 9px;
 }
 
 /* Estilos específicos para a Página de Cadastro */

@@ -5,6 +5,12 @@
     background-color: #f4f7e6;
     font-family: 'DM Serif Display', serif;
 }
+body {
+    display: flex;
+    flex-direction: column; /* Coloca os itens na coluna */
+    min-height: 100vh; /* Garantia que a altura mínima é 100% da altura da janela */
+    margin: 0; /* Remove a margem padrão */
+}
 /*Logo da Marca*/
 .image-container {
     display: inline-block; /* Faz com que o span se comporte como um bloco inline */

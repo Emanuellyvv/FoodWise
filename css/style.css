@@ -17,7 +17,16 @@ body {
     align-items: center;
     color: white;
 }
+.image-container {
+    display: inline-block; /* Faz com que o span se comporte como um bloco inline */
+    vertical-align: middle; /* Alinha a imagem verticalmente ao meio do texto */
+}
 
+.image-container img {
+    width: 20px; /* Ajuste conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    vertical-align: middle; /* Alinha a imagem ao meio em relação ao texto */
+}
 .nav-links {
     list-style: none;
     display: flex;

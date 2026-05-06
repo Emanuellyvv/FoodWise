@@ -1,5 +1,5 @@
 // Aguarda o clique no botão de cadastro para avisar o usuário
-const btnCadastrar = document.querySelector('.btn-cadastro');
+const btnCadastrar = document.querySelector('.btn-plano');
 
 btnCadastrar.addEventListener('click', (e) => {
     console.log("Navegando para a página de cadastro...");

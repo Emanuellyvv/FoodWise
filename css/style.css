@@ -5,8 +5,17 @@
     background-color: #f4f7e6;
     font-family: 'DM Serif Display', serif;
 }
-
-/* Navbar */
+/*Logo da Marca*/
+.image-container {
+    display: inline-block; /* Faz com que o span se comporte como um bloco inline */
+    vertical-align: middle; /* Alinha a imagem verticalmente ao meio do texto */
+}
+.image-container img {
+    width: 20px; /* Ajuste conforme necessário */
+    height: 20px; /* Mantém a proporção da imagem */
+    vertical-align: middle; /* Alinha a imagem ao meio em relação ao texto */
+}
+/* Barra de navegação, comum as páginas Home (index), Menu, Ajuda */
 .navbar {
     background-color: #445b30;
     padding: 15px 50px;
@@ -15,27 +24,19 @@
     align-items: center;
     color: white;
 }
-.image-container {
-    display: inline-block; /* Faz com que o span se comporte como um bloco inline */
-    vertical-align: middle; /* Alinha a imagem verticalmente ao meio do texto */
-}
-
-.image-container img {
-    width: 20px; /* Ajuste conforme necessário */
-    height: 20px; /* Mantém a proporção da imagem */
-    vertical-align: middle; /* Alinha a imagem ao meio em relação ao texto */
-}
+/*Link do Menu da Barra do Navegador*/
 .nav-links {
     list-style: none;
     display: flex;
     gap: 20px;
     align-items: center;
 }
-
 .nav-links a {
     text-decoration: none;
     color: white;
 }
+
+/*Estilização dos botões entrar e cadastro*/
 #entrar{
    background-color: #FCA9AA;
    border-radius: 8px;
@@ -55,22 +56,20 @@
     padding: 80px 50px;
     position: relative;
 }
-
+/*Configurações específicas da página index*/ 
 .hero-text h2 {
     font-size: 45px;
     color: #1e391e;
 }
-
 .destaque-fraseefeito {
     color: #d6335c;
 }
-
 .linha-separadora {
     width: 178px;
     border: 1px solid #6b7e5f;
     margin: 21px 4px;
 }
-
+/*Estilização do botão "Montar meu plano!"*/
 .btn-plano {
     background-color: #d6335c;
     color: white;
@@ -88,7 +87,6 @@
     align-items: center;
     margin: 0px 0px 0px 56px
 }
-
 .circulo-dividido {
     width: 400px; /* Largura definida como desejado */
     height: 400px; /* Altura igual à largura para manter a proporção */
@@ -98,70 +96,61 @@
     border: 5px solid white;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
-
 .esquerda, .direita {
     width: 80%;
     height: 107%;
     position: relative;
 }
-
 .imagem-esquerda, .imagem-direita {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Garante que a imagem cubra todo o espaço disponível */
 }
+
 /* Estilos específicos para a Página de Cadastro */
 .body-cadastro {
-    background-color: #3e663f; /* Verde escuro do fundo */
-    display: flex;
+    background-color: #445b30; /* Verde escuro do fundo */
+    display: flex; 
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
-
-.container-branco {
-    background-color: white;
+.container-cadastro {
+    background-color: #f4f7e6;
     width: 90%;
     max-width: 900px;
     padding: 40px;
     border-radius: 40px; /* Bordas bem arredondadas */
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
-
 .header-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
 }
-
 .header-form h1 {
     color: #1a331a;
     font-size: 28px;
 }
-
 .ajuda-link {
     font-size: 14px;
     font-weight: bold;
 }
-
 .ajuda-link a {
     color: #d6335c;
     text-decoration: underline;
 }
-
 /* Estilo dos Campos */
 .grupo-input {
     margin-bottom: 20px;
 }
-
 .grupo-input label {
     display: block;
     color: #3e663f;
     font-weight: bold;
     margin-bottom: 8px;
 }
-
 .grupo-input input {
     width: 100%;
     padding: 12px;
@@ -170,7 +159,6 @@
     font-size: 16px;
     outline-color: #ffde59;
 }
-
 /* Botão Próximo */
 .btn-proximo {
     width: 100%;
@@ -185,11 +173,9 @@
     margin-top: 10px;
     transition: 0.3s;
 }
-
 .btn-proximo:hover {
     background-color: #e6c84f;
 }
-
 .footer-form p {
     text-align: center;
     font-size: 11px;

@@ -1,57 +1,35 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const btnCadastrar = document.querySelector('.btn-cadastro');
-    const btnPlano = document.querySelector('.btn-plano');
+// script.js
 
-    if (btnCadastrar) {
-        btnCadastrar.addEventListener('click', (e) => {
-            console.log("Navegando para a página de cadastro...");
-            // Aqui, você pode redirecionar ou realizar outras ações referentes ao cadastro.
-            window.location.href = "form.html"; // exemplo de redirecionamento
-        });
-    }
+// Espera o DOM estar completamente carregado
+document.addEventListener("DOMContentLoaded", function() {
+    // Logica para a página de cadastro
+    const formulario = document.getElementById("meuFormulario");
 
-    document.addEventListener('DOMContentLoaded', function() {
-    // Seleciona o formulário de cadastro
-    const formulario = document.getElementById('meuFormulario');
-
+    // Verifica se estamos na página de cadastro:
     if (formulario) {
-        formulario.addEventListener('submit', function(event) {
-            // 1. Impede o comportamento padrão (recarregar a página)
+        formulario.addEventListener("submit", function(event) {
+            // Impede o comportamento padrão do formulário (recarregamento da página)
             event.preventDefault();
 
-            // 2. Captura os valores dos campos
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const telefone = document.getElementById('telefone').value;
+            // Captura os valores dos campos
+            const nome = document.getElementById("nome").value;
+            const nascimento = document.getElementById("nascimento").value;
+            const telefone = document.getElementById("telefone").value;
+            const endereco = document.getElementById("endereco").value;
+            const email = document.getElementById("email").value;
 
-            // 3. Validação simples
+            // Valida se o nome tem pelo menos 3 caracteres
             if (nome.length < 3) {
                 alert("Por favor, digite seu nome completo.");
                 return;
             }
 
-            if (email === "") {
-                alert("O campo e-mail é obrigatório.");
-                return;
-            }
+            // Opcional: Adicione outras validações conforme necessário
 
-            // 4. Feedback para o usuário
-            console.log("Dados capturados:", { nome, email, telefone });
-            alert("Sucesso! Vamos para a próxima etapa, " + nome);
-
-            // 5. Redirecionamento (Simulando o "Próximo")
-            // window.location.href = "menu.html"; // Descomente e coloque o caminho correto aqui.
-        });
-    }
-
-    // Lógica para formatar a data automaticamente (Opcional, mas profissional)
-    const campoData = document.getElementById('nascimento');
-    if (campoData) {
-        campoData.addEventListener('keypress', () => {
-            let inputLength = campoData.value.length;
-            if (inputLength === 2 || inputLength === 5) {
-                campoData.value += '/'; // Adiciona as barras da data automaticamente
-            }
+            // Feedback ao usuário
+            alert("Cadastro realizado com sucesso, " + nome + "!");
+            // Aqui você pode redirecionar para outra página, se necessário
+            window.location.href = "entrar.html"; // Exemplo de redirecionamento
         });
     }
 });

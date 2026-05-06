@@ -141,7 +141,7 @@ body {
     background-color: #FFB6C1;
     width: 90%;
     max-width: 900px;
-    padding: 40px;
+    padding: 4px 33px 5px 13px;
     border-radius: 40px; /* Bordas bem arredondadas */
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
@@ -149,7 +149,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 .header-form h1 {
     color:#d6335c;

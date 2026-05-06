@@ -41,7 +41,15 @@ body {
     text-decoration: none;
     color: white;
 }
-
+#entrar{
+   background-color: #FCA9AA;
+   border-radius: 8px;
+}
+#cadastro {
+   background-color: #d6335c;
+   border-radius: 8px;
+}
+    
 /* Seção Principal */
 .hero-section {
     display: flex;

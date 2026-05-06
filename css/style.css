@@ -152,7 +152,7 @@ body {
     margin-bottom: 30px;
 }
 .header-form h1 {
-    color: #1a331a;
+    color:#d6335c;
     font-size: 28px;
 }
 .ajuda-link {
@@ -169,7 +169,7 @@ body {
 }
 .grupo-input label {
     display: block;
-    color: #3e663f;
+    color: #d6335c;
     font-weight: bold;
     margin-bottom: 8px;
 }
@@ -179,13 +179,13 @@ body {
     border: 1.5px solid #ccc;
     border-radius: 12px;
     font-size: 16px;
-    outline-color: #ffde59;
+    outline-color: #d6335c;
 }
 /* Botão Próximo */
 .btn-proximo {
     width: 100%;
     padding: 15px;
-    background-color: #ffde59; /* Amarelo */
+    background-color: #d6335c; /* Amarelo */
     border: none;
     border-radius: 25px;
     font-size: 18px;

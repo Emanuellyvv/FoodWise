@@ -106,7 +106,14 @@
     height: 100%;
     object-fit: cover; /* Garante que a imagem cubra todo o espaço disponível */
 }
-
+.footer {
+    background-color: #445b30;
+    padding: 9px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
 /* Estilos específicos para a Página de Cadastro */
 .body-cadastro {
     background-color: #445b30; /* Verde escuro do fundo */

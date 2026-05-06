@@ -108,13 +108,12 @@
 }
 /*Rodapé comum a todas as páginas*/
 .footer {
-    background-color: #445b30;
-    padding: 9px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: #3e663f; /* Altere conforme necessário */
     color: white;
+    text-align: center;
+    padding: 10px 0; /* Espaçamento vertical */
 }
+
 /* Estilos específicos para a Página de Cadastro */
 .body-cadastro {
     background-color: #445b30; /* Verde escuro do fundo */

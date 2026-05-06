@@ -131,7 +131,7 @@ body {
 
 /* Estilos específicos para a Página de Cadastro */
 .body-cadastro {
-    background-color:#F3E5DC
+    background-color:#f4f7e6;
     display: flex; 
     justify-content: center;
     align-items: center;
@@ -152,7 +152,7 @@ body {
     margin-bottom: 5px;
 }
 .header-form h1 {
-    color:#d6335c;
+    color:#F3E5DC;
     font-size: 28px;
 }
 .ajuda-link {
@@ -169,7 +169,7 @@ body {
 }
 .grupo-input label {
     display: block;
-    color: #d6335c;
+    color: #F3E5DC;
     font-weight: bold;
     margin-bottom: 8px;
 }

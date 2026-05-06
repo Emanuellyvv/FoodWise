@@ -111,7 +111,7 @@
     background-color: #3e663f; /* Altere conforme necessário */
     color: white;
     text-align: center;
-    padding: 10px 0; /* Espaçamento vertical */
+    padding: 5px 0; /* Espaçamento vertical */
     position: fixed; /* Fixa o rodapé no fundo da página */
     left: 0; /* Alinha à esquerda */
     right: 0; /* Alinha à direita */

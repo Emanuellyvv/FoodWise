@@ -117,10 +117,9 @@ body {
     background-color: #445b30; /* Altere conforme necessário */
     color: white;
     text-align: center;
-    left: 0; /* Alinha à esquerda */
-    right: 0; /* Alinha à direita */
-    bottom: 0; /* Posiciona no fundo da janela */
+    padding: 15px; /* Adicione algum espaço */
     font-size: 11px;
+    margin-top: auto; /* Faz com que o rodapé fique na parte inferior */
 }
 
 /* Estilos específicos para a Página de Cadastro */

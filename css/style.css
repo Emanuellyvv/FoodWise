@@ -61,6 +61,7 @@ body {
     padding: 12px 25px;
     border: none;
     border-radius: 8px;
+    text-decoration: none;
     cursor: pointer;
 }
 

@@ -23,7 +23,7 @@ body {
 /* Barra de navegação, comum as páginas Home (index), Menu, Ajuda */
 .navbar {
     background-color: #445b30;
-    padding: 9px 35px;
+    padding: 0px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;

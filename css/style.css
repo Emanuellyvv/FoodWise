@@ -49,9 +49,9 @@ body {
 }
 
 .linha-separadora {
-    width: 100px;
+    width: 178px;
     border: 1px solid #6b7e5f;
-    margin: 20px 0;
+    margin: 21px 4px;
 }
 
 .btn-plano {

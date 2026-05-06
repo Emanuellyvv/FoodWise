@@ -42,10 +42,12 @@ body {
 #entrar{
    background-color: #FCA9AA;
    border-radius: 8px;
+   padding: 4px 5px
 }
 #cadastro {
    background-color: #d6335c;
    border-radius: 8px;
+   padding: 4px 5px
 }
     
 /* Seção Principal */

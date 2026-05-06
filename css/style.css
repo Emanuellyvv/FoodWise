@@ -1,15 +1,14 @@
 /*Container comum a todas ás páginas*/
-#container {
-    width: 100%;
-    height: 100%;
-    background-color: #f4f7e6;
-    font-family: 'DM Serif Display', serif;
-}
 body {
     display: flex;
     flex-direction: column; /* Coloca os itens na coluna */
     min-height: 100vh; /* Garantia que a altura mínima é 100% da altura da janela */
     margin: 0; /* Remove a margem padrão */
+}
+#container {
+    flex: 1; /* Isso permite que o container preencha o espaço restante */
+    background-color: #f4f7e6;
+    font-family: 'DM Serif Display', serif;
 }
 /*Logo da Marca*/
 .image-container {
@@ -124,8 +123,7 @@ body {
     padding: 15px; /* Adicione algum espaço */
     font-size: 11px;
     width: 100%; /* Garante que o rodapé ocupe 100% da largura */
-    position: relative; /* Isto geralmente é desnecessário, mas pode ajudar em algumas situações */
-    bottom: 0; /* Assegura que ele esteja no fundo do contêiner se o contêiner estiver definido corretamente */
+    position: relative; /* Normalmente, isso deve estar tudo ok */
 }
 
 /* Estilos específicos para a Página de Cadastro */

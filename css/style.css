@@ -18,7 +18,7 @@
 /* Barra de navegação, comum as páginas Home (index), Menu, Ajuda */
 .navbar {
     background-color: #445b30;
-    padding: 15px 50px;
+    padding: 9px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,7 +53,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 28px 50px;
+    padding: 35px 50px;
     position: relative;
 }
 /*Configurações específicas da página index*/ 

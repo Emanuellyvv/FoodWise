@@ -106,7 +106,7 @@ body {
     width: 90%;
     max-width: 900px;
     padding: 40px;
-    border-radius: 40px; /* Bordas bem arredondadas como na imagem */
+    border-radius: 40px; /* Bordas bem arredondadas */
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
@@ -157,7 +157,7 @@ body {
 .btn-proximo {
     width: 100%;
     padding: 15px;
-    background-color: #ffde59; /* Amarelo da imagem */
+    background-color: #ffde59; /* Amarelo */
     border: none;
     border-radius: 25px;
     font-size: 18px;

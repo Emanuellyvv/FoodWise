@@ -28,6 +28,7 @@ body {
     justify-content: space-between;
     align-items: center;
     color: white;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 /*Link do Menu da Barra do Navegador*/
 .nav-links {
@@ -35,7 +36,6 @@ body {
     display: flex;
     gap: 20px;
     align-items: center;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 .nav-links a {
     text-decoration: none;

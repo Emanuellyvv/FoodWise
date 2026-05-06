@@ -131,7 +131,7 @@ body {
 
 /* Estilos específicos para a Página de Cadastro */
 .body-cadastro {
-    background-color: #445b30; /* Verde escuro do fundo */
+    background-color:#F3E5DC
     display: flex; 
     justify-content: center;
     align-items: center;
@@ -190,7 +190,7 @@ body {
     border-radius: 25px;
     font-size: 18px;
     font-weight: bold;
-    color: #3e663f;
+    color: #d6335c;
     cursor: pointer;
     margin-top: 10px;
     transition: 0.3s;

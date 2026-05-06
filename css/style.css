@@ -123,7 +123,9 @@ body {
     text-align: center;
     padding: 15px; /* Adicione algum espaço */
     font-size: 11px;
-   margin: 442px 0px 0px -918px;
+    width: 100%; /* Garante que o rodapé ocupe 100% da largura */
+    position: relative; /* Isto geralmente é desnecessário, mas pode ajudar em algumas situações */
+    bottom: 0; /* Assegura que ele esteja no fundo do contêiner se o contêiner estiver definido corretamente */
 }
 
 /* Estilos específicos para a Página de Cadastro */

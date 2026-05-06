@@ -94,7 +94,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 0px 47px 56px
+       margin: 20px 0px 47px 169px;
 }
 .circulo-dividido {
     width: 400px; /* Largura definida como desejado */

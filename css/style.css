@@ -24,7 +24,7 @@ body {
 
 .image-container img {
     width: 20px; /* Ajuste conforme necessário */
-    height: auto; /* Mantém a proporção da imagem */
+    height: 20px; /* Mantém a proporção da imagem */
     vertical-align: middle; /* Alinha a imagem ao meio em relação ao texto */
 }
 .nav-links {

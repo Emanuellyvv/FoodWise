@@ -130,3 +130,90 @@ body {
 }
 
 
+/* Estilos Gerais */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f7e6;
+    font-family: 'DM Serif Display', serif; /* Altere para a fonte desejada */
+}
+
+.container-cadastro {
+    background-color: #445b30;
+    width: 90%;
+    max-width: 980px;
+    padding: 20px;
+    border-radius: 5px; /* Bordas suavizadas */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+/* Estilos do Cabeçalho */
+.header-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-form h1 {
+    color: #f5f2d0;
+    font-size: 28px;
+}
+
+/* Estilos do Link de Ajuda */
+.ajuda-link {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ajuda-link a {
+    color: #FCA9AA;
+    text-decoration: underline;
+}
+
+/* Estilos dos Campos do Formulário */
+.grupo-input {
+    margin-bottom: 20px;
+}
+
+.grupo-input label {
+    color: #f5f2d0;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.grupo-input input {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilos dos Botões */
+.btn-proximo, .btn-enviar, .btn-voltar {
+    width: 100%;
+    padding: 15px;
+    background-color: #FCA9AA;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #d6335c;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-proximo:hover, .btn-enviar:hover, .btn-voltar:hover {
+    background-color: #e6c84f;
+}
+
+/* Estilos do Rodapé */
+.footer-form p {
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    margin-top: 15px;
+}

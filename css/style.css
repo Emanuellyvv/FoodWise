@@ -140,7 +140,7 @@ body {
 .container-cadastro {
     background-color: #445b30;
     width: 90%;
-    max-width: 900px;
+    max-width: 980px;
     padding: 4px 43px 5px 24px;
     border-radius: 40px; /* Bordas bem arredondadas */
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);

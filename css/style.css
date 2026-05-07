@@ -160,7 +160,7 @@ body {
     font-weight: bold;
 }
 .ajuda-link a {
-    color: #FCA9AA;
+    color: #d6335c;
     text-decoration: underline;
 }
 /* Estilo dos Campos */
@@ -169,7 +169,7 @@ body {
 }
 .grupo-input label {
     display: block;
-    color: #FCA9AA;
+    color: #d6335c;
     font-weight: bold;
     margin-bottom: 8px;
     font-size: 21px;
@@ -186,12 +186,12 @@ body {
 .btn-proximo {
     width: 100%;
     padding: 15px;
-    background-color: #FCA9AA; 
+    background-color:#d6335c ; 
     border: none;
     border-radius: 25px;
     font-size: 18px;
     font-weight: bold;
-    color: #d6335c;
+    color: #FCA9AA;
     cursor: pointer;
     margin-top: 10px;
     transition: 0.3s;

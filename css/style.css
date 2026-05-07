@@ -142,7 +142,7 @@ body {
     width: 90%;
     max-width: 980px;
     padding: 4px 43px 5px 24px;
-    border-radius: 40px; /* Bordas bem arredondadas */
+    /*border-radius: 40px;*/ /* Bordas bem arredondadas */
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 .icone{

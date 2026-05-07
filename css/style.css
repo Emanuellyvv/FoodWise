@@ -179,7 +179,7 @@ font-size: 16px
 .grupo-input label {
     display: block;
     color: #f5f2d0;
-    font-weight: bold;
+    /*font-weight: bold;*/
     margin-bottom: 5px;
     font-size: 18px;
 }

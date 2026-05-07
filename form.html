@@ -108,23 +108,6 @@
         </footer>
     </div>
 
-    <script>
-        function showExperienceSection(event) {
-            event.preventDefault(); // Impede o envio do formulário
-            document.getElementById('cadastro-section').classList.add('hidden'); // Oculta a seção de cadastro
-            document.getElementById('experiencia-section').classList.remove('hidden'); // Exibe a seção de experiência
-        }
-
-        function showCadastroSection() {
-            document.getElementById('experiencia-section').classList.add('hidden'); // Oculta a seção de experiência
-            document.getElementById('cadastro-section').classList.remove('hidden'); // Exibe a seção de cadastro
-        }
-
-        function submitForm(event) {
-            event.preventDefault(); // Previne o envio do formulário
-            alert("Formulário enviado!"); // Aqui você pode adicionar a lógica para processar os dados do formulário
-            // Redirecione ou processe conforme necessário
-        }
-    </script>
+    <script src="JS/script.js"></script> <!-- Link para o arquivo JavaScript externo -->
 </body>
 </html>

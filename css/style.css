@@ -152,7 +152,7 @@ body {
     margin-bottom: 5px;
 }
 .header-form h1 {
-    color:#F3E5DC;
+    color:#FCA9AA;
     font-size: 28px;
 }
 .ajuda-link {
@@ -160,7 +160,7 @@ body {
     font-weight: bold;
 }
 .ajuda-link a {
-    color: #d6335c;
+    color: #FCA9AA;
     text-decoration: underline;
 }
 /* Estilo dos Campos */
@@ -169,7 +169,7 @@ body {
 }
 .grupo-input label {
     display: block;
-    color: #F3E5DC;
+    color: #FCA9AA;
     font-weight: bold;
     margin-bottom: 8px;
 }
@@ -185,7 +185,7 @@ body {
 .btn-proximo {
     width: 100%;
     padding: 15px;
-    background-color:  #FFB6C1; 
+    background-color: #FCA9AA; 
     border: none;
     border-radius: 25px;
     font-size: 18px;

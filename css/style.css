@@ -130,6 +130,7 @@ body {
 }
 
 /* Estilos específicos para a Página de Cadastro */
+/* *** Estilos Comuns a Ambas as Páginas *** */
 .body-cadastro {
     background-color: #f4f7e6;
     display: flex; 
@@ -137,68 +138,71 @@ body {
     align-items: center;
     min-height: 100vh;
 }
+
 .container-cadastro {
     background-color: #445b30;
     width: 90%;
     max-width: 980px;
     padding: 4px 43px 5px 24px;
-    /*border-radius: 40px;*/ /* Bordas bem arredondadas */
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
-.icone{
-    height: 45px;
-    width: 45px;
-    margin: 0px 0px -18px 0px;  
-}
+
+/* *** Estilo do Cabeçalho *** */
 .header-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
 }
+
 .header-form h1 {
-    color:#f5f2d0;
+    color: #f5f2d0;
     font-size: 32px;
 }
-#help {
- color:#f5f2d0;
-font-size: 16px
-}
+
+/* *** Estilos do Link de Ajuda *** */
 .ajuda-link {
     font-size: 14px;
     font-weight: bold;
 }
+
 .ajuda-link a {
     color: #FCA9AA;
     text-decoration: underline;
 }
-/* Estilo dos Campos */
+
+#help {
+    color: #f5f2d0;
+    font-size: 16px;
+}
+
+/* *** Estilos da Seção de Entrada de Dados *** */
 .grupo-input {
     margin-bottom: 20px;
 }
+
 .grupo-input label {
     display: block;
     color: #f5f2d0;
-    /*font-weight: bold;*/
     margin-bottom: 5px;
     font-size: 18px;
 }
+
 .grupo-input input {
     width: 100%;
     padding: 12px;
     border: 1.5px solid #ccc;
     border-radius: 12px;
     font-size: 16px;
-    outline-color:#FCA9AA;
+    outline-color: #FCA9AA;
 }
+
+/* *** Estilos de Visibilidade *** */
 .hidden {
     display: none; /* Classe para ocultar seções */
 }
 
-.option-group {
-    margin-bottom: 10px; /* Espaçamento entre opções */
-}
-
+/* *** Estilos de Botões *** */
 .btn-voltar, .btn-enviar {
     display: inline-block;
     margin-top: 10px;
@@ -207,18 +211,18 @@ font-size: 16px
     color: white; /* Cor do texto do botão */
     border: none;
     border-radius: 5px; /* Borda arredondada */
-    text-decoration: none; /* Remove sublinhado do link */
     cursor: pointer; /* Muda o cursor ao passar sobre o botão */
 }
 
 .btn-voltar:hover, .btn-enviar:hover {
     background-color: #45a049; /* Cor do botão ao passar o mouse */
 }
+
 /* Botão Próximo */
 .btn-proximo {
     width: 100%;
     padding: 15px;
-    background-color:#FCA9AA ; 
+    background-color: #FCA9AA; 
     border: none;
     border-radius: 25px;
     font-size: 18px;
@@ -228,12 +232,22 @@ font-size: 16px
     margin-top: 10px;
     transition: 0.3s;
 }
+
 .btn-proximo:hover {
     background-color: #e6c84f;
 }
+
+/* *** Estilo do Rodapé *** */
 .footer-form p {
     text-align: center;
     font-size: 11px;
     color: #888;
     margin-top: 15px;
+}
+
+/* *** Estilos Globais - Imagens e Ícones *** */
+.icone {
+    height: 45px;
+    width: 45px;
+    margin: 0px 0px -18px 0px;  
 }

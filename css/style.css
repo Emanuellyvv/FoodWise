@@ -191,6 +191,29 @@ font-size: 16px
     font-size: 16px;
     outline-color:#FCA9AA;
 }
+.hidden {
+    display: none; /* Classe para ocultar seções */
+}
+
+.option-group {
+    margin-bottom: 10px; /* Espaçamento entre opções */
+}
+
+.btn-voltar, .btn-enviar {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #4CAF50; /* Cor do botão */
+    color: white; /* Cor do texto do botão */
+    border: none;
+    border-radius: 5px; /* Borda arredondada */
+    text-decoration: none; /* Remove sublinhado do link */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+}
+
+.btn-voltar:hover, .btn-enviar:hover {
+    background-color: #45a049; /* Cor do botão ao passar o mouse */
+}
 /* Botão Próximo */
 .btn-proximo {
     width: 100%;

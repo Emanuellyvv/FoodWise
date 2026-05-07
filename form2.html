@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodWise - Experiência</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Caminho para o arquivo CSS -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sua experiência, do seu jeito!</h1>
+        </header>
 
+        <form id="experienciaForm" onsubmit="submitForm(event)"> <!-- Chama a função JavaScript para enviar -->
+            <label>Tipos de alimentação</label>
+            <div class="option-group">
+                <input type="radio" id="saudavel" name="alimentacao" value="saudavel" required>
+                <label for="saudavel">Saudável</label>
+            </div>
+            <div class="option-group">
+                <input type="radio" id="fastfood" name="alimentacao" value="fastfood">
+                <label for="fastfood">Fast Food</label>
+            </div>
+            <div class="option-group">
+                <input type="radio" id="ambos_ali" name="alimentacao" value="ambos">
+                <label for="ambos_ali">Ambos</label>
+            </div>
+
+            <label for="objetivo">Seu objetivo no nosso app</label>
+            <input type="text" id="objetivo" name="objetivo" required>
+
+            <button type="submit" class="btn-enviar">Enviar</button>
+        </form>
+
+        <a href="index.html" class="btn-voltar">Voltar</a> <!-- Link para retornar à página anterior -->
+
+        <footer class="footer-form">
+            <p>Desenvolvido por Emanuelly Vitória, Isabely Camile, Maria Clara e Samantha Valentina. No Colégio Estadual Humberto de Alencar Castelo Branco. Na turma do 3ºSI - Turno da Noite. No ano de 2026.</p>
+        </footer>
+    </div>
+    
+    <script src="JS/script.js"></script> <!-- Caminho para o arquivo JavaScript -->
+</body>
+</html>

@@ -4,113 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodWise - Cadastro</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Mantenha o caminho correto -->
-    <style>
-        .hidden {
-            display: none; /* Classe para ocultar seções */
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css"> <!-- Caminho para o arquivo CSS -->
 </head>
 <body class="body-cadastro">
     <div class="container-cadastro">
         <header class="header-form">
-            <h1 id="form-title">Faça seu cadastro</h1>
+            <h1>Faça seu cadastro</h1>
             <div class="ajuda-link">
                 <img src="image/suporte.png" alt="Acessibilidade" class="icone">
                 <span id="help">Precisa de ajuda? <a href="#">clique aqui</a></span>
             </div>
         </header>
 
-        <!-- Seção de Cadastro -->
-        <div id="cadastro-section">
-            <form id="meuFormulario" onsubmit="showExperienceSection(event)">
-                <div class="grupo-input">
-                    <label for="nome">Seu nome</label>
-                    <input type="text" id="nome" required>
-                </div>
+        <form id="meuFormulario" onsubmit="showExperiencePage(event)"> <!-- Chama a função JavaScript -->
+            <div class="grupo-input">
+                <label for="nome">Seu nome</label>
+                <input type="text" id="nome" required>
+            </div>
 
-                <div class="grupo-input">
-                    <label for="nascimento">Data de nascimento</label>
-                    <input type="text" id="nascimento" placeholder="dd/mm/aaaa">
-                </div>
+            <div class="grupo-input">
+                <label for="nascimento">Data de nascimento</label>
+                <input type="text" id="nascimento" placeholder="dd/mm/aaaa">
+            </div>
 
-                <div class="grupo-input">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone">
-                </div>
+            <div class="grupo-input">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone">
+            </div>
 
-                <div class="grupo-input">
-                    <label for="endereco">Endereço</label>
-                    <input type="text" id="endereco">
-                </div>
+            <div class="grupo-input">
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco">
+            </div>
 
-                <div class="grupo-input">
-                    <label for="email">Insira seu e-mail</label>
-                    <input type="email" id="email" required>
-                </div>
+            <div class="grupo-input">
+                <label for="email">Insira seu e-mail</label>
+                <input type="email" id="email" required>
+            </div>
 
-                <button type="submit" class="btn-proximo" onclick="showExperienceSection(event)">Próximo</button>
-
-            </form>
-        </div>
-
-        <!-- Seção de Experiência (oculta inicialmente) -->
-        <form>
-        <form id="meuFormulario" onsubmit="showExperienceSection(event)">
-        <div id="experiencia-section" class="hidden">
-            <h1>Sua experiência, do seu jeito!</h1>
-            <form id="experienciaForm" onsubmit="submitForm(event)">
-                <label>Tipos de alimentação</label>
-                <div class="option-group">
-                    <input type="radio" id="saudavel" name="alimentacao" value="saudavel" required>
-                    <label for="saudavel" style="margin:0; font-weight:normal;">Saudável</label>
-                </div>
-                <div class="option-group">
-                    <input type="radio" id="fastfood" name="alimentacao" value="fastfood">
-                    <label for="fastfood" style="margin:0; font-weight:normal;">Fast Food</label>
-                </div>
-                <div class="option-group">
-                    <input type="radio" id="ambos_ali" name="alimentacao" value="ambos">
-                    <label for="ambos_ali" style="margin:0; font-weight:normal;">Ambos</label>
-                </div>
-
-                <label for="objetivo">Seu objetivo no nosso app</label>
-                <input type="text" id="objetivo" name="objetivo" required>
-
-                <label>Quer receber notificações?</label>
-                <div class="option-group">
-                    <input type="radio" id="notif_sim" name="notificacoes" value="sim">
-                    <label for="notif_sim" style="margin:0; font-weight:normal;">Sim</label>
-                </div>
-                <div class="option-group">
-                    <input type="radio" id="notif_nao" name="notificacoes" value="nao">
-                    <label for="notif_nao" style="margin:0; font-weight:normal;">Não, obrigado</label>
-                </div>
-
-                <label>Se sim, qual a sua preferência:</label>
-                <div class="option-group">
-                    <input type="radio" id="so_saudavel" name="preferencia" value="so_saudavel">
-                    <label for="so_saudavel" style="margin:0; font-weight:normal;">Só saudável</label>
-                </div>
-                <div class="option-group">
-                    <input type="radio" id="so_fastfood" name="preferencia" value="so_fastfood">
-                    <label for="so_fastfood" style="margin:0; font-weight:normal;">Só fast food</label>
-                </div>
-                <div class="option-group">
-                    <input type="radio" id="ambos_pref" name="preferencia" value="ambos">
-                    <label for="ambos_pref" style="margin:0; font-weight:normal;">Ambos</label>
-                </div>
-</form>
-                <button type="submit" class="btn-enviar">Enviar</button> <!-- Botão para enviar -->
-            </form>
-            <a href="#" class="btn-voltar" onclick="showCadastroSection()">Voltar</a> <!-- Botão para voltar ao cadastro -->
-        </div>
+            <button type="submit" class="btn-proximo">Próximo</button>
+        </form>
 
         <footer class="footer-form">
             <p>Desenvolvido por Emanuelly Vitória, Isabely Camile, Maria Clara e Samantha Valentina. No Colégio Estadual Humberto de Alencar Castelo Branco. Na turma do 3ºSI - Turno da Noite. No ano de 2026.</p>
         </footer>
     </div>
 
-    <script src="JS/script.js"></script> <!-- Link para o arquivo JavaScript externo -->
+    <script src="JS/script.js"></script> <!-- Caminho para o arquivo JavaScript -->
 </body>
 </html>

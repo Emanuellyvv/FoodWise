@@ -33,3 +33,26 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+function showExperienceSection(event) {
+    event.preventDefault(); // Impede o envio do formulário
+    document.getElementById('cadastro-section').classList.add('hidden'); // Oculta a seção de cadastro
+    document.getElementById('experiencia-section').classList.remove('hidden'); // Exibe a seção de experiência
+    document.getElementById('form-title').textContent = "Sua experiência, do seu jeito!"; // Altera o título
+}
+
+function showCadastroSection() {
+    document.getElementById('cadastro-section').classList.remove('hidden'); // Exibe a seção de cadastro
+    document.getElementById('experiencia-section').classList.add('hidden'); // Oculta a seção de experiência
+    document.getElementById('form-title').textContent = "Faça seu cadastro"; // Volta o título
+}
+
+function resetForm() {
+    document.getElementById('meuFormulario').reset(); // Reseta os campos do formulário
+}
+
+function submitForm(event) {
+    event.preventDefault(); // Previne o envio do formulário
+    // Aqui você pode adicionar a lógica para processar os dados do formulário
+    alert("Formulário enviado!"); // Exemplo de alerta
+    // O envio dos dados deve ser implementado de acordo com sua necessidade
+}

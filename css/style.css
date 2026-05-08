@@ -217,7 +217,7 @@ font-size: 16px
 }
 /* Botão Próximo */
 .btn-proximo {
-   width: 100%;
+   width: 20%;
    padding: 15px;
    background-color:#FCA9AA ;
    border: none;
@@ -228,6 +228,7 @@ font-size: 16px
    cursor: pointer;
    margin-top: 10px;
    transition: 0.3s;
+   margin: 0px 0px 0px 369px;
 }
 .btn-proximo:hover {
    background-color: #e6c84f;

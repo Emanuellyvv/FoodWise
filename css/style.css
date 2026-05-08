@@ -1,87 +1,241 @@
-/* Estilos Gerais */
+
+/*Container comum a todas ás páginas*/
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #f4f7e6;
-    font-family: 'DM Serif Display', serif; /* Altere para a fonte desejada */
+   display: flex;
+   flex-direction: column; /* Coloca os itens na coluna */
+   min-height: 100vh; /* Garantia que a altura mínima é 100% da altura da janela */
+   margin: 0; /* Remove a margem padrão */
+}
+#container {
+   flex: 1; /* Isso permite que o container preencha o espaço restante */
+   background-color: #f4f7e6;
+   font-family: 'DM Serif Display', serif;
+}
+/*Logo da Marca*/
+.image-container {
+   display: inline-block; /* Faz com que o span se comporte como um bloco inline */
+   vertical-align: middle; /* Alinha a imagem verticalmente ao meio do texto */
+}
+.image-container img {
+   width: 20px; /* Ajuste conforme necessário */
+   height: 20px; /* Mantém a proporção da imagem */
+   vertical-align: middle; /* Alinha a imagem ao meio em relação ao texto */
+}
+/* Barra de navegação, comum as páginas Home (index), Menu, Ajuda */
+.navbar {
+   background-color: #445b30;
+   padding: 0px 32px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   color: white;
+   box-shadow: 0 10px 9px rgba(0,0,0,0.2);
+}
+/*Link do Menu da Barra do Navegador*/
+.nav-links {
+   list-style: none;
+   display: flex;
+   gap: 20px;
+   align-items: center;
+}
+.nav-links a {
+   text-decoration: none;
+   color: white;
 }
 
-.container-cadastro, .container {
-    background-color: #445b30;
-    width: 90%;
-    max-width: 980px;
-    padding: 20px;
-    border-radius: 5px; /* Bordas suavizadas */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+/*Estilização dos botões entrar e cadastro*/
+#entrar{
+  background-color: #FCA9AA;
+  border-radius: 8px;
+  padding: 13px 9px
+}
+#cadastro {
+  background-color: #d6335c;
+  border-radius: 8px;
+  padding: 13px 7px;
+}
+  
+/* Seção Principal */
+.hero-section {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 0px 50px;
+   position: relative;
+}
+.hero-text{
+   margin: 0px 0px 0px 0px;
+}
+/*Configurações específicas da página index*/
+.hero-text h2 {
+   font-size: 55px;
+   color: #1e391e;
+}
+.efeito {
+   color: #d6335c;
+}
+.destaque-fraseefeito {
+   color: #d6335c;
+}
+.linha-separadora {
+   width: 178px;
+   border: 1px solid #6b7e5f;
+   margin: 21px 4px;
+}
+/*Estilização do botão "Montar meu plano!"*/
+.btn-plano {
+   background-color: #d6335c;
+   color: white;
+   padding: 12px 25px;
+   border: none;
+   border-radius: 8px;
+   text-decoration: none;
+   cursor: pointer;
 }
 
-/* Estilos do Cabeçalho */
+/* Lógica da Imagem Dividida */
+.container-circulo {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 20px 0px 47px 169px;
+}
+.circulo-dividido {
+   width: 400px; /* Largura definida como desejado */
+   height: 400px; /* Altura igual à largura para manter a proporção */
+   border-radius: 50%; /* Configurado para ser um círculo */
+   overflow: hidden; /* Corta qualquer excesso das imagens */
+   display: flex;
+   border: 5px solid white;
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.esquerda, .direita {
+   width: 80%;
+   height: 107%;
+   position: relative;
+}
+.imagem-esquerda, .imagem-direita {
+   width: 100%;
+   height: 100%;
+   object-fit: cover; /* Garante que a imagem cubra todo o espaço disponível */
+}
+/*Rodapé comum a todas as páginas*/
+.footer {
+   background-color: #445b30; /* Altere conforme necessário */
+   color: white;
+   text-align: center;
+   padding: 15px; /* Adicione algum espaço */
+   font-size: 11px;
+   width: 100%; /* Garante que o rodapé ocupe 100% da largura */
+   position: relative; /* Normalmente, isso deve estar tudo ok */
+}
+
+/* Estilos específicos para a Página de Cadastro */
+.body-cadastro {
+   background-color: #f4f7e6;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+}
+.container-cadastro {
+   background-color: #445b30;
+   width: 90%;
+   max-width: 980px;
+   padding: 4px 43px 5px 24px;
+   /*border-radius: 40px;*/ /* Bordas bem arredondadas */
+   box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+.icone{
+   height: 45px;
+   width: 45px;
+   margin: 0px 0px -18px 0px; 
+}
 .header-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 5px;
 }
-
 .header-form h1 {
-    color: #f5f2d0;
-    font-size: 28px;
+   color:#f5f2d0;
+   font-size: 32px;
 }
-
-/* Estilos do Link de Ajuda */
+#help {
+color:#f5f2d0;
+font-size: 16px
+}
 .ajuda-link {
-    font-size: 14px;
-    font-weight: bold;
+   font-size: 14px;
+   font-weight: bold;
 }
-
 .ajuda-link a {
-    color: #FCA9AA;
-    text-decoration: underline;
+   color: #FCA9AA;
+   text-decoration: underline;
 }
-
-/* Estilos dos Campos do Formulário */
+/* Estilo dos Campos */
 .grupo-input {
-    margin-bottom: 20px;
+   margin-bottom: 20px;
 }
-
 .grupo-input label {
-    color: #f5f2d0;
-    margin-bottom: 5px;
-    font-size: 16px;
+   display: block;
+   color: #f5f2d0;
+   /*font-weight: bold;*/
+   margin-bottom: 5px;
+   font-size: 18px;
 }
-
 .grupo-input input {
-    width: 100%;
-    padding: 12px;
-    border: 1.5px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+   width: 100%;
+   padding: 12px;
+   border: 1.5px solid #ccc;
+   border-radius: 12px;
+   font-size: 16px;
+   outline-color:#FCA9AA;
+}
+.hidden {
+   display: none; /* Classe para ocultar seções */
 }
 
-/* Estilos dos Botões */
-.btn-proximo, .btn-enviar, .btn-voltar {
-    width: 100%;
-    padding: 15px;
-    background-color: #FCA9AA; /* Cor do botão */
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #d6335c;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
+.option-group {
+   margin-bottom: 10px; /* Espaçamento entre opções */
 }
 
-.btn-proximo:hover, .btn-enviar:hover, .btn-voltar:hover {
-    background-color: #e6c84f; /* Cor do botão ao passar o mouse */
+.btn-voltar, .btn-enviar {
+   display: inline-block;
+   margin-top: 10px;
+   padding: 10px 15px;
+   background-color: #4CAF50; /* Cor do botão */
+   color: white; /* Cor do texto do botão */
+   border: none;
+   border-radius: 5px; /* Borda arredondada */
+   text-decoration: none; /* Remove sublinhado do link */
+   cursor: pointer; /* Muda o cursor ao passar sobre o botão */
 }
 
-/* Estilos do Rodapé */
+.btn-voltar:hover, .btn-enviar:hover {
+   background-color: #45a049; /* Cor do botão ao passar o mouse */
+}
+/* Botão Próximo */
+.btn-proximo {
+   width: 100%;
+   padding: 15px;
+   background-color:#FCA9AA ;
+   border: none;
+   border-radius: 25px;
+   font-size: 18px;
+   font-weight: bold;
+   color: #d6335c;
+   cursor: pointer;
+   margin-top: 10px;
+   transition: 0.3s;
+}
+.btn-proximo:hover {
+   background-color: #e6c84f;
+}
 .footer-form p {
-    text-align: center;
-    font-size: 11px;
-    color: #888;
-    margin-top: 15px;
+   text-align: center;
+   font-size: 11px;
+   color: #888;
+   margin-top: 15px;
 }
+

@@ -24,14 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
                return;
            }
 
-           // Opcional: Adicione outras validações conforme necessário
-
-           // Feedback ao usuário
-           alert("Cadastro realizado com sucesso, " + nome + "!");
-           // Aqui você pode redirecionar para outra página, se necessário
-           window.location.href = "entrar.html"; // Exemplo de redirecionamento
-       });
-   }
+         
 });
 function showExperienceSection(event) {
    event.preventDefault(); // Impede o envio do formulário
@@ -56,3 +49,12 @@ function submitForm(event) {
    alert("Formulário enviado!"); // Exemplo de alerta
    // O envio dos dados deve ser implementado de acordo com sua necessidade
 } 
+        // Opcional: Adicione outras validações conforme necessário
+
+           // Feedback ao usuário
+           alert("Cadastro realizado com sucesso, " + nome + "!");
+           // Aqui você pode redirecionar para outra página, se necessário
+           window.location.href = "entrar.html"; // Exemplo de redirecionamento
+       });
+   }
+                          });

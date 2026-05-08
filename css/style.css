@@ -180,9 +180,8 @@ font-size: 16px
 .grupo-input label {
    display: block;
    color: #f5f2d0;
-   /*font-weight: bold;*/
-   margin-bottom: 5px;
-   font-size: 18px;
+   font-size: 12px;
+   margin: 0px 0px 13px 0px
 }
 .grupo-input input {
    width: 100%;
@@ -197,7 +196,7 @@ font-size: 16px
 }
 
 .option-group {
-   margin-bottom: 10px; /* Espaçamento entre opções */
+   margin-bottom: 0px; /* Espaçamento entre opções */
 }
 
 .btn-voltar, .btn-enviar {

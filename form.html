@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodWise - Cadastro</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Caminho para o arquivo CSS -->
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>FoodWise - Cadastro</title>
+   <link rel="stylesheet" href="css/style.css"> <!-- Mantenha o caminho correto -->
 </head>
 <body class="body-cadastro">
-    <div class="container-cadastro">
-        <header class="header-form">
-            <h1>Faça seu cadastro</h1>
-            <div class="ajuda-link">
-                <img src="image/suporte.png" alt="Acessibilidade" class="icone">
-                <span id="help">Precisa de ajuda? <a href="#">clique aqui</a></span>
-            </div>
-        </header>
+   <div class="container-cadastro"> <!-- Use a mesma div com a classe container -->
+       <header class="header-form">
+           <h1>Faça seu cadastro</h1>
+           <div class="ajuda-link">
+               <img src="image/suporte.png" alt="Acessibilidade" class="icone">
+               <span id="help">Precisa de ajuda? <a href="#">clique aqui</a></span>
+           </div>
+       </header>
 
-        <form id="meuFormulario" onsubmit="showExperiencePage(event)"> <!-- Chama a função JavaScript -->
-            <div class="grupo-input">
-                <label for="nome">Seu nome</label>
-                <input type="text" id="nome" required>
-            </div>
+       <form id="meuFormulario">
+           <div class="grupo-input">
+               <label for="nome">Seu nome</label>
+               <input type="text" id="nome" required>
+           </div>
 
-            <div class="grupo-input">
-                <label for="nascimento">Data de nascimento</label>
-                <input type="text" id="nascimento" placeholder="dd/mm/aaaa">
-            </div>
+           <div class="grupo-input">
+               <label for="nascimento">Data de nascimento</label>
+               <input type="text" id="nascimento" placeholder="dd/mm/aaaa">
+           </div>
 
-            <div class="grupo-input">
-                <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone">
-            </div>
+           <div class="grupo-input">
+               <label for="telefone">Telefone</label>
+               <input type="tel" id="telefone">
+           </div>
 
-            <div class="grupo-input">
-                <label for="endereco">Endereço</label>
-                <input type="text" id="endereco">
-            </div>
+           <div class="grupo-input">
+               <label for="endereco">Endereço</label>
+               <input type="text" id="endereco">
+           </div>
 
-            <div class="grupo-input">
-                <label for="email">Insira seu e-mail</label>
-                <input type="email" id="email" required>
-            </div>
+           <div class="grupo-input">
+               <label for="email">Insira seu e-mail</label>
+               <input type="email" id="email" required>
+           </div>
 
-            <button type="submit" class="btn-proximo">Próximo</button>
-        </form>
+           <button type="submit" class="btn-proximo">Próximo</button>
+       </form>
+</div>
 
-        <footer class="footer-form">
-            <p>Desenvolvido por Emanuelly Vitória, Isabely Camile, Maria Clara e Samantha Valentina. No Colégio Estadual Humberto de Alencar Castelo Branco. Na turma do 3ºSI - Turno da Noite. No ano de 2026.</p>
-        </footer>
-    </div>
+       <footer class="footer-form">
+           <p>Desenvolvido por Emanuelly Vitória, Isabely Camile, Maria Clara e Samantha Valentina. No Colégio Estadual Humberto de Alencar Castelo Branco. Na turma do 3ºSI - Turno da Noite. No ano de 2026.</p>
+       </footer>
+   </div>
 
-    <script src="JS/script.js"></script> <!-- Caminho para o arquivo JavaScript -->
+   <script src="JS/script.js"></script> <!-- Verifique se o caminho está correto -->
 </body>
 </html>

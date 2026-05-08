@@ -1,45 +1,81 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodWise - Experiência</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Caminho para o arquivo CSS -->
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>FoodWise - Cadastro</title>
+   <link rel="stylesheet" href="css/style.css"> <!-- Mantenha o caminho correto -->
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Sua experiência, do seu jeito!</h1>
-        </header>
+<body class="body-cadastro">
+   <div class="container-cadastro"> <!-- Use a mesma div com a classe container -->
+       <header class="header-form">
+           <h1>Faça seu cadastro</h1>
+           <div class="ajuda-link">
+               <img src="image/suporte.png" alt="Acessibilidade" class="icone">
+               <span id="help">Precisa de ajuda? <a href="#">clique aqui</a></span>
+           </div>
+       </header>
 
-        <form id="experienciaForm" onsubmit="submitForm(event)"> <!-- Chama a função JavaScript para enviar -->
-            <label>Tipos de alimentação</label>
-            <div class="option-group">
-                <input type="radio" id="saudavel" name="alimentacao" value="saudavel" required>
-                <label for="saudavel">Saudável</label>
-            </div>
-            <div class="option-group">
-                <input type="radio" id="fastfood" name="alimentacao" value="fastfood">
-                <label for="fastfood">Fast Food</label>
-            </div>
-            <div class="option-group">
-                <input type="radio" id="ambos_ali" name="alimentacao" value="ambos">
-                <label for="ambos_ali">Ambos</label>
-            </div>
+<!-- Seção de Experiência (oculta inicialmente) -->
+<div id="experiencia-section" class="hidden">
+   <h1>Sua experiência, do seu jeito!</h1>
+   <form id="experienciaForm" onsubmit="submitForm(event)">
+       <label>Tipos de alimentação</label>
+       <div class="option-group">
+           <input type="radio" id="saudavel" name="alimentacao" value="saudavel" required>
+           <label for="saudavel" style="margin:0; font-weight:normal;">Saudável</label>
+       </div>
+       <div class="option-group">
+           <input type="radio" id="fastfood" name="alimentacao" value="fastfood">
+           <label for="fastfood" style="margin:0; font-weight:normal;">Fast Food</label>
+       </div>
+       <div class="option-group">
+           <input type="radio" id="ambos_ali" name="alimentacao" value="ambos">
+           <label for="ambos_ali" style="margin:0; font-weight:normal;">Ambos</label>
+       </div>
 
-            <label for="objetivo">Seu objetivo no nosso app</label>
-            <input type="text" id="objetivo" name="objetivo" required>
+       <label for="objetivo">Seu objetivo no nosso app</label>
+       <input type="text" id="objetivo" name="objetivo" required>
 
-            <button type="submit" class="btn-enviar">Enviar</button>
-        </form>
+       <label>Quer receber notificações?</label>
+       <div class="option-group">
+           <input type="radio" id="notif_sim" name="notificacoes" value="sim">
+           <label for="notif_sim" style="margin:0; font-weight:normal;">Sim</label>
+       </div>
+       <div class="option-group">
+           <input type="radio" id="notif_nao" name="notificacoes" value="nao">
+           <label for="notif_nao" style="margin:0; font-weight:normal;">Não, obrigado</label>
+       </div>
 
-        <a href="form.html" class="btn-voltar">Voltar</a> <!-- Link para retornar à página de cadastro -->
+       <label>Se sim, qual a sua preferência:</label>
+       <div class="option-group">
+           <input type="radio" id="so_saudavel" name="preferencia" value="so_saudavel">
+           <label for="so_saudavel" style="margin:0; font-weight:normal;">Só saudável</label>
+       </div>
+       <div class="option-group">
+           <input type="radio" id="so_fastfood" name="preferencia" value="so_fastfood">
+           
+       <button type="submit" class="btn-enviar">Enviar</button> <!-- Botão para enviar -->
+   </form>
+   <a href="#" class="btn-voltar" onclick="showCadastroSection()">Voltar</a> <!-- Botão para voltar ao cadastro -->
+</div>
 
-        <footer class="footer-form">
-            <p>Desenvolvido por Emanuelly Vitória, Isabely Camile, Maria Clara e Samantha Valentina. No Colégio Estadual Humberto de Alencar Castelo Branco. Na turma do 3ºSI - Turno da Noite. No ano de 2026.</p>
-        </footer>
-    </div>
-    
-    <script src="JS/script.js"></script> <!-- Caminho para o arquivo JavaScript -->
+       <footer class="footer-form">
+           <p>Desenvolvido por Emanuelly Vitória, Isabely Camile, Maria Clara e Samantha Valentina. No Colégio Estadual Humberto de Alencar Castelo Branco. Na turma do 3ºSI - Turno da Noite. No ano de 2026.</p>
+       </footer>
+   </div>
+
+   <script src="JS/script.js"></script> <!-- Verifique se o caminho está correto -->
 </body>
 </html>
+
+           <label for="so_fastfood" style="margin:0; font-weight:normal;">Só fast food</label>
+       </div>
+       <div class="option-group">
+           <input type="radio" id="ambos_pref" name="preferencia" value="ambos">
+           <label for="ambos_pref" style="margin:0; font-weight:normal;">Ambos</label>
+       </div>
+
+       <button type="submit" class="btn-enviar">Enviar</button> <!-- Botão para enviar -->
+   </form>
+   <a href="#" class="btn-voltar" onclick="showCadastroSection()">Voltar</a> <!-- Botão para voltar ao cadastro -->

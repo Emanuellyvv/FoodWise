@@ -73,6 +73,9 @@ body {
 .hero-text{
    margin: 0px 0px 0px 0px;
 }
+.hero-text2{
+   margin: 0px 0px 0px 0px;
+}
 /*Configurações específicas da página index*/
 .hero-text h2 {
    font-size: 55px;

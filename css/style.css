@@ -127,7 +127,8 @@ body {
    padding: 15px; /* Adicione algum espaço */
    font-size: 11px;
    width: 100%; /* Garante que o rodapé ocupe 100% da largura */
-   position: relative; /* Normalmente, isso deve estar tudo ok */
+   position: fixed;
+   margin-top: 115px;
 }
 
 /* Estilos específicos para a Página de Cadastro */

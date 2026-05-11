@@ -58,7 +58,7 @@ body {
 /* Seção Principal */
 .hero-section {
    display: flex;
-   justify-content: center;
+   justify-content: left;
    align-items: center;
    padding: 0px 50px;
    position: relative;

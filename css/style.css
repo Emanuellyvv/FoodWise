@@ -98,7 +98,7 @@ body {
    display: flex;
    justify-content: center;
    align-items: center;
-   margin: 20px 0px 47px 169px;
+   margin: 34px 0px 47px 119px;
 }
 .circulo-dividido {
    width: 400px; /* Largura definida como desejado */
@@ -128,7 +128,7 @@ body {
    font-size: 11px;
    width: 100%; /* Garante que o rodapé ocupe 100% da largura */
    position: fixed;
-   margin-top: 115px;
+   margin-top: 81px;
 }
 
 /* Estilos específicos para a Página de Cadastro */

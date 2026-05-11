@@ -63,6 +63,13 @@ body {
    padding: 0px 50px;
    position: relative;
 }
+.hero-section2 {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 0px 50px;
+   position: relative;
+}
 .hero-text{
    margin: 0px 0px 0px 0px;
 }

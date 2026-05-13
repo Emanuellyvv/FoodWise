@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>FoodWise - Cadastro</title>
-   <link rel="stylesheet" href="css/style.css"> <!-- Mantenha o caminho correto -->
+   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="body-cadastro">
-   <div class="container-cadastro"> <!-- Use a mesma div com a classe container -->
+   <div class="container-cadastro">
+       <header class="navbar">
+           <div class="logo">
+               <h1>
+                   <img src="image/IMG_9064.jpg" class="image-container" alt="Imagem" />
+               </h1>
+           </div>
+           <nav>
+               <ul class="nav-links">
+                   <li><a href="sobrenos.html">Sobre nós</a></li>
+                   <li><a href="ajuda.html">Ajuda</a></li>
+                   <li><a href="entrar.html" id="entrar">Entrar</a></li>
+                   <li><a href="form.html" id="cadastro">Cadastre-se</a></li>
+               </ul>
+           </nav>
+       </header>
+
        <header class="header-form">
            <h1>Faça seu cadastro</h1>
            <div class="ajuda-link">
@@ -24,7 +42,7 @@
 
            <div class="grupo-input">
                <label for="nascimento">Data de nascimento</label>
-               <input type="text" id="nascimento" placeholder="dd/mm/aaaa">
+               <input type="text" id="nascimento" placeholder="dd/mm/aaaa" required>
            </div>
 
            <div class="grupo-input">
@@ -41,15 +59,16 @@
                <label for="email">Insira seu e-mail</label>
                <input type="email" id="email" required>
            </div>
-    <a href="form.html" class="btn-voltar" onclick="showCadastroSection()">Voltar</a> <!-- Botão para voltar ao cadastro -->
-    <a href="form2.html" class="btn-proximo" onclick="showCadastroSection()">Próximo</a>
-</div>
+
+           <a href="form.html" class="btn-voltar" onclick="showCadastroSection()">Voltar</a> 
+           <a href="form2.html" class="btn-proximo" onclick="showCadastroSection()">Próximo</a> 
+       </form>
 
        <footer class="footer-form">
            <p>Desenvolvido por Emanuelly Vitória, Isabely Camile, Maria Clara e Samantha Valentina. No Colégio Estadual Humberto de Alencar Castelo Branco. Na turma do 3ºSI - Turno da Noite. No ano de 2026.</p>
        </footer>
    </div>
 
-   <script src="JS/script.js"></script> <!-- Verifique se o caminho está correto -->
+   <script src="JS/script.js"></script>
 </body>
 </html>

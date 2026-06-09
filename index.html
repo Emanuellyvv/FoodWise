@@ -1,64 +1,344 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>FoodWise - Home</title>
-   <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FoodWise — Seu gosto. Sua rotina. Seu delivery.</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-   <div id="container">
-       <header class="navbar">
-           <div class="logo">
-               <h1>
-                   <img src="image/IMG_9064.jpg" class="image-container" alt="Imagem" />
-               </h1>
-           </div>
-           <nav>
-               <ul class="nav-links">
-                   <li><a href="sobrenos.html">Sobre nós</a></li>
-                   <li><a href="ajuda.html">Ajuda</a></li>
-                   <li><a href="entrar.html" id="entrar">Entrar</a></li>
-                   <li><a href="form.html" id="cadastro">Cadastre-se</a></li>
-               </ul>
-           </nav>
-       </header>
-      
-       <main class="hero-section">
-           <div class="hero-text">
-               <h2>Seu gosto. <br>
-                   Sua rotina. <br>
-                   <span class="destaque-fraseefeito">Seu delivery!</span>
-               </h2>
-           </div>
-           <div class="container-circulo">
-               <div class="circulo-dividido">
-                   <div class="esquerda">
-                       <img src="image/fastfood1.jpg" alt="Fast Food" class="imagem-esquerda" />
-                   </div>
-                   <div class="direita">
-                       <img src="image/salada1.jpg" alt="Salada" class="imagem-direita"/>
-                       <a href="form.html" class="btn-plano">Montar meu plano!</a>
-                   </div>
-               </div>
-           </div>
-       </main>
 
-       <main class="hero-section2">
-           <div class="hero-text2">
-               <h2>Peça do seu jeito, <br>
-                   de forma saudável <br>
-                   <span class="destaque-fraseefeito"> e inteligente!</span>
-               </h2>
-           </div>
-       </main>
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Navegação principal">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="FoodWise - Página inicial">
+        <span class="logo-food">Food</span><span class="logo-icon" aria-hidden="true">🍔</span><span class="logo-wise">Wise</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#sobre" class="nav-link">Sobre nós</a></li>
+        <li><a href="#como-funciona" class="nav-link">Como funciona</a></li>
+        <li><a href="pages/menu.html" class="nav-link">Cardápio</a></li>
+        <li><a href="#ajuda" class="nav-link">Ajuda</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="pages/login.html" class="btn btn-ghost">Entrar</a>
+        <a href="pages/cadastro.html" class="btn btn-primary">Cadastrar-se</a>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul role="list">
+        <li><a href="#sobre">Sobre nós</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="pages/menu.html">Cardápio</a></li>
+        <li><a href="#ajuda">Ajuda</a></li>
+        <li><a href="pages/login.html" class="btn btn-ghost w-full">Entrar</a></li>
+        <li><a href="pages/cadastro.html" class="btn btn-primary w-full">Cadastrar-se</a></li>
+      </ul>
+    </div>
+  </nav>
 
-       <footer class="footer">
-           Desenvolvido por Emanuelly Vitória, Isabely Camile, Maria Clara e Samantha Valentina. No Colégio Estadual Humberto de Alencar Castelo Branco. Na turma do 3ºSI - Turno da Noite. No ano de 2026.
-       </footer>
-   </div>
-   <script src="JS/script.js"></script>
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Delivery inteligente em Curitiba</p>
+        <h1 id="hero-title" class="hero-title">
+          <span class="line-green">Seu gosto.</span>
+          <span class="line-red">Sua rotina.</span>
+          <span class="line-red">Seu delivery.</span>
+        </h1>
+        <p class="hero-sub">Peça do seu jeito — saudável, indulgente ou os dois — com recomendações personalizadas para a sua vida.</p>
+        <div class="hero-cta">
+          <a href="pages/cadastro.html" class="btn btn-primary btn-lg">Montar meu plano</a>
+          <a href="pages/menu.html" class="btn btn-outline btn-lg">Ver cardápio</a>
+        </div>
+        <div class="hero-stats" role="list" aria-label="Números do FoodWise">
+          <div class="stat" role="listitem">
+            <strong>12k+</strong><span>pedidos entregues</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat" role="listitem">
+            <strong>98%</strong><span>satisfação</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat" role="listitem">
+            <strong>30min</strong><span>tempo médio</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="split-circle">
+          <div class="half half-left">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop" alt="Salada saudável com frango grelhado e abacate" loading="eager" />
+          </div>
+          <div class="half half-right">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop" alt="Hambúrguer artesanal com batatas fritas" loading="eager" />
+          </div>
+          <div class="split-line" aria-hidden="true"></div>
+          <div class="split-badge left-badge">🥗 Saudável</div>
+          <div class="split-badge right-badge">🍔 Fast Food</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIAS RÁPIDAS -->
+    <section class="categories" aria-labelledby="cat-title">
+      <div class="container">
+        <h2 id="cat-title" class="section-eyebrow">Explore o cardápio</h2>
+        <div class="cat-grid" role="list">
+          <a href="pages/menu.html?cat=marmitas" class="cat-card" role="listitem">
+            <span class="cat-emoji" aria-hidden="true">🍱</span>
+            <span class="cat-name">Marmitas</span>
+            <span class="cat-count">6 opções</span>
+          </a>
+          <a href="pages/menu.html?cat=saudavel" class="cat-card" role="listitem">
+            <span class="cat-emoji" aria-hidden="true">🥗</span>
+            <span class="cat-name">Saudável</span>
+            <span class="cat-count">10 opções</span>
+          </a>
+          <a href="pages/menu.html?cat=lanches" class="cat-card" role="listitem">
+            <span class="cat-emoji" aria-hidden="true">🥪</span>
+            <span class="cat-name">Lanches</span>
+            <span class="cat-count">8 opções</span>
+          </a>
+          <a href="pages/menu.html?cat=carnes" class="cat-card" role="listitem">
+            <span class="cat-emoji" aria-hidden="true">🥩</span>
+            <span class="cat-name">Carnes</span>
+            <span class="cat-count">5 opções</span>
+          </a>
+          <a href="pages/menu.html?cat=sushi" class="cat-card" role="listitem">
+            <span class="cat-emoji" aria-hidden="true">🍣</span>
+            <span class="cat-name">Sushi</span>
+            <span class="cat-count">7 opções</span>
+          </a>
+          <a href="pages/menu.html?cat=sobremesa" class="cat-card" role="listitem">
+            <span class="cat-emoji" aria-hidden="true">🍓</span>
+            <span class="cat-name">Sobremesas</span>
+            <span class="cat-count">6 opções</span>
+          </a>
+          <a href="pages/menu.html?cat=bebidas" class="cat-card" role="listitem">
+            <span class="cat-emoji" aria-hidden="true">🥤</span>
+            <span class="cat-name">Bebidas</span>
+            <span class="cat-count">8 opções</span>
+          </a>
+          <a href="pages/menu.html?cat=promocoes" class="cat-card promo-card" role="listitem">
+            <span class="cat-emoji" aria-hidden="true">🔥</span>
+            <span class="cat-name">Promoções</span>
+            <span class="cat-count">Hot deals</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESTAQUES DO DIA -->
+    <section class="featured" aria-labelledby="featured-title">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-label">Mais pedidos hoje</p>
+            <h2 id="featured-title">Destaques do cardápio</h2>
+          </div>
+          <a href="pages/menu.html" class="btn btn-ghost">Ver todos →</a>
+        </div>
+        <div class="featured-grid" role="list" id="featured-items">
+          <!-- Preenchido por JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="how-it-works" id="como-funciona" aria-labelledby="how-title">
+      <div class="container">
+        <p class="section-label center">Simples assim</p>
+        <h2 id="how-title" class="center">Como funciona</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num" aria-hidden="true">1</div>
+            <div class="step-icon" aria-hidden="true">👤</div>
+            <h3>Crie sua conta</h3>
+            <p>Informe suas preferências e objetivos — saudável, indulgente ou os dois.</p>
+          </div>
+          <div class="step-arrow" aria-hidden="true">→</div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">2</div>
+            <div class="step-icon" aria-hidden="true">🍽️</div>
+            <h3>Monte seu pedido</h3>
+            <p>Navegue pelo cardápio completo e adicione itens ao carrinho com um clique.</p>
+          </div>
+          <div class="step-arrow" aria-hidden="true">→</div>
+          <div class="step">
+            <div class="step-num" aria-hidden="true">3</div>
+            <div class="step-icon" aria-hidden="true">🛵</div>
+            <h3>Receba em casa</h3>
+            <p>Entrega rápida com rastreamento em tempo real. Sem surpresas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE NÓS -->
+    <section class="about" id="sobre" aria-labelledby="about-title">
+      <div class="about-inner container">
+        <div class="about-img" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&auto=format&fit=crop" alt="Cozinha do restaurante FoodWise" loading="lazy" />
+          <div class="about-badge">
+            <span class="badge-num">5+</span>
+            <span class="badge-label">anos entregando sabor</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="section-label">Sobre o FoodWise</p>
+          <h2 id="about-title">Comida de verdade,<br/>do jeito certo</h2>
+          <p>Nascemos com uma missão simples: fazer delivery que respeita você. Seja qual for seu objetivo — perder peso, ganhar massa ou só aproveitar um bom lanche — temos opções pensadas para cada momento.</p>
+          <p>Trabalhamos com parceiros locais em Curitiba, garantindo frescor, qualidade e rastreabilidade em cada prato.</p>
+          <a href="pages/cadastro.html" class="btn btn-primary">Começar agora</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="testimonials" aria-labelledby="test-title">
+      <div class="container">
+        <p class="section-label center">O que dizem nossos clientes</p>
+        <h2 id="test-title" class="center">Avaliações reais</h2>
+        <div class="testimonials-grid" role="list">
+          <article class="testimonial-card" role="listitem">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <p>"Finalmente um delivery que entende que eu quero comer bem E saboroso. A marmita de frango é incrível!"</p>
+            <div class="test-author">
+              <div class="author-avatar" aria-hidden="true">M</div>
+              <div>
+                <strong>Mariana S.</strong>
+                <span>Cliente há 8 meses</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card featured-test" role="listitem">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <p>"Pedido sempre chega no tempo certo, comida ainda quente. A salada premium com frango grelhado virou minha rotina."</p>
+            <div class="test-author">
+              <div class="author-avatar" aria-hidden="true">R</div>
+              <div>
+                <strong>Rafael T.</strong>
+                <span>Cliente há 1 ano</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card" role="listitem">
+            <div class="stars" aria-label="4 estrelas">★★★★☆</div>
+            <p>"O sistema de recomendação é inteligente de verdade. Depois que coloquei meus objetivos, passou a sugerir exatamente o que preciso."</p>
+            <div class="test-author">
+              <div class="author-avatar" aria-hidden="true">A</div>
+              <div>
+                <strong>Ana P.</strong>
+                <span>Cliente há 4 meses</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- AJUDA / FAQ -->
+    <section class="faq" id="ajuda" aria-labelledby="faq-title">
+      <div class="container faq-inner">
+        <div class="faq-left">
+          <p class="section-label">Perguntas frequentes</p>
+          <h2 id="faq-title">Tem alguma dúvida?</h2>
+          <p>Estamos aqui para ajudar. Se não encontrar sua resposta aqui, entre em contato com nosso suporte.</p>
+          <a href="mailto:suporte@foodwise.com.br" class="btn btn-primary">Falar com suporte</a>
+        </div>
+        <div class="faq-right">
+          <div class="faq-list" role="list">
+            <details class="faq-item" role="listitem">
+              <summary>Qual é o tempo médio de entrega?</summary>
+              <p>Nosso tempo médio é de 30 minutos. Em horários de pico pode variar entre 35-45 minutos. Você recebe atualizações em tempo real.</p>
+            </details>
+            <details class="faq-item" role="listitem">
+              <summary>Vocês entregam em toda Curitiba?</summary>
+              <p>Atendemos toda Curitiba e região metropolitana. Insira seu CEP no checkout para confirmar a disponibilidade na sua área.</p>
+            </details>
+            <details class="faq-item" role="listitem">
+              <summary>Posso cancelar meu pedido?</summary>
+              <p>Cancelamentos são aceitos em até 5 minutos após a confirmação. Após esse prazo, o pedido já está em preparo.</p>
+            </details>
+            <details class="faq-item" role="listitem">
+              <summary>Como funciona o sistema de recomendação?</summary>
+              <p>Com base nas suas preferências cadastradas (saudável, fast food ou ambos) e histórico de pedidos, sugerimos pratos alinhados aos seus objetivos.</p>
+            </details>
+            <details class="faq-item" role="listitem">
+              <summary>Quais formas de pagamento são aceitas?</summary>
+              <p>Aceitamos cartão de crédito/débito, Pix e dinheiro na entrega. Parcelamento disponível em compras acima de R$ 50.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final" aria-labelledby="cta-title">
+      <div class="container center">
+        <h2 id="cta-title">Pronto para comer bem?</h2>
+        <p>Crie sua conta grátis e ganhe R$ 10 de desconto no primeiro pedido.</p>
+        <a href="pages/cadastro.html" class="btn btn-primary btn-xl">Criar minha conta grátis</a>
+        <p class="cta-footnote">Sem taxas de cadastro. Cancele quando quiser.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" aria-label="FoodWise">
+          <span class="logo-food">Food</span><span class="logo-icon" aria-hidden="true">🍔</span><span class="logo-wise">Wise</span>
+        </a>
+        <p>Seu delivery inteligente em Curitiba.</p>
+        <div class="social-links" aria-label="Redes sociais">
+          <a href="#" aria-label="Instagram do FoodWise">📷 Instagram</a>
+          <a href="#" aria-label="WhatsApp do FoodWise">💬 WhatsApp</a>
+        </div>
+      </div>
+      <nav class="footer-links" aria-label="Links do rodapé">
+        <div class="footer-col">
+          <h3>Navegação</h3>
+          <ul role="list">
+            <li><a href="pages/menu.html">Cardápio</a></li>
+            <li><a href="pages/login.html">Entrar</a></li>
+            <li><a href="pages/cadastro.html">Cadastrar-se</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Empresa</h3>
+          <ul role="list">
+            <li><a href="#sobre">Sobre nós</a></li>
+            <li><a href="#ajuda">Ajuda</a></li>
+            <li><a href="#">Trabalhe conosco</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul role="list">
+            <li><a href="#">Termos de uso</a></li>
+            <li><a href="#">Privacidade</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 FoodWise. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="js/db.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>

@@ -41,7 +41,22 @@ formulario.addEventListener('submit', async (evento) => {
         alert('Ocorreu um erro ao tentar salvar as informações.');
     }
 });
+document.getElementById('formCadastroGasto')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const item = document.getElementById('nomeItem').value;
+    const valor = parseFloat(document.getElementById('valorItem').value);
 
+    const { data, error } = await supabase
+        .from('registros_financeiros')
+        .insert([{ item: item, valor: valor, tipo: 'gasto' }]);
+
+    if (error) {
+        alert('Erro ao salvar dados: ' + error.message);
+    } else {
+        alert('Gasto contabilizado com sucesso no FoodWise!');
+    }
+});
 const DB = {
   init() {
     if (!this.get('fw_initialized')) { this.seed(); this.set('fw_initialized', true); }

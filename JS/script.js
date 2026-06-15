@@ -1,6 +1,12 @@
 /**
  * FoodWise — Banco de Dados (localStorage)
  */
+// Inicializando a conexão com os seus dados do painel do Supabase
+const SUPABASE_URL = "sb_secret_b6ZbPXnoBYC9d4SSsNKXzA_WY2CD6jQ";
+const SUPABASE_KEY = "sb_publishable_DkoFibjxu6n2OkiWBTCwwA_OfdBwRdG";
+
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 const DB = {
   init() {
     if (!this.get('fw_initialized')) { this.seed(); this.set('fw_initialized', true); }

@@ -81,7 +81,12 @@
            <button class="btn-enviar">Enviar</button>
            <a href="form.html" class="btn-voltar" onclick="showCadastroSection()">Voltar</a>
        </form>
-
+  <!-- Dentro do form.html -->
+<form id="formCadastroGasto">
+    <input type="text" id="nomeItem" placeholder="Ex: Mercado Mensal" required>
+    <input type="number" step="0.01" id="valorItem" placeholder="Ex: 250.00" required>
+    <button type="submit">Salvar no FoodWise</button>
+</form>
        <footer class="footer-form">
            <p>Desenvolvido por Emanuelly Vitória, Isabely Camile, Maria Clara e Samantha Valentina. No Colégio Estadual Humberto de Alencar Castelo Branco. Na turma do 3ºSI - Turno da Noite. No ano de 2026.</p>
        </footer>
@@ -89,5 +94,8 @@
 
    <script src="https://jsdelivr.net"></script>
     <script src="JS/script.js"></script>
+   <!-- Antes de fechar o </body> -->
+<script src="https://jsdelivr.net"></script>
+<script src="JS/script.js"></script>
 </body>
 </html>

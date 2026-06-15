@@ -6,6 +6,41 @@ const SUPABASE_URL = "sb_secret_b6ZbPXnoBYC9d4SSsNKXzA_WY2CD6jQ";
 const SUPABASE_KEY = "sb_publishable_DkoFibjxu6n2OkiWBTCwwA_OfdBwRdG";
 
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// 1. Mapear o formulário do HTML pelo ID dele (certifique-se de colocar id="meuFormulario" na tag <form> do HTML)
+const formulario = document.getElementById('meuFormulario');
+
+// 2. Ouvir o momento em que o usuário clica no botão de enviar
+formulario.addEventListener('submit', async (evento) => {
+    // Evita que a página recarregue e limpe os dados inseridos
+    evento.preventDefault();
+
+    // 3. Capturar os valores digitados nos campos de input do HTML
+    // (Ajuste os IDs abaixo conforme o que você escreveu no seu HTML)
+    const nomeItem = document.getElementById('inputNome').value;
+    const valorItem = document.getElementById('inputValor').value;
+
+    try {
+        // 4. Inserir os dados na tabela do seu Banco de Dados no Supabase
+        // Substitua 'nome_da_sua_tabela' pelo nome real criado no seu arquivo .sql (ex: 'gastos' ou 'produtos')
+        const { data, error } = await supabase
+            .from('nome_da_sua_tabela')
+            .insert([
+                { nome: nomeItem, valor: parseFloat(valorItem) } // As colunas devem ter o mesmo nome do banco
+            ]);
+
+        if (error) {
+            throw error;
+        }
+
+        // Mensagem de sucesso caso grave corretamente na nuvem
+        alert('Dados salvos com sucesso no FoodWise!');
+        formulario.reset(); // Limpa os campos do formulário para um novo uso
+
+    } catch (erro) {
+        console.error('Erro ao salvar os dados:', erro.message);
+        alert('Ocorreu um erro ao tentar salvar as informações.');
+    }
+});
 
 const DB = {
   init() {

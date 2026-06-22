@@ -1,9 +1,3 @@
-/**
- * ==========================================================================
- * FOODWISE — SCRIPT CENTRAL (Menu, Responsividade, Cadastro, Checkout)
- * ==========================================================================
- */
-
 document.addEventListener("DOMContentLoaded", () => {
   inicializarMenuResponsivo();
   carregarEstadoNavbar();
@@ -24,7 +18,6 @@ function inicializarMenuResponsivo() {
     });
   }
 
-  // Fecha menu mobile ao clicar em links âncoras
   document.querySelectorAll(".mobile-nav-link").forEach(link => {
     link.addEventListener("click", () => {
       hamburger?.classList.remove("open");
@@ -38,18 +31,15 @@ function carregarEstadoNavbar() {
   const session = DB.getSession();
   const counterElement = document.getElementById("cart-counter");
 
-  // Conta itens no carrinho
   if (counterElement) {
     counterElement.textContent = DB.cartCount();
   }
 
-  // Verifica Sessão de Usuário
   const loginBtn = document.getElementById("nav-btn-login");
   const cadastroBtn = document.getElementById("nav-btn-cadastro");
   const badgeProfile = document.getElementById("user-profile-badge");
   const initialsSpan = document.getElementById("user-initials");
 
-  // Mobile Elements
   const mLogin = document.getElementById("mobile-btn-login");
   const mCadastro = document.getElementById("mobile-btn-cadastro");
   const mLogout = document.getElementById("mobile-btn-logout");
@@ -96,7 +86,6 @@ function detectarPaginaAtual() {
     configurarLogin();
   } else if (path.includes("menu.html")) {
     carregarCardapioCompleto();
-    // Abre carrinho se requisitado por parâmetro
     if (new URLSearchParams(window.location.search).get("cart") === "open") {
       setTimeout(toggleCarrinho, 300);
     }
@@ -141,8 +130,8 @@ function configurarCadastroMultiStep() {
     const dadosCadastro = {
       nome: document.getElementById("nome").value.trim(),
       email: document.getElementById("email").value.trim(),
-      password: document.getElementById("password").value.trim(), // Salva local
-      senha: document.getElementById("password").value.trim(),    // Salva Supabase
+      password: document.getElementById("password").value.trim(),
+      senha: document.getElementById("password").value.trim(),
       idade: parseInt(document.getElementById("idade").value),
       data_nascimento: document.getElementById("dataNascimento").value,
       cpf: document.getElementById("cpf").value.trim(),
@@ -165,23 +154,45 @@ function configurarCadastroMultiStep() {
   });
 }
 
+// Validação Inteligente: Identifica o elemento e foca no erro
 function proximaEtapa() {
-  // Validação simples da Etapa 1
-  const campos = ["nome", "email", "password", "idade", "dataNascimento", "cpf", "telefone", "endereco", "renda", "orcamentoAlimentacao"];
-  let valid = true;
+  const campos = [
+    { id: "nome", nomeAmigavel: "Nome Completo" },
+    { id: "email", nomeAmigavel: "E-mail de acesso" },
+    { id: "password", nomeAmigavel: "Senha de login" },
+    { id: "idade", nomeAmigavel: "Idade" },
+    { id: "dataNascimento", nomeAmigavel: "Data de Nascimento" },
+    { id: "cpf", nomeAmigavel: "CPF" },
+    { id: "telefone", nomeAmigavel: "Telefone / WhatsApp" },
+    { id: "endereco", nomeAmigavel: "Endereço de Entrega" },
+    { id: "renda", nomeAmigavel: "Renda Mensal" },
+    { id: "orcamentoAlimentacao", nomeAmigavel: "Limite Mensal para Delivery" }
+  ];
 
-  campos.forEach(cId => {
-    const el = document.getElementById(cId);
-    if (el && !el.checkValidity()) {
-      el.classList.add("error");
-      valid = false;
-    } else if (el) {
-      el.classList.remove("error");
+  let primeiroCampoInvalido = null;
+  let nomesCamposComErro = [];
+
+  campos.forEach(campo => {
+    const el = document.getElementById(campo.id);
+    if (el) {
+      if (!el.checkValidity() || el.value.trim() === "") {
+        el.classList.add("error");
+        nomesCamposComErro.push(campo.nomeAmigavel);
+        if (!primeiroCampoInvalido) {
+          primeiroCampoInvalido = el;
+        }
+      } else {
+        el.classList.remove("error");
+      }
     }
   });
 
-  if (!valid) {
-    exibirToast("Por favor, preencha todos os campos obrigatórios corretamente.", "error");
+  if (nomesCamposComErro.length > 0) {
+    // Alerta o usuário exatamente sobre o que está bloqueando o fluxo
+    exibirToast(`Ajuste os seguintes campos: ${nomesCamposComErro.join(", ")}`, "error");
+    if (primeiroCampoInvalido) {
+      primeiroCampoInvalido.focus();
+    }
     return;
   }
 
@@ -201,6 +212,11 @@ function etapaAnterior() {
   document.getElementById("step-line-1").classList.remove("active");
   etapaAtual = 1;
 }
+
+// Expõe as funções explicitamente para o escopo global (garante execução do onclick do HTML)
+window.proximaEtapa = proximaEtapa;
+window.etapaAnterior = etapaAnterior;
+window.logoutUsuario = logoutUsuario;
 
 // 6. PÁGINA DE LOGIN
 function configurarLogin() {
@@ -268,7 +284,6 @@ function carregarCardapioCompleto() {
 function selecionarCategoria(cat) {
   categoriaAtiva = cat;
   
-  // Atualiza botões
   const chips = document.querySelectorAll("#category-chips-list .chip");
   chips.forEach(chip => {
     chip.classList.remove("active");
@@ -308,6 +323,10 @@ function filtrarCardapio() {
     </article>
   `).join('');
 }
+
+// Expondo lógicas de cardápio globais
+window.selecionarCategoria = selecionarCategoria;
+window.filtrarCardapio = filtrarCardapio;
 
 // 8. CONTROLE DO CARRINHO INTERATIVO (SIDEBAR)
 function toggleCarrinho() {
@@ -374,11 +393,9 @@ function renderizarItensCarrinho() {
     `;
   }).join('');
 
-  // Calcula Totais
   const total = DB.cartTotal();
   document.getElementById("cart-subtotal-price").textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
 
-  // Desconto de Primeira Compra se Aplicável
   const session = DB.getSession();
   let totalComDesconto = total;
   if (session && session.firstOrderDiscount > 0) {
@@ -389,7 +406,6 @@ function renderizarItensCarrinho() {
   }
   document.getElementById("cart-total-price").textContent = `R$ ${totalComDesconto.toFixed(2).replace('.', ',')}`;
 
-  // Calcula impacto orçamentário no carrinho
   atualizarAlertaOrcamentarioCarrinho(totalComDesconto);
 }
 
@@ -442,7 +458,6 @@ function atualizarBannerOrcamento() {
     return;
   }
 
-  // Com sessão ativa
   banner.className = "budget-banner-bar success";
   title.textContent = `Orçamento Mensal de ${session.nome.split(" ")[0]}:`;
   desc.textContent = `Seu limite estabelecido é de R$ ${session.orcamento.toFixed(2).replace('.', ',')}. Nós impediremos você de gastar por impulso.`;
@@ -463,7 +478,6 @@ function irParaCheckout() {
     return;
   }
 
-  // Verifica estouro
   const total = DB.cartTotal();
   const totalComDesconto = session.firstOrderDiscount > 0 ? Math.max(0, total - 10) : total;
   if (totalComDesconto > session.orcamento) {
@@ -473,6 +487,13 @@ function irParaCheckout() {
 
   window.location.href = "checkout.html";
 }
+
+// Expõe carrinho ao escopo global
+window.toggleCarrinho = toggleCarrinho;
+window.adicionarAoCarrinho = adicionarAoCarrinho;
+window.alterarQuantidadeItem = alterarQuantidadeItem;
+window.removerDoCarrinho = removerDoCarrinho;
+window.irParaCheckout = irParaCheckout;
 
 // 9. PÁGINA DE CHECKOUT E FORMAS DE PAGAMENTO
 let metodoPagamentoSelecionado = "pix";
@@ -575,21 +596,17 @@ async function finalizarPedidoFoodwise() {
   const total = DB.cartTotal();
   const totalFinal = session.firstOrderDiscount > 0 ? Math.max(0, total - 10) : total;
 
-  // Monta objeto do pedido
   const pedido = {
     usuario_id: session.id,
-    userId: session.id, // Compatibilidade Supabase/Local
     itens: DB.getCart(),
     total: totalFinal,
     endereco_entrega: address,
-    forma_pagamento: metodoPagamentoSelecionado,
-    data_pedido: new Date().toISOString()
+    forma_pagamento: metodoPagamentoSelecionado
   };
 
   const res = await DB.salvarPedido(pedido);
 
   if (res) {
-    // Reduz limite de orçamento do usuário localmente para controle inteligente
     const novoOrcamentoRestante = Math.max(0, session.orcamento - totalFinal);
     DB.updateSession({ orcamento: novoOrcamentoRestante });
 
@@ -603,7 +620,7 @@ async function finalizarPedidoFoodwise() {
     if (modal) {
       modal.style.display = "flex";
     } else {
-      exibirToast("Pedido confirmado com sucesso!", "success");
+      exibirToast("Pedido confirmed com sucesso!", "success");
       setTimeout(() => { window.location.href = "../index.html"; }, 2000);
     }
   } else {
@@ -614,6 +631,12 @@ async function finalizarPedidoFoodwise() {
 function irParaInicio() {
   window.location.href = "../index.html";
 }
+
+// Expõe funções de checkout
+window.mudarMetodoPagamento = mudarMetodoPagamento;
+window.copiarPixChave = copiarPixChave;
+window.finalizarPedidoFoodwise = finalizarPedidoFoodwise;
+window.irParaInicio = irParaInicio;
 
 // 10. UTILS: TOAST SYSTEM
 function exibirToast(mensagem, tipo = "info") {

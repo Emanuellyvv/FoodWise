@@ -7,8 +7,8 @@
  * instantaneamente e de forma transparente para LocalStorage (Offline Mode).
  */
 
-const SUPABASE_URL = "https://your-project-url.supabase.co"; // Substitua caso queira usar produção
-const SUPABASE_KEY = "your-anon-key";                       // Substitua caso queira usar produção
+const SUPABASE_URL = "jjkwehtfocrdibbjoylg"; 
+const SUPABASE_KEY = "sa-east-1"; 
 
 let supabaseClient = null;
 let useLocalStorageFallback = true;

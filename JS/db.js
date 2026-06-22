@@ -7,7 +7,7 @@
  * instantaneamente e de forma transparente para LocalStorage (Offline Mode).
  */
 
-const SUPABASE_URL = "jjkwehtfocrdibbjoylg"; 
+const SUPABASE_URL = "https://jjkwehtfocrdibbjoylg.supabase.co/rest/v1/"; 
 const SUPABASE_KEY = "sa-east-1"; 
 
 let supabaseClient = null;

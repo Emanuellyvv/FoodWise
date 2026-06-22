@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cardápio Inteligente — FoodWise</title>
-  <link rel="stylesheet" href="../css/style.css"/>
-  <link rel="stylesheet" href="../css/pages.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/pages.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -15,12 +15,12 @@
   <!-- NAVBAR -->
   <nav class="navbar" role="navigation" aria-label="Navegação principal">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo" aria-label="FoodWise - Página inicial">
+      <a href="index.html" class="nav-logo" aria-label="FoodWise - Página inicial">
         <span class="logo-food">Food</span><span class="logo-icon" aria-hidden="true">🍔</span><span class="logo-wise">Wise</span>
       </a>
       <ul class="nav-links" role="list">
-        <li><a href="../index.html#sobre" class="nav-link">Sobre nós</a></li>
-        <li><a href="../index.html#como-funciona" class="nav-link">Como funciona</a></li>
+        <li><a href="index.html#sobre" class="nav-link">Sobre nós</a></li>
+        <li><a href="index.html#como-funciona" class="nav-link">Como funciona</a></li>
         <li><a href="menu.html" class="nav-link active">Cardápio</a></li>
       </ul>
       <div class="nav-actions">
@@ -29,7 +29,7 @@
           🛒 <span id="cart-counter" class="cart-badge">0</span>
         </button>
         <a href="login.html" class="btn btn-ghost" id="nav-btn-login">Entrar</a>
-        <a href="../form.html" class="btn btn-primary" id="nav-btn-cadastro">Cadastrar-se</a>
+        <a href="cadastro.html" class="btn btn-primary" id="nav-btn-cadastro">Cadastrar-se</a>
         <!-- Perfil do Usuário Logado -->
         <div id="user-profile-badge" class="user-badge" style="display: none;">
           <span class="user-initials" id="user-initials">U</span>
@@ -42,12 +42,12 @@
     </div>
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <ul role="list">
-        <li><a href="../index.html#sobre" class="mobile-nav-link">Sobre nós</a></li>
-        <li><a href="../index.html#como-funciona" class="mobile-nav-link">Como funciona</a></li>
+        <li><a href="index.html#sobre" class="mobile-nav-link">Sobre nós</a></li>
+        <li><a href="index.html#como-funciona" class="mobile-nav-link">Como funciona</a></li>
         <li><a href="menu.html" class="mobile-nav-link">Cardápio</a></li>
         <li class="mobile-actions-wrapper">
           <a href="login.html" id="mobile-btn-login" class="btn btn-ghost w-full">Entrar</a>
-          <a href="../form.html" id="mobile-btn-cadastro" class="btn btn-primary w-full">Cadastrar-se</a>
+          <a href="cadastro.html" id="mobile-btn-cadastro" class="btn btn-primary w-full">Cadastrar-se</a>
           <button onclick="logoutUsuario()" id="mobile-btn-logout" class="btn btn-outline w-full" style="display: none;">Sair</button>
         </li>
       </ul>

@@ -285,3 +285,205 @@
   .form-wrapper, .login-box-wrapper { padding: 2rem 1.5rem; }
   .progress-step span { display: none; }
 }
+/* ==========================================================================
+   FOODWISE — DESIGN INTERNO DA PÁGINA DE CARDÁPIO RESPONSIVO
+   ========================================================================== */
+
+.menu-page-container {
+  padding-block: 4rem 6rem;
+  background-color: var(--cream, #F5F0E8);
+  min-height: calc(100vh - var(--nav-h, 72px));
+}
+
+.container-menu {
+  width: 100%;
+  max-width: var(--container, 1200px);
+  margin-inline: auto;
+  padding-inline: var(--container-pad, 1.5rem);
+}
+
+/* Cabeçalho superior */
+.menu-header {
+  max-width: 680px;
+  margin: 0 auto 4rem auto;
+  text-align: center;
+}
+
+.menu-title {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--green-dark, #495835);
+  font-family: var(--font-display), serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.menu-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  color: var(--neutral-700, #3D3D3D);
+  line-height: 1.6;
+}
+
+/* Títulos de Categorias */
+.category-title {
+  font-family: var(--font-display), serif;
+  color: var(--green-dark, #495835);
+  font-size: 1.6rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 2px solid var(--cream-dark, #EDE7D8);
+  padding-bottom: 0.5rem;
+}
+
+/* GRID RESPONSIVO: Organiza os cards sozinhos sem quebrar em telas pequenas */
+.products-grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+/* CARDS INDIVIDUAIS DOS PRODUTOS */
+.menu-product-card {
+  background: var(--white, #FFFFFF);
+  border-radius: var(--radius-lg, 20px);
+  border: 1px solid var(--cream-dark, #EDE7D8);
+  box-shadow: 0 4px 14px rgba(45, 80, 22, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.menu-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Espaço reservado para a "Foto" com Emoji */
+.product-card-image-wrapper {
+  height: 190px;
+  background-color: var(--cream-dark, #EDE7D8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.product-card-emoji {
+  font-size: 4.5rem;
+  user-select: none;
+}
+
+/* Etiquetas flutuantes dentro do card */
+.menu-product-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full, 9999px);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--white, #FFFFFF);
+  letter-spacing: 0.04em;
+}
+
+.tag-saudavel { background-color: var(--green-mid, #4A7C2F); }
+.tag-tradicional { background-color: var(--neutral-700, #3D3D3D); }
+.tag-light { background-color: var(--green-light, #7CB342); }
+.tag-promo { background-color: var(--amber, #F0B429); color: var(--neutral-900, #1A1A1A); }
+
+/* Corpo informativo do card */
+.product-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.menu-product-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--neutral-900, #1A1A1A);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.menu-product-desc {
+  font-size: 0.875rem;
+  color: var(--neutral-500, #6B6B6B);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex: 1; /* Empurra o rodapé de preço e botão sempre bem alinhados na base */
+}
+
+/* Linha de rodapé do card */
+.product-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--neutral-100, #F0F0F0);
+}
+
+.menu-product-price {
+  font-family: var(--font-display), serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--green-dark, #495835);
+}
+
+/* Botão integrado de Compra / Adicionar ao Carrinho */
+.btn-add-cart {
+  background-color: var(--red, #C8294A);
+  color: var(--white, #FFFFFF);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: var(--radius-full, 9999px);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-add-cart:hover {
+  background-color: #B0203F;
+  transform: translateY(-2px);
+}
+
+.btn-add-cart:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   OTIMIZAÇÃO MOBILE PARA IPHONE E SMARTPHONES MENORES
+   ========================================================================== */
+@media (max-width: 580px) {
+  .menu-page-container {
+    padding-block: 2rem 4rem;
+  }
+
+  .menu-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .product-card-image-wrapper {
+    height: 160px;
+  }
+
+  .product-card-content {
+    padding: 1.25rem;
+  }
+
+  /* Em telas muito apertadas, oculta a palavra "Adicionar" para fixar o layout apenas com o ícone estável */
+  .btn-add-cart span {
+    display: none;
+  }
+  
+  .btn-add-cart {
+    padding: 0.6rem 0.85rem;
+  }
+}

@@ -12,144 +12,132 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <nav class="navbar" role="navigation" aria-label="Navegação principal">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo" aria-label="FoodWise - Página inicial">
-       <img src="image/IMG_9064.jpg" alt="Logo">
+        <img src="image/IMG_9064.jpg" alt="Logo FoodWise">
       </a>
       <ul class="nav-links" role="list">
         <li><a href="index.html#sobre" class="nav-link">Sobre nós</a></li>
         <li><a href="index.html#como-funciona" class="nav-link">Como funciona</a></li>
-        <li><a href="menu.html" class="nav-link active">Cardápio</a></li>
+        <li><a href="cardapio.html" class="nav-link active">Cardápio</a></li>
       </ul>
-      <div class="nav-actions">
-        <!-- Gatilho para abrir o carrinho de compras deslizante -->
-        <button onclick="toggleCarrinho()" class="nav-cart" aria-label="Abrir Carrinho">
-          🛒 <span id="cart-counter" class="cart-badge">0</span>
-        </button>
-        <a href="login.html" class="btn btn-ghost" id="nav-btn-login">Entrar</a>
-        <a href="cadastro.html" class="btn btn-primary" id="nav-btn-cadastro">Cadastrar-se</a>
-        <!-- Perfil do Usuário Logado -->
-        <div id="user-profile-badge" class="user-badge" style="display: none;">
-          <span class="user-initials" id="user-initials">U</span>
-          <button onclick="logoutUsuario()" class="btn-logout" title="Sair do FoodWise">Sair</button>
-        </div>
-        <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-      <ul role="list">
-        <li><a href="index.html#sobre" class="mobile-nav-link">Sobre nós</a></li>
-        <li><a href="index.html#como-funciona" class="mobile-nav-link">Como funciona</a></li>
-        <li><a href="menu.html" class="mobile-nav-link">Cardápio</a></li>
-        <li class="mobile-actions-wrapper">
-          <a href="login.html" id="mobile-btn-login" class="btn btn-ghost w-full">Entrar</a>
-          <a href="cadastro.html" id="mobile-btn-cadastro" class="btn btn-primary w-full">Cadastrar-se</a>
-          <button onclick="logoutUsuario()" id="mobile-btn-logout" class="btn btn-outline w-full" style="display: none;">Sair</button>
-        </li>
-      </ul>
+      <div class="nav-actions" id="auth-buttons"></div>
     </div>
   </nav>
 
-  <!-- SEÇÃO PRINCIPAL DE CARDÁPIO -->
-  <main class="menu-page-main container">
-    <div class="menu-intro-section">
-      <p class="section-label">O que temos para você hoje</p>
-      <h1>Cardápio inteligente e consciente</h1>
-      <p class="menu-subtitle">Nossos pratos vêm com informações financeiras e nutricionais transparentes para você tomar a decisão correta.</p>
-    </div>
-
-    <!-- Filtros de Busca e Categorias -->
-    <section class="menu-controls-wrapper" aria-label="Filtros e Busca de Pratos">
-      <div class="search-input-box">
-        <input type="text" id="menu-search-input" class="form-input" placeholder="Pesquisar por prato, ingrediente..." oninput="filtrarCardapio()" />
-        <span class="search-icon-symbol">🔍</span>
-      </div>
+  <main class="menu-page-container">
+    <div class="container-menu">
       
-      <div class="categories-filter-chips" role="tablist" id="category-chips-list">
-        <button class="chip active" onclick="selecionarCategoria('todos')" role="tab" aria-selected="true">🍽️ Todos</button>
-        <button class="chip" onclick="selecionarCategoria('marmitas')" role="tab" aria-selected="false">🍱 Marmitas</button>
-        <button class="chip" onclick="selecionarCategoria('saudavel')" role="tab" aria-selected="false">🥗 Saudável</button>
-        <button class="chip" onclick="selecionarCategoria('lanches')" role="tab" aria-selected="false">🥪 Lanches</button>
-        <button class="chip" onclick="selecionarCategoria('carnes')" role="tab" aria-selected="false">🥩 Carnes</button>
-        <button class="chip" onclick="selecionarCategoria('sushi')" role="tab" aria-selected="false">🍣 Sushi</button>
-        <button class="chip" onclick="selecionarCategoria('sobremesa')" role="tab" aria-selected="false">🍓 Sobremesas</button>
-        <button class="chip" onclick="selecionarCategoria('bebidas')" role="tab" aria-selected="false">🥤 Bebidas</button>
-        <button class="chip active-promo" onclick="selecionarCategoria('promocoes')" role="tab" aria-selected="false">🔥 Promoções</button>
-      </div>
-    </section>
+      <header class="menu-header">
+        <span class="section-label">Alimentação Consciente</span>
+        <h1 class="menu-title">Nosso Cardápio Inteligente</h1>
+        <p class="menu-subtitle">Refeições deliciosas balanceadas para a sua rotina e planejadas para caber na sua meta financeira mensal.</p>
+      </header>
 
-    <!-- Banner Inteligente de Monitoramento Orçamentário -->
-    <div id="financial-limit-banner" class="budget-banner-bar info">
-      <div class="budget-banner-content">
-        <span class="budget-icon">💡</span>
-        <div class="budget-details-text">
-          <strong id="budget-banner-title">Planeje seus gastos:</strong>
-          <p id="budget-banner-desc">Faça login para poder monitorar sua meta mensal e calcular o impacto do carrinho no seu orçamento.</p>
+      <section class="menu-category-section">
+        <h2 class="category-title">🍱 Marmitas Saudáveis</h2>
+        <div class="products-grid-wrapper">
+          
+          <article class="menu-product-card">
+            <div class="product-card-image-wrapper">
+              <span class="product-card-emoji">🍱</span>
+              <span class="menu-product-tag tag-saudavel">Saudável</span>
+            </div>
+            <div class="product-card-content">
+              <h3 class="menu-product-name">Marmita Fit Frango Grelhado</h3>
+              <p class="menu-product-desc">Frango grelhado, arroz integral, brócolis e cenoura no vapor. Perfeito para manter a linha com muito sabor.</p>
+              <div class="product-card-footer">
+                <span class="menu-product-price">R$ 28,90</span>
+                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p1')">
+                  <span>Adicionar</span> 🛒
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-product-card">
+            <div class="product-card-image-wrapper">
+              <span class="product-card-emoji">🥩</span>
+              <span class="menu-product-tag tag-tradicional">Tradicional</span>
+            </div>
+            <div class="product-card-content">
+              <h3 class="menu-product-name">Marmita Carne Assada</h3>
+              <p class="menu-product-desc">Carne assada fofinha, arroz branco, feijão carioca e purê de batata caseiro bem temperado.</p>
+              <div class="product-card-footer">
+                <span class="menu-product-price">R$ 32,50</span>
+                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p2')">
+                  <span>Adicionar</span> 🛒
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-product-card">
+            <div class="product-card-image-wrapper">
+              <span class="product-card-emoji">🌱</span>
+              <span class="menu-product-tag tag-light">Veggie</span>
+            </div>
+            <div class="product-card-content">
+              <h3 class="menu-product-name">Espaguete de Abobrinha Vegano</h3>
+              <p class="menu-product-desc">Espaguete de abobrinha ao molho pomodoro artesanal com almôndegas de lentilha super nutritivas.</p>
+              <div class="product-card-footer">
+                <span class="menu-product-price">R$ 26,00</span>
+                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p3')">
+                  <span>Adicionar</span> 🛒
+                </button>
+              </div>
+            </div>
+          </article>
+
         </div>
-      </div>
-      <a href="login.html" id="budget-banner-action" class="btn btn-sm btn-outline">Fazer Login</a>
-    </div>
+      </section>
 
-    <!-- Lista Dinâmica de Itens do Cardápio -->
-    <section class="menu-items-grid" id="menu-items-container" aria-label="Itens do cardápio do FoodWise">
-      <!-- Injetado dinamicamente por JS para facilitar a busca e carregamento -->
-    </section>
+      <section class="menu-category-section" style="margin-top: 4rem;">
+        <h2 class="category-title">🥤 Bebidas e Sobremesas Light</h2>
+        <div class="products-grid-wrapper">
+
+          <article class="menu-product-card">
+            <div class="product-card-image-wrapper">
+              <span class="product-card-emoji">🥤</span>
+              <span class="menu-product-tag tag-light">Detox</span>
+            </div>
+            <div class="product-card-content">
+              <h3 class="menu-product-name">Suco Verde Detox</h3>
+              <p class="menu-product-desc">Suco natural prensado a frio com couve fresca, limão, maçã verde e gengibre. Sem adição de açúcares.</p>
+              <div class="product-card-footer">
+                <span class="menu-product-price">R$ 9,00</span>
+                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p4')">
+                  <span>Adicionar</span> 🛒
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-product-card">
+            <div class="product-card-image-wrapper">
+              <span class="product-card-emoji">🍰</span>
+              <span class="menu-product-tag tag-promo">Sem Açúcar</span>
+            </div>
+            <div class="product-card-content">
+              <h3 class="menu-product-name">Brownie de Cacau Funcional</h3>
+              <p class="menu-product-desc">Brownie fofinho feito com cacau 70% puro e farinha de amêndoas, adoçado naturalmente com xilitol.</p>
+              <div class="product-card-footer">
+                <span class="menu-product-price">R$ 12,00</span>
+                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p5')">
+                  <span>Adicionar</span> 🛒
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
   </main>
-
-  <!-- CARRINHO DESLIZANTE LATERAL (Cart Sidebar) -->
-  <aside class="cart-sidebar" id="cart-sidebar" aria-hidden="true">
-    <div class="cart-sidebar-backdrop" onclick="toggleCarrinho()"></div>
-    <div class="cart-sidebar-content">
-      <div class="cart-sidebar-header">
-        <h2>Seu Carrinho</h2>
-        <button onclick="toggleCarrinho()" class="close-cart-btn" aria-label="Fechar Carrinho">✕</button>
-      </div>
-
-      <!-- Alerta de Limite Orçamentário em Tempo Real dentro do Carrinho -->
-      <div id="cart-budget-alert-box" class="cart-budget-alert-box" style="display: none;">
-        <span class="alert-box-icon">⚠️</span>
-        <div class="alert-box-body">
-          <strong>Atenção ao Limite:</strong>
-          <p id="cart-budget-alert-message">Este pedido representa --% da sua meta disponível no mês.</p>
-        </div>
-      </div>
-
-      <div class="cart-items-scroller" id="cart-items-scroller">
-        <!-- Injetado por JS -->
-      </div>
-
-      <div class="cart-sidebar-footer">
-        <div class="cart-summary-line">
-          <span>Subtotal:</span>
-          <span id="cart-subtotal-price">R$ 0,00</span>
-        </div>
-        <div class="cart-summary-line discount-line" id="discount-display-line" style="display: none;">
-          <span>Desconto (1ª Compra):</span>
-          <span id="cart-discount-value">- R$ 10,00</span>
-        </div>
-        <div class="cart-summary-line total-line">
-          <span>Total Geral:</span>
-          <span id="cart-total-price">R$ 0,00</span>
-        </div>
-
-        <button onclick="irParaCheckout()" class="btn btn-primary btn-full btn-lg" style="margin-top: 1.5rem;">
-          Ir para o Pagamento
-        </button>
-        <button onclick="toggleCarrinho()" class="btn btn-outline btn-full btn-sm" style="margin-top: .75rem;">
-          Continuar Escolhendo
-        </button>
-      </div>
-    </div>
-  </aside>
 
   <div class="toast-container" id="toast-container"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/db.js"></script>
-  <script src="../js/app.js"></script>
 </body>
 </html>

@@ -83,7 +83,7 @@ p  { color: var(--neutral-700); }
 .section-eyebrow { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 600; color: var(--green-dark); margin-bottom: 1.5rem; }
 .center { 
    text-align: center;
-   margin: 0% 0% 4% 0%;
+   margin: 0% 0% 4% 10%;
 }
 
 /* --- BUTTONS --- */

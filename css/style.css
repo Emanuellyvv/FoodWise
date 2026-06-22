@@ -302,7 +302,9 @@ footer, .main-footer {
   color: rgba(245, 240, 232, 0.6);
   font-size: 0.85rem;
 }
-
+#pfooter{
+  color: white
+    }
 /* ==========================================================================
    MEDIA QUERIES — GARANTIA DE COMPATIBILIDADE MOBILE MUNDIAL
    ========================================================================== */

@@ -355,7 +355,7 @@
 .footer {
   background: var(--neutral-900);
   color: rgba(255,255,255,0.65);
-  padding-top: 1rem;
+  padding-top: 2rem;
 }
 .footer-inner {
   display: grid;

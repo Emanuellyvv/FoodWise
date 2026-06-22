@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acesse sua Conta — FoodWise</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/pages.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
 
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Navegação principal">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo" aria-label="FoodWise - Página inicial">
+        <span class="logo-food">Food</span><span class="logo-icon" aria-hidden="true">🍔</span><span class="logo-wise">Wise</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html#sobre" class="nav-link">Sobre nós</a></li>
+        <li><a href="../index.html#como-funciona" class="nav-link">Como funciona</a></li>
+        <li><a href="menu.html" class="nav-link">Cardápio</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="../form.html" class="btn btn-primary">Cadastrar-se</a>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul role="list">
+        <li><a href="../index.html#sobre" class="mobile-nav-link">Sobre nós</a></li>
+        <li><a href="../index.html#como-funciona" class="mobile-nav-link">Como funciona</a></li>
+        <li><a href="menu.html" class="mobile-nav-link">Cardápio</a></li>
+        <li><a href="../form.html" class="btn btn-primary w-full">Cadastrar-se</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-container login-page">
+    <div class="login-box-wrapper">
+      <div class="form-header">
+        <h1>Seja bem-vindo de volta</h1>
+        <p>Acesse seu painel inteligente para pedir suas refeições dentro de sua meta de economia.</p>
+      </div>
+
+      <form id="foodwiseLoginForm" novalidate>
+        <div class="form-group">
+          <label for="login-email" class="form-label">Seu e-mail de acesso:</label>
+          <input type="email" id="login-email" class="form-input" placeholder="seu@email.com" required />
+        </div>
+
+        <div class="form-group" style="margin-top: 1rem;">
+          <div class="label-wrapper-row">
+            <label for="login-password" class="form-label">Sua senha de segurança:</label>
+          </div>
+          <input type="password" id="login-password" class="form-input" placeholder="Sua senha secreta" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-full" style="margin-top: 2rem;">Acessar minha conta</button>
+      </form>
+
+      <div class="login-footer">
+        <p>Novo por aqui? <a href="../form.html">Crie sua conta inteligente grátis</a></p>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/db.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

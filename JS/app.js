@@ -1,10 +1,19 @@
+/**
+ * ==========================================================================
+ * FOODWISE — SCRIPT CENTRAL DE INTERATVIDADES
+ * ==========================================================================
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
-  inicializarMenuResponsivo();
-  carregarEstadoNavbar();
-  detectarPaginaAtual();
+  try {
+    inicializarMenuResponsivo();
+    carregarEstadoNavbar();
+    detectarPaginaAtual();
+  } catch (e) {
+    console.error("FoodWise App: Erro geral na inicialização da página.", e);
+  }
 });
 
-// 1. RESPONSIVIDADE DO MENU NAVBAR
 function inicializarMenuResponsivo() {
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobile-menu");
@@ -26,7 +35,6 @@ function inicializarMenuResponsivo() {
   });
 }
 
-// 2. ATUALIZA ESTADO DA NAVBAR (AUTENTICAÇÃO & CARRINHO)
 function carregarEstadoNavbar() {
   const session = DB.getSession();
   const counterElement = document.getElementById("cart-counter");
@@ -49,7 +57,9 @@ function carregarEstadoNavbar() {
     if (cadastroBtn) cadastroBtn.style.display = "none";
     if (badgeProfile) {
       badgeProfile.style.display = "flex";
-      initialsSpan.textContent = session.nome ? session.nome.charAt(0).toUpperCase() : "U";
+      if (initialsSpan) {
+        initialsSpan.textContent = session.nome ? session.nome.charAt(0).toUpperCase() : "U";
+      }
     }
 
     if (mLogin) mLogin.style.display = "none";
@@ -74,7 +84,6 @@ function logoutUsuario() {
   }, 1000);
 }
 
-// 3. SELETOR DE PÁGINAS E SUAS EXECUÇÕES ESPECÍFICAS
 function detectarPaginaAtual() {
   const path = window.location.pathname;
 
@@ -94,7 +103,6 @@ function detectarPaginaAtual() {
   }
 }
 
-// 4. PÁGINA INICIAL - DESTAQUES DO DIA
 function carregarDestaquesHome() {
   const container = document.getElementById("featured-items");
   if (!container) return;
@@ -118,7 +126,6 @@ function carregarDestaquesHome() {
   `).join('');
 }
 
-// 5. PÁGINA DE CADASTRO MULTI-STEP
 let etapaAtual = 1;
 function configurarCadastroMultiStep() {
   const form = document.getElementById("foodwiseForm");
@@ -137,8 +144,8 @@ function configurarCadastroMultiStep() {
       cpf: document.getElementById("cpf").value.trim(),
       telefone: document.getElementById("telefone").value.trim(),
       endereco: document.getElementById("endereco").value.trim(),
-      renda: parseFloat(document.getElementById("renda").value),
-      orcamento: parseFloat(document.getElementById("orcamentoAlimentacao").value),
+      renda: parseFloat(document.getElementById("renda").value || 0),
+      orcamento: parseFloat(document.getElementById("orcamentoAlimentacao").value || 0),
       estilo_vida: document.getElementById("estiloVida").value
     };
 
@@ -154,7 +161,6 @@ function configurarCadastroMultiStep() {
   });
 }
 
-// Validação Inteligente: Identifica o elemento e foca no erro
 function proximaEtapa() {
   const campos = [
     { id: "nome", nomeAmigavel: "Nome Completo" },
@@ -175,7 +181,10 @@ function proximaEtapa() {
   campos.forEach(campo => {
     const el = document.getElementById(campo.id);
     if (el) {
-      if (!el.checkValidity() || el.value.trim() === "") {
+      const isBlank = el.value.trim() === "";
+      const isInvalidPattern = el.checkValidity && !el.checkValidity();
+      
+      if (isBlank || isInvalidPattern) {
         el.classList.add("error");
         nomesCamposComErro.push(campo.nomeAmigavel);
         if (!primeiroCampoInvalido) {
@@ -188,7 +197,6 @@ function proximaEtapa() {
   });
 
   if (nomesCamposComErro.length > 0) {
-    // Alerta o usuário exatamente sobre o que está bloqueando o fluxo
     exibirToast(`Ajuste os seguintes campos: ${nomesCamposComErro.join(", ")}`, "error");
     if (primeiroCampoInvalido) {
       primeiroCampoInvalido.focus();
@@ -196,29 +204,45 @@ function proximaEtapa() {
     return;
   }
 
-  document.getElementById("etapa1").style.display = "none";
-  document.getElementById("etapa2").style.display = "block";
+  // Faz a transição de visualização
+  const etapa1 = document.getElementById("etapa1");
+  const etapa2 = document.getElementById("etapa2");
 
-  document.getElementById("step-dot-2").classList.add("active");
-  document.getElementById("step-line-1").classList.add("active");
+  if (etapa1 && etapa2) {
+    etapa1.style.display = "none";
+    etapa2.style.display = "block";
+  }
+
+  const dot2 = document.getElementById("step-dot-2");
+  const line1 = document.getElementById("step-line-1");
+
+  if (dot2) dot2.classList.add("active");
+  if (line1) line1.classList.add("active");
   etapaAtual = 2;
 }
 
 function etapaAnterior() {
-  document.getElementById("etapa1").style.display = "block";
-  document.getElementById("etapa2").style.display = "none";
+  const etapa1 = document.getElementById("etapa1");
+  const etapa2 = document.getElementById("etapa2");
 
-  document.getElementById("step-dot-2").classList.remove("active");
-  document.getElementById("step-line-1").classList.remove("active");
+  if (etapa1 && etapa2) {
+    etapa1.style.display = "block";
+    etapa2.style.display = "none";
+  }
+
+  const dot2 = document.getElementById("step-dot-2");
+  const line1 = document.getElementById("step-line-1");
+
+  if (dot2) dot2.classList.remove("active");
+  if (line1) line1.classList.remove("active");
   etapaAtual = 1;
 }
 
-// Expõe as funções explicitamente para o escopo global (garante execução do onclick do HTML)
+// Garante o mapeamento global independente do carregamento assíncrono dos scripts
 window.proximaEtapa = proximaEtapa;
 window.etapaAnterior = etapaAnterior;
 window.logoutUsuario = logoutUsuario;
 
-// 6. PÁGINA DE LOGIN
 function configurarLogin() {
   const form = document.getElementById("foodwiseLoginForm");
   if (!form) return;
@@ -245,7 +269,6 @@ function configurarLogin() {
   });
 }
 
-// 7. PÁGINA DE CARDÁPIO COMPLETO
 let categoriaAtiva = 'todos';
 
 function carregarCardapioCompleto() {
@@ -324,11 +347,9 @@ function filtrarCardapio() {
   `).join('');
 }
 
-// Expondo lógicas de cardápio globais
 window.selecionarCategoria = selecionarCategoria;
 window.filtrarCardapio = filtrarCardapio;
 
-// 8. CONTROLE DO CARRINHO INTERATIVO (SIDEBAR)
 function toggleCarrinho() {
   const cart = document.getElementById("cart-sidebar");
   if (cart) {
@@ -488,14 +509,12 @@ function irParaCheckout() {
   window.location.href = "checkout.html";
 }
 
-// Expõe carrinho ao escopo global
 window.toggleCarrinho = toggleCarrinho;
 window.adicionarAoCarrinho = adicionarAoCarrinho;
 window.alterarQuantidadeItem = alterarQuantidadeItem;
 window.removerDoCarrinho = removerDoCarrinho;
 window.irParaCheckout = irParaCheckout;
 
-// 9. PÁGINA DE CHECKOUT E FORMAS DE PAGAMENTO
 let metodoPagamentoSelecionado = "pix";
 
 function carregarResumoCheckout() {
@@ -620,7 +639,7 @@ async function finalizarPedidoFoodwise() {
     if (modal) {
       modal.style.display = "flex";
     } else {
-      exibirToast("Pedido confirmed com sucesso!", "success");
+      exibirToast("Pedido confirmado com sucesso!", "success");
       setTimeout(() => { window.location.href = "../index.html"; }, 2000);
     }
   } else {
@@ -632,13 +651,11 @@ function irParaInicio() {
   window.location.href = "../index.html";
 }
 
-// Expõe funções de checkout
 window.mudarMetodoPagamento = mudarMetodoPagamento;
 window.copiarPixChave = copiarPixChave;
 window.finalizarPedidoFoodwise = finalizarPedidoFoodwise;
 window.irParaInicio = irParaInicio;
 
-// 10. UTILS: TOAST SYSTEM
 function exibirToast(mensagem, tipo = "info") {
   const container = document.getElementById("toast-container");
   if (!container) return;

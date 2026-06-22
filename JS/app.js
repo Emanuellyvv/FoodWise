@@ -1,8 +1,9 @@
-/**
- * ==========================================================================
- * FOODWISE — SCRIPT CENTRAL DE INTERATVIDADES
- * ==========================================================================
- */
+// Registramos as funções no escopo global (window) imediatamente para que os cliques nos botões do HTML funcionem sob qualquer circunstância
+window.proximaEtapa = proximaEtapa;
+window.etapaAnterior = etapaAnterior;
+window.logoutUsuario = logoutUsuario;
+
+console.log("FoodWise App: Funções de navegação global registradas com sucesso.");
 
 document.addEventListener("DOMContentLoaded", () => {
   try {
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarEstadoNavbar();
     detectarPaginaAtual();
   } catch (e) {
-    console.error("FoodWise App: Erro geral na inicialização da página.", e);
+    console.error("FoodWise App: Erro tolerado na inicialização da página.", e);
   }
 });
 
@@ -27,6 +28,7 @@ function inicializarMenuResponsivo() {
     });
   }
 
+  // Garante fechamento do menu ao clicar em links
   document.querySelectorAll(".mobile-nav-link").forEach(link => {
     link.addEventListener("click", () => {
       hamburger?.classList.remove("open");
@@ -36,48 +38,53 @@ function inicializarMenuResponsivo() {
 }
 
 function carregarEstadoNavbar() {
-  const session = DB.getSession();
-  const counterElement = document.getElementById("cart-counter");
+  try {
+    if (typeof DB === "undefined") return;
+    const session = DB.getSession();
+    const counterElement = document.getElementById("cart-counter");
 
-  if (counterElement) {
-    counterElement.textContent = DB.cartCount();
-  }
-
-  const loginBtn = document.getElementById("nav-btn-login");
-  const cadastroBtn = document.getElementById("nav-btn-cadastro");
-  const badgeProfile = document.getElementById("user-profile-badge");
-  const initialsSpan = document.getElementById("user-initials");
-
-  const mLogin = document.getElementById("mobile-btn-login");
-  const mCadastro = document.getElementById("mobile-btn-cadastro");
-  const mLogout = document.getElementById("mobile-btn-logout");
-
-  if (session) {
-    if (loginBtn) loginBtn.style.display = "none";
-    if (cadastroBtn) cadastroBtn.style.display = "none";
-    if (badgeProfile) {
-      badgeProfile.style.display = "flex";
-      if (initialsSpan) {
-        initialsSpan.textContent = session.nome ? session.nome.charAt(0).toUpperCase() : "U";
-      }
+    if (counterElement) {
+      counterElement.textContent = DB.cartCount();
     }
 
-    if (mLogin) mLogin.style.display = "none";
-    if (mCadastro) mCadastro.style.display = "none";
-    if (mLogout) mLogout.style.display = "block";
-  } else {
-    if (loginBtn) loginBtn.style.display = "inline-flex";
-    if (cadastroBtn) cadastroBtn.style.display = "inline-flex";
-    if (badgeProfile) badgeProfile.style.display = "none";
+    const loginBtn = document.getElementById("nav-btn-login");
+    const cadastroBtn = document.getElementById("nav-btn-cadastro");
+    const badgeProfile = document.getElementById("user-profile-badge");
+    const initialsSpan = document.getElementById("user-initials");
 
-    if (mLogin) mLogin.style.display = "block";
-    if (mCadastro) mCadastro.style.display = "block";
-    if (mLogout) mLogout.style.display = "none";
+    const mLogin = document.getElementById("mobile-btn-login");
+    const mCadastro = document.getElementById("mobile-btn-cadastro");
+    const mLogout = document.getElementById("mobile-btn-logout");
+
+    if (session) {
+      if (loginBtn) loginBtn.style.display = "none";
+      if (cadastroBtn) cadastroBtn.style.display = "none";
+      if (badgeProfile) {
+        badgeProfile.style.display = "flex";
+        if (initialsSpan) {
+          initialsSpan.textContent = session.nome ? session.nome.charAt(0).toUpperCase() : "U";
+        }
+      }
+
+      if (mLogin) mLogin.style.display = "none";
+      if (mCadastro) mCadastro.style.display = "none";
+      if (mLogout) mLogout.style.display = "block";
+    } else {
+      if (loginBtn) loginBtn.style.display = "inline-flex";
+      if (cadastroBtn) cadastroBtn.style.display = "inline-flex";
+      if (badgeProfile) badgeProfile.style.display = "none";
+
+      if (mLogin) mLogin.style.display = "block";
+      if (mCadastro) mCadastro.style.display = "block";
+      if (mLogout) mLogout.style.display = "none";
+    }
+  } catch (err) {
+    console.warn("Navbar: erro ao tentar carregar a sessão.", err);
   }
 }
 
 function logoutUsuario() {
-  DB.logout();
+  if (typeof DB !== "undefined") DB.logout();
   exibirToast("Sua sessão foi encerrada.", "info");
   setTimeout(() => {
     window.location.href = window.location.pathname.includes("pages/") ? "../index.html" : "index.html";
@@ -105,7 +112,7 @@ function detectarPaginaAtual() {
 
 function carregarDestaquesHome() {
   const container = document.getElementById("featured-items");
-  if (!container) return;
+  if (!container || typeof DB === "undefined") return;
 
   const destaques = DB.getFeatured();
   container.innerHTML = destaques.map(p => `
@@ -126,13 +133,17 @@ function carregarDestaquesHome() {
   `).join('');
 }
 
-let etapaAtual = 1;
 function configurarCadastroMultiStep() {
   const form = document.getElementById("foodwiseForm");
   if (!form) return;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (typeof DB === "undefined") {
+      exibirToast("Erro crítico: Banco de dados local não inicializado.", "error");
+      return;
+    }
 
     const dadosCadastro = {
       nome: document.getElementById("nome").value.trim(),
@@ -162,6 +173,8 @@ function configurarCadastroMultiStep() {
 }
 
 function proximaEtapa() {
+  console.log("proximaEtapa chamada!");
+  
   const campos = [
     { id: "nome", nomeAmigavel: "Nome Completo" },
     { id: "email", nomeAmigavel: "E-mail de acesso" },
@@ -196,15 +209,16 @@ function proximaEtapa() {
     }
   });
 
+  // Se houver algum campo vazio, notificamos o usuário de forma clara e visual, focando no campo problemático
   if (nomesCamposComErro.length > 0) {
-    exibirToast(`Ajuste os seguintes campos: ${nomesCamposComErro.join(", ")}`, "error");
+    exibirToast(`Ajuste os seguintes campos obrigatórios: ${nomesCamposComErro.slice(0, 3).join(", ")}${nomesCamposComErro.length > 3 ? "..." : ""}`, "error");
     if (primeiroCampoInvalido) {
       primeiroCampoInvalido.focus();
     }
     return;
   }
 
-  // Faz a transição de visualização
+  // Faz a transição visual das etapas
   const etapa1 = document.getElementById("etapa1");
   const etapa2 = document.getElementById("etapa2");
 
@@ -218,7 +232,6 @@ function proximaEtapa() {
 
   if (dot2) dot2.classList.add("active");
   if (line1) line1.classList.add("active");
-  etapaAtual = 2;
 }
 
 function etapaAnterior() {
@@ -235,13 +248,7 @@ function etapaAnterior() {
 
   if (dot2) dot2.classList.remove("active");
   if (line1) line1.classList.remove("active");
-  etapaAtual = 1;
 }
-
-// Garante o mapeamento global independente do carregamento assíncrono dos scripts
-window.proximaEtapa = proximaEtapa;
-window.etapaAnterior = etapaAnterior;
-window.logoutUsuario = logoutUsuario;
 
 function configurarLogin() {
   const form = document.getElementById("foodwiseLoginForm");
@@ -257,6 +264,11 @@ function configurarLogin() {
       return;
     }
 
+    if (typeof DB === "undefined") {
+      exibirToast("Erro: Banco de dados local indisponível.", "error");
+      return;
+    }
+
     const res = await DB.loginUsuario(email, senha);
     if (res.ok) {
       exibirToast(`Olá ${res.user.nome.split(" ")[0]}, seja bem-vindo!`, "success");
@@ -269,11 +281,9 @@ function configurarLogin() {
   });
 }
 
-let categoriaAtiva = 'todos';
-
 function carregarCardapioCompleto() {
   const container = document.getElementById("menu-items-container");
-  if (!container) return;
+  if (!container || typeof DB === "undefined") return;
 
   const itens = DB.getProducts(categoriaAtiva);
   
@@ -321,7 +331,7 @@ function selecionarCategoria(cat) {
 function filtrarCardapio() {
   const query = document.getElementById("menu-search-input").value.toLowerCase().trim();
   const container = document.getElementById("menu-items-container");
-  if (!container) return;
+  if (!container || typeof DB === "undefined") return;
 
   const itens = DB.getProducts(categoriaAtiva).filter(p => 
     p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query)
@@ -347,6 +357,7 @@ function filtrarCardapio() {
   `).join('');
 }
 
+// Vinculações explícitas adicionais para cliques de categorias no cardápio
 window.selecionarCategoria = selecionarCategoria;
 window.filtrarCardapio = filtrarCardapio;
 
@@ -360,6 +371,7 @@ function toggleCarrinho() {
 }
 
 function adicionarAoCarrinho(pid) {
+  if (typeof DB === "undefined") return;
   DB.addToCart(pid, 1);
   carregarEstadoNavbar();
   renderizarItensCarrinho();
@@ -367,12 +379,14 @@ function adicionarAoCarrinho(pid) {
 }
 
 function alterarQuantidadeItem(pid, novaQty) {
+  if (typeof DB === "undefined") return;
   DB.updateQty(pid, novaQty);
   carregarEstadoNavbar();
   renderizarItensCarrinho();
 }
 
 function removerDoCarrinho(pid) {
+  if (typeof DB === "undefined") return;
   DB.removeFromCart(pid);
   carregarEstadoNavbar();
   renderizarItensCarrinho();
@@ -381,7 +395,7 @@ function removerDoCarrinho(pid) {
 
 function renderizarItensCarrinho() {
   const container = document.getElementById("cart-items-scroller");
-  if (!container) return;
+  if (!container || typeof DB === "undefined") return;
 
   const items = DB.getCart();
 
@@ -433,7 +447,7 @@ function renderizarItensCarrinho() {
 function atualizarAlertaOrcamentarioCarrinho(totalPedido) {
   const alertBox = document.getElementById("cart-budget-alert-box");
   const messageEl = document.getElementById("cart-budget-alert-message");
-  const session = DB.getSession();
+  const session = typeof DB !== "undefined" ? DB.getSession() : null;
 
   if (!alertBox || !messageEl) return;
 
@@ -465,7 +479,7 @@ function atualizarBannerOrcamento() {
   const title = document.getElementById("budget-banner-title");
   const desc = document.getElementById("budget-banner-desc");
   const actionBtn = document.getElementById("budget-banner-action");
-  const session = DB.getSession();
+  const session = typeof DB !== "undefined" ? DB.getSession() : null;
 
   if (!banner) return;
 
@@ -473,19 +487,22 @@ function atualizarBannerOrcamento() {
     banner.className = "budget-banner-bar info";
     title.textContent = "Planeje seus gastos alimentares:";
     desc.textContent = "Faça login no FoodWise para monitorar e manter suas refeições dentro da sua meta real de economia.";
-    actionBtn.style.display = "inline-flex";
-    actionBtn.textContent = "Fazer Login";
-    actionBtn.href = "login.html";
+    if (actionBtn) {
+      actionBtn.style.display = "inline-flex";
+      actionBtn.textContent = "Fazer Login";
+      actionBtn.href = "login.html";
+    }
     return;
   }
 
   banner.className = "budget-banner-bar success";
-  title.textContent = `Orçamento Mensal de ${session.nome.split(" ")[0]}:`;
-  desc.textContent = `Seu limite estabelecido é de R$ ${session.orcamento.toFixed(2).replace('.', ',')}. Nós impediremos você de gastar por impulso.`;
-  actionBtn.style.display = "none";
+  title.textContent = `Orçamento de ${session.nome.split(" ")[0]}:`;
+  desc.textContent = `Seu limite disponível é de R$ ${session.orcamento.toFixed(2).replace('.', ',')}. Nós monitoramos para evitar compras por impulso.`;
+  if (actionBtn) actionBtn.style.display = "none";
 }
 
 function irParaCheckout() {
+  if (typeof DB === "undefined") return;
   const session = DB.getSession();
   if (!session) {
     exibirToast("Por favor, acesse sua conta ou crie uma para finalizar a compra.", "info");
@@ -515,9 +532,8 @@ window.alterarQuantidadeItem = alterarQuantidadeItem;
 window.removerDoCarrinho = removerDoCarrinho;
 window.irParaCheckout = irParaCheckout;
 
-let metodoPagamentoSelecionado = "pix";
-
 function carregarResumoCheckout() {
+  if (typeof DB === "undefined") return;
   const session = DB.getSession();
   if (!session) {
     window.location.href = "login.html";
@@ -554,10 +570,12 @@ function carregarResumoCheckout() {
 
   let totalGeral = total;
   if (session.firstOrderDiscount > 0) {
-    document.getElementById("checkout-discount-line").style.display = "flex";
+    const discLine = document.getElementById("checkout-discount-line");
+    if (discLine) discLine.style.display = "flex";
     totalGeral = Math.max(0, total - 10);
   } else {
-    document.getElementById("checkout-discount-line").style.display = "none";
+    const discLine = document.getElementById("checkout-discount-line");
+    if (discLine) discLine.style.display = "none";
   }
 
   document.getElementById("checkout-total-price").textContent = `R$ ${totalGeral.toFixed(2).replace('.', ',')}`;
@@ -592,6 +610,7 @@ function copiarPixChave() {
 }
 
 async function finalizarPedidoFoodwise() {
+  if (typeof DB === "undefined") return;
   const session = DB.getSession();
   const address = document.getElementById("checkout-address").value.trim();
 

@@ -159,20 +159,7 @@ p  { color: var(--neutral-700); }
     padding: 0;
 }
 
-/* --- HARMONIZAÇÃO DO RODAPÉ --- */
-footer, .main-footer {
-    background-color: var(--green-dark) !important; /* Mesma cor exata do cabeçalho */
-    color: var(--cream, #F5F0E8);
-    padding: 4rem 2rem 2rem;
-}
 
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 2rem;
-    margin-top: 2rem;
-    text-align: center;
-    color: rgba(245, 240, 232, 0.7);
-}
 
 /* --- AJUSTE DOS DESTAQUES E BOTÃO NO CARDÁPIO --- */
 .featured-products-grid .product-card {
@@ -312,4 +299,18 @@ footer, .main-footer {
     height: 250px;
     object-fit: cover;
     border-radius: var(--radius-md);
+}
+/* --- HARMONIZAÇÃO DO RODAPÉ --- */
+footer, .main-footer {
+    background-color: var(--green-dark) !important; /* Mesma cor exata do cabeçalho */
+    color: var(--cream, #F5F0E8);
+    padding: 4rem 2rem 2rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+    color: rgba(245, 240, 232, 0.7);
 }

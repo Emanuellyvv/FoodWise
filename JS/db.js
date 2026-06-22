@@ -1,32 +1,31 @@
-/**
- * ==========================================================================
- * FOODWISE — BANCO DE DADOS INTEGRADO (Supabase & LocalStorage)
- * ==========================================================================
- * O FoodWise utiliza o Supabase para persistência de dados. Caso as chaves
- * não estejam configuradas ou ocorra erro de conexão, o sistema migra
- * instantaneamente e de forma transparente para LocalStorage (Offline Mode).
- */
-
 const SUPABASE_URL = "https://jjkwehtfocrdibbjoylg.supabase.co/rest/v1/"; 
-const SUPABASE_KEY = "sa-east-1"; 
+const SUPABASE_KEY = "sa-east-1";                        
 
 let supabaseClient = null;
 let useLocalStorageFallback = true;
 
-// Tenta instanciar o Supabase de forma segura
-try {
-  if (typeof supabase !== 'undefined' && SUPABASE_URL && !SUPABASE_URL.includes("your-project-url")) {
-    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    useLocalStorageFallback = false;
-    console.log("FoodWise: Conexão ativa com o Supabase.");
-  } else {
-    console.warn("FoodWise: Chaves do Supabase ausentes ou padrão. Utilizando LocalStorage seguro.");
+// Previne falhas catastróficas caso o navegador ou o iframe bloqueie o LocalStorage
+const SafeStorage = {
+  _memoryDb: {},
+  get(k) {
+    try {
+      const val = localStorage.getItem(k);
+      return val ? JSON.parse(val) : (this._memoryDb[k] || null);
+    } catch (e) {
+      console.warn("FoodWise DB: LocalStorage read blocked. Using memory fallback.", e);
+      return this._memoryDb[k] || null;
+    }
+  },
+  set(k, v) {
+    try {
+      localStorage.setItem(k, JSON.stringify(v));
+    } catch (e) {
+      console.warn("FoodWise DB: LocalStorage write blocked. Saving to memory.", e);
+      this._memoryDb[k] = v;
+    }
   }
-} catch (e) {
-  console.warn("FoodWise: Erro ao instanciar Supabase. Utilizando LocalStorage seguro.", e);
-}
+};
 
-// Catálogo de Produtos Oficiais do FoodWise
 const PRODUTOS_SEED = [
   {id:'p1', cat:'marmitas', name:'Marmita Fit Frango Grelhado',  desc:'Frango grelhado, arroz integral, brócolis e cenoura no vapor.',    price:28.90,  emoji:'🍱', tag:'saudavel', rating:4.8, sold:320},
   {id:'p2', cat:'marmitas', name:'Marmita Carne Assada',          desc:'Carne assada ao molho, arroz, feijão e vinagrete.',                price:32.90,  emoji:'🍱', tag:null,       rating:4.6, sold:210},
@@ -76,61 +75,186 @@ const PRODUTOS_SEED = [
 
 const DB = {
   init() {
-    if (!this.get('fw_initialized')) {
-      this.set('fw_initialized', true);
-      this.set('fw_products', PRODUTOS_SEED);
-      this.set('fw_users', []);
-      this.set('fw_orders', []);
-      this.set('fw_session', null);
-      this.set('fw_cart', []);
+    try {
+      if (!SafeStorage.get('fw_initialized')) {
+        SafeStorage.set('fw_initialized', true);
+        SafeStorage.set('fw_products', PRODUTOS_SEED);
+        SafeStorage.set('fw_users', []);
+        SafeStorage.set('fw_perfis', []);
+        SafeStorage.set('fw_orders', []);
+        SafeStorage.set('fw_items', []);
+        SafeStorage.set('fw_session', null);
+        SafeStorage.set('fw_cart', []);
+      }
+    } catch (e) {
+      console.error("FoodWise DB: Failed to initialize sandbox schema", e);
     }
   },
-  set(k, v) { localStorage.setItem(k, JSON.stringify(v)); },
-  get(k)     { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+  
+  set(k, v) { SafeStorage.set(k, v); },
+  get(k)     { return SafeStorage.get(k); },
 
-  // USUÁRIOS & PREFERÊNCIAS
   async cadastrarUsuario(dados) {
     if (!useLocalStorageFallback && supabaseClient) {
       try {
-        const { data, error } = await supabaseClient.from('usuarios').insert([dados]).select();
-        if (error) throw error;
-        this.set('fw_session', data[0]);
-        return { ok: true, user: data[0] };
+        const { data: userCreated, error: userError } = await supabaseClient
+          .from('usuarios')
+          .insert([{
+            nome: dados.nome,
+            email: dados.email,
+            senha: dados.senha,
+            idade: dados.idade,
+            data_nascimento: dados.data_nascimento,
+            cpf: dados.cpf,
+            telefone: dados.telefone,
+            endereco_padrao: dados.endereco
+          }])
+          .select();
+
+        if (userError) throw userError;
+        const newUser = userCreated[0];
+
+        const { error: profileError } = await supabaseClient
+          .from('perfis_financeiros')
+          .insert([{
+            usuario_id: newUser.id,
+            renda_mensal: dados.renda,
+            limite_mensal_delivery: dados.orcamento,
+            saldo_disponivel_mes: dados.orcamento,
+            estilo_vida_alimentar: dados.estilo_vida
+          }]);
+
+        if (profileError) throw profileError;
+
+        const sessionData = {
+          id: newUser.id,
+          nome: newUser.nome,
+          email: newUser.email,
+          endereco: newUser.endereco_padrao,
+          renda: dados.renda,
+          orcamento: dados.orcamento,
+          estilo_vida: dados.estilo_vida,
+          firstOrderDiscount: 10
+        };
+
+        this.set('fw_session', sessionData);
+        return { ok: true, user: sessionData };
       } catch (e) {
-        console.error("Supabase Error, tentando LocalStorage:", e.message);
+        console.error("Erro no Supabase ao cadastrar. Migrando para fallback local.", e.message);
       }
     }
-    // Fallback LocalStorage
+
     const users = this.get('fw_users') || [];
     if (users.find(u => u.email === dados.email)) {
       return { ok: false, msg: 'Este e-mail já está cadastrado no FoodWise.' };
     }
-    const novoUsuario = { id: 'u_' + Date.now(), ...dados, createdAt: new Date().toISOString(), firstOrderDiscount: 10 };
+
+    const localUserId = 'u_' + Date.now();
+    const novoUsuario = {
+      id: localUserId,
+      nome: dados.nome,
+      email: dados.email,
+      password: dados.password,
+      idade: dados.idade,
+      data_nascimento: dados.data_nascimento,
+      cpf: dados.cpf,
+      telefone: dados.telefone,
+      endereco_padrao: dados.endereco
+    };
+
+    const novoPerfil = {
+      id: 'prof_' + Date.now(),
+      usuario_id: localUserId,
+      renda_mensal: dados.renda,
+      limite_mensal_delivery: dados.orcamento,
+      saldo_disponivel_mes: dados.orcamento,
+      estilo_vida_alimentar: dados.estilo_vida
+    };
+
     users.push(novoUsuario);
+    const perfis = this.get('fw_perfis') || [];
+    perfis.push(novoPerfil);
+
     this.set('fw_users', users);
-    this.set('fw_session', novoUsuario);
-    return { ok: true, user: novoUsuario };
+    this.set('fw_perfis', perfis);
+
+    const sessionData = {
+      id: localUserId,
+      nome: novoUsuario.nome,
+      email: novoUsuario.email,
+      endereco: novoUsuario.endereco_padrao,
+      renda: novoPerfil.renda_mensal,
+      orcamento: novoPerfil.saldo_disponivel_mes,
+      estilo_vida: novoPerfil.estilo_vida_alimentar,
+      firstOrderDiscount: 10
+    };
+
+    this.set('fw_session', sessionData);
+    return { ok: true, user: sessionData };
   },
 
   async loginUsuario(email, senha) {
     if (!useLocalStorageFallback && supabaseClient) {
       try {
-        const { data, error } = await supabaseClient.from('usuarios').select('*').eq('email', email).eq('senha', senha);
-        if (error) throw error;
-        if (data.length > 0) {
-          this.set('fw_session', data[0]);
-          return { ok: true, user: data[0] };
+        const { data: users, error: userError } = await supabaseClient
+          .from('usuarios')
+          .select('*')
+          .eq('email', email)
+          .eq('senha', senha);
+
+        if (userError) throw userError;
+
+        if (users.length > 0) {
+          const user = users[0];
+          const { data: profiles, error: profileError } = await supabaseClient
+            .from('perfis_financeiros')
+            .select('*')
+            .eq('usuario_id', user.id);
+
+          if (profileError) throw profileError;
+
+          const profile = profiles[0] || { renda_mensal: 0, saldo_disponivel_mes: 0, estilo_vida_alimentar: 'tradicional' };
+
+          const sessionData = {
+            id: user.id,
+            nome: user.nome,
+            email: user.email,
+            endereco: user.endereco_padrao,
+            renda: parseFloat(profile.renda_mensal),
+            orcamento: parseFloat(profile.saldo_disponivel_mes),
+            estilo_vida: profile.estilo_vida_alimentar,
+            firstOrderDiscount: 10
+          };
+
+          this.set('fw_session', sessionData);
+          return { ok: true, user: sessionData };
         }
       } catch (e) {
-        console.error("Supabase Login Error:", e.message);
+        console.error("Erro ao autenticar no Supabase:", e.message);
       }
     }
-    // Fallback LocalStorage
+
     const users = this.get('fw_users') || [];
-    const user = users.find(u => u.email === email && u.password === senha); // Suporta "senha" ou "password"
-    if (!user) return { ok: false, msg: 'E-mail ou senha incorretos.' };
-    this.set('fw_session', user);
-    return { ok: true, user };
+    const userFound = users.find(u => u.email === email && u.password === senha);
+
+    if (!userFound) return { ok: false, msg: 'E-mail ou senha incorretos.' };
+
+    const perfis = this.get('fw_perfis') || [];
+    const profileFound = perfis.find(p => p.usuario_id === userFound.id) || { renda_mensal: 2500, saldo_disponivel_mes: 600, estilo_vida_alimentar: 'tradicional' };
+
+    const sessionData = {
+      id: userFound.id,
+      nome: userFound.nome,
+      email: userFound.email,
+      endereco: userFound.endereco_padrao,
+      renda: parseFloat(profileFound.renda_mensal),
+      orcamento: parseFloat(profileFound.saldo_disponivel_mes),
+      estilo_vida: profileFound.estilo_vida_alimentar,
+      firstOrderDiscount: 10
+    };
+
+    this.set('fw_session', sessionData);
+    return { ok: true, user: sessionData };
   },
 
   logout() {
@@ -147,15 +271,15 @@ const DB = {
     if (!s) return;
     const sAtualizado = { ...s, ...novosDados };
     this.set('fw_session', sAtualizado);
-    const users = this.get('fw_users') || [];
-    const index = users.findIndex(u => u.id === s.id);
+
+    const perfis = this.get('fw_perfis') || [];
+    const index = perfis.findIndex(p => p.usuario_id === s.id);
     if (index >= 0) {
-      users[index] = sAtualizado;
-      this.set('fw_users', users);
+      perfis[index].saldo_disponivel_mes = sAtualizado.orcamento;
+      this.set('fw_perfis', perfis);
     }
   },
 
-  // CARDÁPIO DE PRODUTOS
   getProducts(cat) {
     const all = this.get('fw_products') || PRODUTOS_SEED;
     if (!cat || cat === 'todos') return all;
@@ -171,7 +295,6 @@ const DB = {
     return (this.get('fw_products') || PRODUTOS_SEED).sort((a, b) => b.sold - a.sold).slice(0, 4);
   },
 
-  // CONTROLE DO CARRINHO
   getCart() {
     return this.get('fw_cart') || [];
   },
@@ -218,31 +341,89 @@ const DB = {
     return this.getCart().reduce((sum, item) => sum + item.qty, 0);
   },
 
-  // PEDIDOS E ORÇAMENTO
   async salvarPedido(dadosPedido) {
     if (!useLocalStorageFallback && supabaseClient) {
       try {
-        const { data, error } = await supabaseClient.from('pedidos').insert([dadosPedido]).select();
-        if (error) throw error;
+        const { data: orderCreated, error: orderError } = await supabaseClient
+          .from('pedidos')
+          .insert([{
+            usuario_id: dadosPedido.usuario_id,
+            subtotal: this.cartTotal(),
+            desconto: dadosPedido.total < this.cartTotal() ? 10.00 : 0.00,
+            total_pago: dadosPedido.total,
+            endereco_entrega: dadosPedido.endereco_entrega,
+            forma_pagamento: dadosPedido.forma_pagamento,
+            status: 'confirmado'
+          }])
+          .select();
+
+        if (orderError) throw orderError;
+        const newOrder = orderCreated[0];
+
+        const insertsItens = dadosPedido.itens.map(item => {
+          const p = this.getProduct(item.pid);
+          return {
+            pedido_id: newOrder.id,
+            produto_id: item.pid,
+            quantidade: item.qty,
+            preco_unitario: p ? p.price : 0
+          };
+        });
+
+        const { error: itemsError } = await supabaseClient
+          .from('itens_pedido')
+          .insert(insertsItens);
+
+        if (itemsError) throw itemsError;
+
+        const novoSaldo = Math.max(0, this.getSession().orcamento - dadosPedido.total);
+        await supabaseClient
+          .from('perfis_financeiros')
+          .update({ saldo_disponivel_mes: novoSaldo })
+          .eq('usuario_id', dadosPedido.usuario_id);
+
         this.clearCart();
-        return data[0];
+        return newOrder;
       } catch (e) {
-        console.error("Supabase Order save failed:", e.message);
+        console.error("Transação no Supabase falhou. Usando LocalStorage local:", e.message);
       }
     }
-    // Fallback LocalStorage
+
     const orders = this.get('fw_orders') || [];
+    const localOrderId = 'o_' + Date.now();
+
     const novoPedido = {
-      id: 'PED' + String(orders.length + 1).padStart(4, '0'),
-      ...dadosPedido,
+      id: localOrderId,
+      usuario_id: dadosPedido.usuario_id,
+      subtotal: this.cartTotal(),
+      desconto: dadosPedido.total < this.cartTotal() ? 10.00 : 0.00,
+      total_pago: dadosPedido.total,
+      endereco_entrega: dadosPedido.endereco_entrega,
+      forma_pagamento: dadosPedido.forma_pagamento,
       status: 'confirmado',
-      createdAt: new Date().toISOString()
+      created_at: new Date().toISOString()
     };
+
     orders.push(novoPedido);
     this.set('fw_orders', orders);
+
+    const itemsTable = this.get('fw_items') || [];
+    dadosPedido.itens.forEach(item => {
+      const p = this.getProduct(item.pid);
+      itemsTable.push({
+        id: 'det_' + Math.random(),
+        pedido_id: localOrderId,
+        produto_id: item.pid,
+        quantidade: item.qty,
+        preco_unitario: p ? p.price : 0
+      });
+    });
+    this.set('fw_items', itemsTable);
+
     this.clearCart();
     return novoPedido;
   }
 };
 
+// Auto-inicialização de schemas
 DB.init();

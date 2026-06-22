@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cardápio Inteligente — FoodWise</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/pages.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Navegação principal">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo" aria-label="FoodWise - Página inicial">
+        <span class="logo-food">Food</span><span class="logo-icon" aria-hidden="true">🍔</span><span class="logo-wise">Wise</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html#sobre" class="nav-link">Sobre nós</a></li>
+        <li><a href="../index.html#como-funciona" class="nav-link">Como funciona</a></li>
+        <li><a href="menu.html" class="nav-link active">Cardápio</a></li>
+      </ul>
+      <div class="nav-actions">
+        <!-- Gatilho para abrir o carrinho de compras deslizante -->
+        <button onclick="toggleCarrinho()" class="nav-cart" aria-label="Abrir Carrinho">
+          🛒 <span id="cart-counter" class="cart-badge">0</span>
+        </button>
+        <a href="login.html" class="btn btn-ghost" id="nav-btn-login">Entrar</a>
+        <a href="../form.html" class="btn btn-primary" id="nav-btn-cadastro">Cadastrar-se</a>
+        <!-- Perfil do Usuário Logado -->
+        <div id="user-profile-badge" class="user-badge" style="display: none;">
+          <span class="user-initials" id="user-initials">U</span>
+          <button onclick="logoutUsuario()" class="btn-logout" title="Sair do FoodWise">Sair</button>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul role="list">
+        <li><a href="../index.html#sobre" class="mobile-nav-link">Sobre nós</a></li>
+        <li><a href="../index.html#como-funciona" class="mobile-nav-link">Como funciona</a></li>
+        <li><a href="menu.html" class="mobile-nav-link">Cardápio</a></li>
+        <li class="mobile-actions-wrapper">
+          <a href="login.html" id="mobile-btn-login" class="btn btn-ghost w-full">Entrar</a>
+          <a href="../form.html" id="mobile-btn-cadastro" class="btn btn-primary w-full">Cadastrar-se</a>
+          <button onclick="logoutUsuario()" id="mobile-btn-logout" class="btn btn-outline w-full" style="display: none;">Sair</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SEÇÃO PRINCIPAL DE CARDÁPIO -->
+  <main class="menu-page-main container">
+    <div class="menu-intro-section">
+      <p class="section-label">O que temos para você hoje</p>
+      <h1>Cardápio inteligente e consciente</h1>
+      <p class="menu-subtitle">Nossos pratos vêm com informações financeiras e nutricionais transparentes para você tomar a decisão correta.</p>
+    </div>
+
+    <!-- Filtros de Busca e Categorias -->
+    <section class="menu-controls-wrapper" aria-label="Filtros e Busca de Pratos">
+      <div class="search-input-box">
+        <input type="text" id="menu-search-input" class="form-input" placeholder="Pesquisar por prato, ingrediente..." oninput="filtrarCardapio()" />
+        <span class="search-icon-symbol">🔍</span>
+      </div>
+      
+      <div class="categories-filter-chips" role="tablist" id="category-chips-list">
+        <button class="chip active" onclick="selecionarCategoria('todos')" role="tab" aria-selected="true">🍽️ Todos</button>
+        <button class="chip" onclick="selecionarCategoria('marmitas')" role="tab" aria-selected="false">🍱 Marmitas</button>
+        <button class="chip" onclick="selecionarCategoria('saudavel')" role="tab" aria-selected="false">🥗 Saudável</button>
+        <button class="chip" onclick="selecionarCategoria('lanches')" role="tab" aria-selected="false">🥪 Lanches</button>
+        <button class="chip" onclick="selecionarCategoria('carnes')" role="tab" aria-selected="false">🥩 Carnes</button>
+        <button class="chip" onclick="selecionarCategoria('sushi')" role="tab" aria-selected="false">🍣 Sushi</button>
+        <button class="chip" onclick="selecionarCategoria('sobremesa')" role="tab" aria-selected="false">🍓 Sobremesas</button>
+        <button class="chip" onclick="selecionarCategoria('bebidas')" role="tab" aria-selected="false">🥤 Bebidas</button>
+        <button class="chip active-promo" onclick="selecionarCategoria('promocoes')" role="tab" aria-selected="false">🔥 Promoções</button>
+      </div>
+    </section>
+
+    <!-- Banner Inteligente de Monitoramento Orçamentário -->
+    <div id="financial-limit-banner" class="budget-banner-bar info">
+      <div class="budget-banner-content">
+        <span class="budget-icon">💡</span>
+        <div class="budget-details-text">
+          <strong id="budget-banner-title">Planeje seus gastos:</strong>
+          <p id="budget-banner-desc">Faça login para poder monitorar sua meta mensal e calcular o impacto do carrinho no seu orçamento.</p>
+        </div>
+      </div>
+      <a href="login.html" id="budget-banner-action" class="btn btn-sm btn-outline">Fazer Login</a>
+    </div>
+
+    <!-- Lista Dinâmica de Itens do Cardápio -->
+    <section class="menu-items-grid" id="menu-items-container" aria-label="Itens do cardápio do FoodWise">
+      <!-- Injetado dinamicamente por JS para facilitar a busca e carregamento -->
+    </section>
+  </main>
+
+  <!-- CARRINHO DESLIZANTE LATERAL (Cart Sidebar) -->
+  <aside class="cart-sidebar" id="cart-sidebar" aria-hidden="true">
+    <div class="cart-sidebar-backdrop" onclick="toggleCarrinho()"></div>
+    <div class="cart-sidebar-content">
+      <div class="cart-sidebar-header">
+        <h2>Seu Carrinho</h2>
+        <button onclick="toggleCarrinho()" class="close-cart-btn" aria-label="Fechar Carrinho">✕</button>
+      </div>
+
+      <!-- Alerta de Limite Orçamentário em Tempo Real dentro do Carrinho -->
+      <div id="cart-budget-alert-box" class="cart-budget-alert-box" style="display: none;">
+        <span class="alert-box-icon">⚠️</span>
+        <div class="alert-box-body">
+          <strong>Atenção ao Limite:</strong>
+          <p id="cart-budget-alert-message">Este pedido representa --% da sua meta disponível no mês.</p>
+        </div>
+      </div>
+
+      <div class="cart-items-scroller" id="cart-items-scroller">
+        <!-- Injetado por JS -->
+      </div>
+
+      <div class="cart-sidebar-footer">
+        <div class="cart-summary-line">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal-price">R$ 0,00</span>
+        </div>
+        <div class="cart-summary-line discount-line" id="discount-display-line" style="display: none;">
+          <span>Desconto (1ª Compra):</span>
+          <span id="cart-discount-value">- R$ 10,00</span>
+        </div>
+        <div class="cart-summary-line total-line">
+          <span>Total Geral:</span>
+          <span id="cart-total-price">R$ 0,00</span>
+        </div>
+
+        <button onclick="irParaCheckout()" class="btn btn-primary btn-full btn-lg" style="margin-top: 1.5rem;">
+          Ir para o Pagamento
+        </button>
+        <button onclick="toggleCarrinho()" class="btn btn-outline btn-full btn-sm" style="margin-top: .75rem;">
+          Continuar Escolhendo
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/db.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

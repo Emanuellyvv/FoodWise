@@ -1,143 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cardápio Inteligente — FoodWise</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="css/pages.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Inteligente — FoodWise</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .menu-filter-bar { display: flex; justify-content: center; gap: 1rem; margin: 3rem 0; flex-wrap: wrap; }
+        .filter-btn { padding: 0.6rem 1.8rem; border-radius: var(--radius-full); border: 2px solid var(--green-mid); color: var(--green-dark); font-weight: 600; background: transparent; transition: all 0.2s; cursor: pointer; }
+        .filter-btn.active, .filter-btn:hover { background: var(--green-mid); color: var(--white); }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2.5rem; margin-bottom: 5rem; }
+        .premium-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--cream-dark); transition: all 0.3s; position: relative; display: flex; flex-direction: column; }
+        .premium-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        .premium-card-img { width: 100%; height: 220px; object-fit: cover; }
+        .premium-card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; flex-grow: 1; justify-content: space-between; }
+        .premium-card-tag { position: absolute; top: 12px; right: 12px; background: var(--amber); color: var(--neutral-900); padding: 0.35rem 0.85rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700; box-shadow: var(--shadow-sm); }
+        .premium-price { font-family: var(--font-display); font-size: 1.4rem; color: var(--red); font-weight: 700; }
+        .eco-badge { font-size: 0.82rem; color: var(--green-mid); background: #E8F5E9; padding: 0.5rem; border-radius: var(--radius-md); font-weight: 600; margin-top: 0.5rem; }
+    </style>
 </head>
 <body>
 
-  <nav class="navbar" role="navigation" aria-label="Navegação principal">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="FoodWise - Página inicial">
-        <img src="image/IMG_9064.jpg" alt="Logo FoodWise">
-      </a>
-      <ul class="nav-links" role="list">
-        <li><a href="index.html#sobre" class="nav-link">Sobre nós</a></li>
-        <li><a href="index.html#como-funciona" class="nav-link">Como funciona</a></li>
-        <li><a href="cardapio.html" class="nav-link active">Cardápio</a></li>
-      </ul>
-      <div class="nav-actions" id="auth-buttons"></div>
-    </div>
-  </nav>
-
-  <main class="menu-page-container">
-    <div class="container-menu">
-      
-      <header class="menu-header">
-        <span class="section-label">Alimentação Consciente</span>
-        <h1 class="menu-title">Nosso Cardápio Inteligente</h1>
-        <p class="menu-subtitle">Refeições deliciosas balanceadas para a sua rotina e planejadas para caber na sua meta financeira mensal.</p>
-      </header>
-
-      <section class="menu-category-section">
-        <h2 class="category-title">🍱 Marmitas Saudáveis</h2>
-        <div class="products-grid-wrapper">
-          
-          <article class="menu-product-card">
-            <div class="product-card-image-wrapper">
-              <span class="product-card-emoji">🍱</span>
-              <span class="menu-product-tag tag-saudavel">Saudável</span>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo"><img src="image/IMG_9064.jpg" alt="Logo"></a>
+            <div class="nav-actions">
+                <span style="font-size: 0.9rem; font-weight: 600; color: var(--green-dark);">Saldo Limite: R$ <span id="label-saldo">300,00</span></span>
+                <a href="index.html" class="btn btn-ghost">Início</a>
             </div>
-            <div class="product-card-content">
-              <h3 class="menu-product-name">Marmita Fit Frango Grelhado</h3>
-              <p class="menu-product-desc">Frango grelhado, arroz integral, brócolis e cenoura no vapor. Perfeito para manter a linha com muito sabor.</p>
-              <div class="product-card-footer">
-                <span class="menu-product-price">R$ 28,90</span>
-                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p1')">
-                  <span>Adicionar</span> 🛒
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="menu-product-card">
-            <div class="product-card-image-wrapper">
-              <span class="product-card-emoji">🥩</span>
-              <span class="menu-product-tag tag-tradicional">Tradicional</span>
-            </div>
-            <div class="product-card-content">
-              <h3 class="menu-product-name">Marmita Carne Assada</h3>
-              <p class="menu-product-desc">Carne assada fofinha, arroz branco, feijão carioca e purê de batata caseiro bem temperado.</p>
-              <div class="product-card-footer">
-                <span class="menu-product-price">R$ 32,50</span>
-                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p2')">
-                  <span>Adicionar</span> 🛒
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="menu-product-card">
-            <div class="product-card-image-wrapper">
-              <span class="product-card-emoji">🌱</span>
-              <span class="menu-product-tag tag-light">Veggie</span>
-            </div>
-            <div class="product-card-content">
-              <h3 class="menu-product-name">Espaguete de Abobrinha Vegano</h3>
-              <p class="menu-product-desc">Espaguete de abobrinha ao molho pomodoro artesanal com almôndegas de lentilha super nutritivas.</p>
-              <div class="product-card-footer">
-                <span class="menu-product-price">R$ 26,00</span>
-                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p3')">
-                  <span>Adicionar</span> 🛒
-                </button>
-              </div>
-            </div>
-          </article>
-
         </div>
-      </section>
+    </nav>
 
-      <section class="menu-category-section" style="margin-top: 4rem;">
-        <h2 class="category-title">🥤 Bebidas e Sobremesas Light</h2>
-        <div class="products-grid-wrapper">
+    <main class="container">
+        <header style="text-align: center; margin-top: 3rem;">
+            <h1 style="font-size: 3rem;">Nosso Cardápio Consciente</h1>
+            <p style="color: var(--neutral-500); max-width: 600px; margin: 0 auto;">Refeições de alta gastronomia adaptadas aos seus objetivos de saúde semanais e limites financeiros.</p>
+        </header>
 
-          <article class="menu-product-card">
-            <div class="product-card-image-wrapper">
-              <span class="product-card-emoji">🥤</span>
-              <span class="menu-product-tag tag-light">Detox</span>
-            </div>
-            <div class="product-card-content">
-              <h3 class="menu-product-name">Suco Verde Detox</h3>
-              <p class="menu-product-desc">Suco natural prensado a frio com couve fresca, limão, maçã verde e gengibre. Sem adição de açúcares.</p>
-              <div class="product-card-footer">
-                <span class="menu-product-price">R$ 9,00</span>
-                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p4')">
-                  <span>Adicionar</span> 🛒
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="menu-product-card">
-            <div class="product-card-image-wrapper">
-              <span class="product-card-emoji">🍰</span>
-              <span class="menu-product-tag tag-promo">Sem Açúcar</span>
-            </div>
-            <div class="product-card-content">
-              <h3 class="menu-product-name">Brownie de Cacau Funcional</h3>
-              <p class="menu-product-desc">Brownie fofinho feito com cacau 70% puro e farinha de amêndoas, adoçado naturalmente com xilitol.</p>
-              <div class="product-card-footer">
-                <span class="menu-product-price">R$ 12,00</span>
-                <button class="btn-add-cart" onclick="adicionarAoCarrinho('p5')">
-                  <span>Adicionar</span> 🛒
-                </button>
-              </div>
-            </div>
-          </article>
-
+        <div class="menu-filter-bar">
+            <button class="filter-btn active" onclick="filtrarCardapio('todos')">Todo o Cardápio</button>
+            <button class="filter-btn" onclick="filtrarCardapio('saudavel')">🥦 Dias Úteis (Saudável)</button>
+            <button class="filter-btn" onclick="filtrarCardapio('fastfood')">🍔 Fim de Semana (Recompensa)</button>
         </div>
-      </section>
 
-    </div>
-  </main>
+        <div class="menu-grid">
+            <article class="premium-card" data-category="saudavel">
+                <span class="premium-card-tag">Sugestão de Terça-feira</span>
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600" alt="Salada Funcional" class="premium-card-img">
+                <div class="premium-card-body">
+                    <div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Bowl de Quinoa, Avocado & Salmão</h3>
+                        <p style="color: var(--neutral-500); font-size: 0.9rem; line-height: 1.4;">Mix de folhas nobres, quinoa real orgânica, lascas de salmão grelhado, avocado fresco e vinagrete de ervas finas.</p>
+                        <div class="eco-badge">⚡ Entrega Elétrica Ativa: Ganhe R$ 4,00 em créditos ambientais</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <span class="premium-price">R$ 38,90</span>
+                        <button class="btn btn-primary" onclick="alert('Item adicionado! Deduzindo do seu teto orçamentário.')">+ Adicionar</button>
+                    </div>
+                </div>
+            </article>
 
-  <div class="toast-container" id="toast-container"></div>
+            <article class="premium-card" data-category="fastfood">
+                <span class="premium-card-tag" style="background: var(--red); color: white;">Cheat Meal Consciente</span>
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600" alt="Hambúrguer Gourmet" class="premium-card-img">
+                <div class="premium-card-body">
+                    <div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Wise Burger Artisan</h3>
+                        <p style="color: var(--neutral-500); font-size: 0.9rem; line-height: 1.4;">Blend de carne certificada sustentável (180g), queijo da colónia derretido, maionese artesanal e pão brioche de fermentação natural.</p>
+                        <div class="eco-badge" style="color: var(--amber-dark); background: #FFFDE7;">🛸 Habilitado para entrega via Drone Ecológico no Sábado</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <span class="premium-price">R$ 44,00</span>
+                        <button class="btn btn-primary" onclick="alert('Item adicionado ao carrinho de fim de semana!')">+ Adicionar</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
 
+    <script>
+        function filtrarCardapio(categoria) {
+            const cards = document.querySelectorAll('.premium-card');
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            cards.forEach(card => {
+                if (categoria === 'todos' || card.getAttribute('data-category') === categoria) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

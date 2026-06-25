@@ -30,9 +30,10 @@
     --shadow-card: 0 2px 12px rgba(45,80,22,.10);
     
     --transition: 200ms cubic-bezier(.4,0,.2,1);
+    --transition-slow: 400ms cubic-bezier(.4,0,.2,1);
     --nav-h: 72px;
     --container: 1200px;
-    --container-pad: clamp(16px, 4vw, 32px);
+    --container-pad: clamp(16px, 4vw, 32px); /* Corrigido o fecho do clamp */
 }
 
 * {
@@ -62,7 +63,29 @@ a {
     color: inherit;
 }
 
-/* --- ESTRUTURA CONTAINER --- */
+ul, ol {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    background: none;
+}
+
+input, textarea, select {
+    font-family: inherit;
+    width: 100%;
+}
+
+:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* --- CONTAINER --- */
 .container {
     width: 100%;
     max-width: var(--container);
@@ -70,7 +93,19 @@ a {
     padding-inline: var(--container-pad);
 }
 
-/* --- NAVBAR PERFEITA & RESPONSIVA --- */
+/* --- TYPOGRAPHY --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--green-dark);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.75rem); }
+
+/* --- NAVBAR STRUCT --- */
 .navbar {
     background: var(--white);
     box-shadow: var(--shadow-sm);
@@ -89,7 +124,7 @@ a {
     max-width: var(--container);
     margin: 0 auto;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 1rem;
     padding-inline: var(--container-pad);
 }
 
@@ -97,6 +132,7 @@ a {
     height: 45px;
     width: auto;
     object-fit: contain;
+    border-radius: var(--radius-sm);
 }
 
 .nav-links {
@@ -121,7 +157,7 @@ a {
     gap: 1rem;
 }
 
-/* --- BOTÕES --- */
+/* --- BUTTONS --- */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -131,14 +167,17 @@ a {
     border-radius: var(--radius-full);
     font-size: .95rem;
     font-weight: 600;
-    transition: all var(--transition);
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
     white-space: nowrap;
-    border: none;
-    cursor: pointer;
+    letter-spacing: .01em;
 }
 
 .btn:hover {
     transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
 }
 
 .btn-primary {
@@ -149,6 +188,7 @@ a {
 
 .btn-primary:hover {
     background: #B0203F;
+    box-shadow: 0 6px 20px rgba(200,41,74,.45);
 }
 
 .btn-ghost {
@@ -163,12 +203,10 @@ a {
     border: 2px solid rgba(45,80,22,.4);
 }
 
-/* Hamburger para Mobile */
 .hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
-    cursor: pointer;
 }
 
 .hamburger span {
@@ -179,10 +217,6 @@ a {
 }
 
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    .hamburger {
-        display: flex;
-    }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
 }

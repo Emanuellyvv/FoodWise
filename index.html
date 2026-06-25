@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -26,8 +26,11 @@
             </ul>
             
             <div class="nav-actions">
+                <a href="cardapio.html?cart=open" class="nav-cart" aria-label="Ver Carrinho"></a>
+                <span id="cart-counter" class="cart-badge">0</span>
                 <a href="login.html" class="btn btn-ghost" id="nav-btn-login">Entrar</a>
                 <a href="cadastro.html" class="btn btn-primary" id="nav-btn-cadastro">Cadastrar-se</a>
+                
                 <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Abrir menu">
                     <span></span><span></span><span></span>
                 </button>
@@ -38,16 +41,16 @@
     <main>
         <section class="hero container" aria-labelledby="hero-title" style="display: flex; align-items: center; gap: 2rem; padding-top: 4rem; padding-bottom: 4rem; flex-wrap: wrap;">
             <div class="hero-content" style="flex: 1; min-width: 300px;">
-                <p class="hero-eyebrow" style="color: var(--green-mid); font-weight: 700;">Delivery Inteligente & Verde</p>
-                <h1 id="hero-title" style="margin-bottom: 1.5rem;">
+                <p class="hero-eyebrow" style="color: var(--green-mid); font-weight: 700;">Delivery inteligente em Curitiba</p>
+                <h1 id="hero-title" class="hero-title" style="margin-bottom: 1.5rem;">
                     <span style="color: var(--green-dark);">Seu gosto.</span><br>
                     <span style="color: var(--red);">Sua rotina.</span><br>
-                    <span style="color: var(--amber-dark);">Seu delivery.</span>
+                    <span style="color: var(--red);">Seu delivery.</span>
                 </h1>
                 <p class="hero-sub" style="font-size: 1.1rem; color: var(--neutral-700); margin-bottom: 2rem;">
-                    Peça do seu jeito - saudável durante a semana, promoções aos fins de semana. Economize com base no seu orçamento e ajude o planeta escolhendo entregas ecológicas.
+                    Peça do seu jeito - saudável, equilibrado e que cabe no seu bolso com recomendações personalizadas que respeitam sua saúde e orçamento.
                 </p>
-                <div class="hero-cta" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div class="hero-cta" style="display: flex; gap: 1rem;">
                     <a href="cadastro.html" class="btn btn-primary">Montar meu plano</a>
                     <a href="cardapio.html" class="btn btn-outline">Ver cardápio</a>
                 </div>
@@ -61,12 +64,6 @@
             </div>
         </section>
     </main>
-
-    <footer class="footer" style="background: var(--white); padding: 3rem 0; margin-top: 4rem; border-top: 1px solid var(--cream-dark);">
-        <div class="container" style="text-align: center;">
-            <p>© 2026 FoodWise. Trabalho de Conclusão de Curso — Foco em Sustentabilidade e Consciência Alimentar.</p>
-        </div>
-    </footer>
 
     <script src="js/app.js"></script>
 </body>

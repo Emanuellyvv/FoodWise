@@ -1,141 +1,61 @@
-// Garante o mapeamento das funções no escopo global para evitar falhas de clique
-window.proximaEtapa = proximaEtapa;
-window.etapaAnterior = etapaAnterior;
-window.exibirToast = exibirToast;
-
-let etapaAtual = 1;
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Inicializa o formulário de cadastro se estiver na página de cadastro
-    const formCadastro = document.getElementById("foodwiseCadastroForm");
-    if (formCadastro) {
-        formCadastro.addEventListener("submit", (e) => {
-            e.preventDefault();
-            exibirToast("seu cadastro foi concluído!", "success");
-            setTimeout(() => {
-                window.location.href = "login.html";
-            }, 2000);
-        });
-        mostrarEtapa(etapaAtual);
-    }
-
-    // Inicializa o formulário de login se estiver na página de login
-    const formLogin = document.getElementById("foodwiseLoginForm");
-    if (formLogin) {
-        formLogin.addEventListener("submit", (e) => {
-            e.preventDefault();
-            exibirToast("Como é bom te ter de Volta", "success");
-            setTimeout(() => {
-                window.location.href = "cardapio.html";
-            }, 2000);
-        });
-    }
-
-    // Inicializa o carrossel se existir na página
-    inicializarCarrossel();
-});
-
-function mostrarEtapa(etapa) {
-    const etapas = document.querySelectorAll(".form-step-fieldset");
-    etapas.forEach((el, index) => {
-        el.style.display = (index + 1 === etapa) ? "block" : "none";
-    });
-    
-    // Atualiza visualmente a barra de progresso se ela existir
-    const passos = document.querySelectorAll(".progress-step");
-    passos.forEach((p, index) => {
-        if (index < etapa) {
-            p.classList.add("active");
-        } else {
-            p.classList.remove("active");
-        }
-    });
-}
-
+// Função para avançar da Etapa 1 para a Etapa 2 no Cadastro
 function proximaEtapa() {
-    const camposEtapaAtual = document.querySelectorAll(`#step-${etapaAtual} [required]`);
-    let tudoPreenchido = true;
+    const nome = document.getElementById('nome').value;
+    const idade = document.getElementById('idade').value;
+    const orcamento = document.getElementById('orcamento').value;
 
-    camposEtapaAtual.forEach(campo => {
-        if (!campo.value.trim()) {
-            tudoPreenchido = false;
-            campo.classList.add("input-error");
-        } else {
-            campo.classList.remove("input-error");
-        }
-    });
-
-    if (!tudoPreenchido) {
-        exibirToast("para avançar é necessário preencher tudo", "error");
+    // Validação estrita manual para impedir avançar em branco
+    if (!nome || !idade || !orcamento) {
+        alert("Por favor, preencha todos os campos da primeira etapa.");
         return;
     }
 
-    etapaAtual++;
-    mostrarEtapa(etapaAtual);
+    // Alternar visualização dos blocos
+    document.getElementById('etapa1').style.display = 'none';
+    document.getElementById('etapa2').style.display = 'block';
+
+    // Atualizar os círculos indicadores de progresso
+    document.getElementById('step-dot-1').classList.remove('active');
+    document.getElementById('step-dot-2').classList.add('active');
 }
 
+// Função para retornar para a Etapa 1
 function etapaAnterior() {
-    if (etapaAtual > 1) {
-        etapaAtual--;
-        mostrarEtapa(etapaAtual);
-    }
+    document.getElementById('etapa1').style.display = 'block';
+    document.getElementById('etapa2').style.display = 'none';
+
+    document.getElementById('step-dot-1').classList.add('active');
+    document.getElementById('step-dot-2').classList.remove('active');
 }
 
-function finalizarPedidoFoodwise() {
-    // Gatilho simulando o processamento do gateway de pagamento
-    exibirToast("Seu pagamento foi processado com sucesso.", "success");
-    const modal = document.getElementById("order-success-modal");
-    if (modal) {
-        setTimeout(() => {
-            modal.style.display = "flex";
-        }, 1500);
-    }
-}
-window.finalizarPedidoFoodwise = finalizarPedidoFoodwise;
-
-function exibirToast(mensagem, tipo = "info") {
-    let container = document.getElementById("toast-container");
-    if (!container) {
-        container = document.createElement("div");
-        container.id = "toast-container";
-        container.className = "toast-container";
-        document.body.appendChild(container);
-    }
-
-    const toast = document.createElement("div");
-    toast.className = `toast ${tipo}`;
+// Manipulação do Envio do Formulário (Submissão)
+function salvarCadastro(event) {
+    event.preventDefault();
     
-    let icone = "ℹ️";
-    if (tipo === "success") icone = "✅";
-    if (tipo === "error") icone = "❌";
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+    const estilo = document.getElementById('estiloVida').value;
 
-    toast.innerHTML = `
-        <span class="toast-icon">${icone}</span>
-        <p class="toast-message">${mensagem}</p>
-    `;
+    if (!email || senha.length < 6) {
+        alert("Introduza um e-mail válido e uma senha com pelo menos 6 caracteres.");
+        return;
+    }
 
-    container.appendChild(toast);
-
-    setTimeout(() => {
-        toast.classList.add("showing");
-    }, 10);
-
-    setTimeout(() => {
-        toast.classList.remove("showing");
-        setTimeout(() => toast.remove(), 300);
-    }, 3500);
+    // Armazenamento local simulando persistência de dados para o protótipo do TCC
+    localStorage.setItem('user_estilo', estilo);
+    localStorage.setItem('user_orcamento', document.getElementById('orcamento').value);
+    
+    alert('Conta criada com sucesso! Redirecionando para o seu cardápio personalizado...');
+    window.location.href = 'cardapio.html';
 }
 
-function inicializarCarrossel() {
-    const track = document.querySelector(".carousel-track");
-    if (!track) return;
-
-    const slides = Array.from(track.children);
-    let indiceAtual = 0;
-
-    setInterval(() => {
-        indiceAtual = (indiceAtual + 1) % slides.length;
-        const tamanhoSlide = slides[0].getBoundingClientRect().width;
-        track.style.transform = `translateX(-${indiceAtual * tamanhoSlide}px)`;
-    }, 4000); // Rotaciona a cada 4 segundos
+// Menu sanduíche responsivo global
+function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+        links.style.display = 'none';
+    } else {
+        links.style.display = 'flex';
+        links.style.flexDirection = 'column';
+    }
 }

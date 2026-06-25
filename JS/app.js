@@ -1,25 +1,22 @@
-// Função para avançar da Etapa 1 para a Etapa 2 no Cadastro
+// Avançar no Cadastro
 function proximaEtapa() {
-    const nome = document.getElementById('nome').value;
     const idade = document.getElementById('idade').value;
-    const orcamento = document.getElementById('orcamento').value;
+    const cpf = document.getElementById('cpf').value;
+    const tel = document.getElementById('telefone').value;
 
-    // Validação estrita manual para impedir avançar em branco
-    if (!nome || !idade || !orcamento) {
-        alert("Por favor, preencha todos os campos da primeira etapa.");
+    if (!idade || !cpf || !tel) {
+        alert("Por favor, preencha os dados obrigatórios da Etapa 1.");
         return;
     }
 
-    // Alternar visualização dos blocos
     document.getElementById('etapa1').style.display = 'none';
     document.getElementById('etapa2').style.display = 'block';
 
-    // Atualizar os círculos indicadores de progresso
     document.getElementById('step-dot-1').classList.remove('active');
     document.getElementById('step-dot-2').classList.add('active');
 }
 
-// Função para retornar para a Etapa 1
+// Voltar no Cadastro
 function etapaAnterior() {
     document.getElementById('etapa1').style.display = 'block';
     document.getElementById('etapa2').style.display = 'none';
@@ -28,34 +25,27 @@ function etapaAnterior() {
     document.getElementById('step-dot-2').classList.remove('active');
 }
 
-// Manipulação do Envio do Formulário (Submissão)
+// Submeter o Formulário Unificado
 function salvarCadastro(event) {
     event.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
     const estilo = document.getElementById('estiloVida').value;
+    const email = document.getElementById('email').value;
 
-    if (!email || senha.length < 6) {
-        alert("Introduza um e-mail válido e uma senha com pelo menos 6 caracteres.");
+    if (!estilo || !email) {
+        alert("Preencha as informações do seu perfil alimentar.");
         return;
     }
 
-    // Armazenamento local simulando persistência de dados para o protótipo do TCC
-    localStorage.setItem('user_estilo', estilo);
-    localStorage.setItem('user_orcamento', document.getElementById('orcamento').value);
-    
-    alert('Conta criada com sucesso! Redirecionando para o seu cardápio personalizado...');
-    window.location.href = 'cardapio.html';
+    alert("Cadastro processado com sucesso!");
+    window.location.href = "cardapio.html";
 }
 
-// Menu sanduíche responsivo global
+// Alternar Menu Mobile (Sanduíche)
 function toggleMenu() {
-    const links = document.querySelector('.nav-links');
-    if (links.style.display === 'flex') {
-        links.style.display = 'none';
-    } else {
-        links.style.display = 'flex';
-        links.style.flexDirection = 'column';
+    const menu = document.getElementById('mobile-menu');
+    if(menu) {
+        const isHidden = menu.getAttribute('aria-hidden') === 'true';
+        menu.setAttribute('aria-hidden', !isHidden);
+        menu.style.display = isHidden ? 'block' : 'none';
     }
 }

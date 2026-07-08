@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagamento | FoodWise</title>
+  <meta name="description" content="Finalize seu pedido no FoodWise com Pix, cartão ou boleto de forma segura." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CABEÇALHO
+       ========================================================================== -->
+  <header class="cabecalho">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icone">🌿</span>
+        Food<span>Wise</span>
+      </a>
+
+      <nav class="nav-principal">
+        <ul class="nav-links">
+          <li><a href="index.html#diferenciais">Diferenciais</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="cardapio.html">Cardápio</a></li>
+        </ul>
+
+        <div class="nav-acoes">
+          <a href="login.html" class="botao botao-secundario">Entrar</a>
+          <a href="cadastro.html" class="botao botao-primario">Criar conta</a>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==========================================================================
+         CABEÇALHO DA PÁGINA
+         ========================================================================== -->
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <div class="trilha"><a href="index.html">Início</a> / <a href="cardapio.html">Cardápio</a> / Pagamento</div>
+        <h1>Finalizar pedido</h1>
+        <p>Confira os itens escolhidos e conclua o pagamento com segurança.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PAGAMENTO
+         ========================================================================== -->
+    <section class="secao">
+      <div class="container">
+        <form id="form-pagamento" class="grade-pagamento" novalidate>
+
+          <div class="coluna-formulario-pagamento">
+
+            <!-- Endereço de entrega -->
+            <div class="bloco-pagamento">
+              <h3><span class="numero-bloco">1</span> Endereço de entrega</h3>
+
+              <div class="linha-formulario">
+                <div class="campo">
+                  <label for="cep">CEP</label>
+                  <input type="text" id="cep" name="cep" placeholder="00000-000" required />
+                  <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                  <label for="numero-casa">Número</label>
+                  <input type="text" id="numero-casa" name="numero" placeholder="Nº" required />
+                  <span class="mensagem-erro"></span>
+                </div>
+              </div>
+
+              <div class="campo">
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" name="endereco" placeholder="Rua, avenida..." required />
+                <span class="mensagem-erro"></span>
+              </div>
+
+              <div class="campo">
+                <label for="complemento">Complemento (opcional)</label>
+                <input type="text" id="complemento" name="complemento" placeholder="Apto, bloco, referência" />
+              </div>
+            </div>
+
+            <!-- Forma de pagamento -->
+            <div class="bloco-pagamento">
+              <h3><span class="numero-bloco">2</span> Forma de pagamento</h3>
+
+              <div class="opcoes-pagamento">
+                <div class="opcao-pagamento selecionada" data-forma="pix">
+                  <span class="icone">💠</span>
+                  <span>Pix</span>
+                </div>
+                <div class="opcao-pagamento" data-forma="cartao">
+                  <span class="icone">💳</span>
+                  <span>Cartão</span>
+                </div>
+                <div class="opcao-pagamento" data-forma="boleto">
+                  <span class="icone">🧾</span>
+                  <span>Boleto</span>
+                </div>
+              </div>
+
+              <div class="conteudo-pagamento-forma ativo" data-forma="pix">
+                <p>Ao confirmar, geraremos um QR Code Pix válido por 30 minutos para pagamento imediato.</p>
+              </div>
+
+              <div class="conteudo-pagamento-forma" data-forma="cartao">
+                <div class="campo">
+                  <label for="numero-cartao">Número do cartão</label>
+                  <input type="text" id="numero-cartao" name="numero-cartao" placeholder="0000 0000 0000 0000" />
+                </div>
+                <div class="campo">
+                  <label for="nome-cartao">Nome impresso no cartão</label>
+                  <input type="text" id="nome-cartao" name="nome-cartao" placeholder="Como está no cartão" />
+                </div>
+                <div class="linha-formulario">
+                  <div class="campo">
+                    <label for="validade-cartao">Validade</label>
+                    <input type="text" id="validade-cartao" name="validade" placeholder="MM/AA" />
+                  </div>
+                  <div class="campo">
+                    <label for="cvv-cartao">CVV</label>
+                    <input type="text" id="cvv-cartao" name="cvv" placeholder="000" maxlength="3" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="conteudo-pagamento-forma" data-forma="boleto">
+                <p>O boleto será gerado após a confirmação e enviado para o seu e-mail cadastrado, com vencimento em 2 dias úteis.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resumo do pedido — preenchido dinamicamente a partir do carrinho -->
+          <aside class="resumo-pedido">
+            <h3>Resumo do pedido</h3>
+
+            <div id="lista-itens-resumo">
+              <p class="mensagem-vazia">Carregando carrinho...</p>
+            </div>
+
+            <div class="cupom">
+              <input type="text" id="campo-cupom" placeholder="Cupom de desconto" />
+              <button type="button" id="botao-cupom">Aplicar</button>
+            </div>
+
+            <div class="linha-total">
+              <span>Subtotal</span>
+              <span id="valor-subtotal">R$ 0,00</span>
+            </div>
+            <div class="linha-total">
+              <span>Taxa de entrega</span>
+              <span id="valor-taxa">R$ 0,00</span>
+            </div>
+            <div class="linha-total" id="linha-desconto" style="display:none;">
+              <span>Desconto (FOODWISE10)</span>
+              <span>- R$ 0,00</span>
+            </div>
+            <div class="linha-total total-final">
+              <span>Total</span>
+              <span id="valor-total-final">R$ 0,00</span>
+            </div>
+
+            <button type="submit" id="botao-finalizar-pagamento" class="botao botao-primario botao-bloco">Confirmar pagamento</button>
+
+            <div class="selo-seguranca">🔒 Pagamento 100% seguro e criptografado</div>
+          </aside>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       RODAPÉ
+       ========================================================================== -->
+  <footer class="rodape">
+    <div class="container">
+      <div class="grade-rodape">
+        <div class="rodape-marca">
+          <a href="index.html" class="logo">
+            <span class="logo-icone">🌿</span>
+            Food<span>Wise</span>
+          </a>
+          <p>Nutrição inteligente e sabor de verdade em cada entrega, todos os dias da semana.</p>
+          <div class="rodape-redes">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Plataforma</h4>
+          <ul>
+            <li><a href="cardapio.html">Cardápio</a></li>
+            <li><a href="cadastro.html">Criar conta</a></li>
+            <li><a href="login.html">Entrar</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="index.html#sobre">Sobre nós</a></li>
+            <li><a href="index.html#como-funciona">Como funciona</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="mailto:contato@foodwise.com.br">contato@foodwise.com.br</a></li>
+            <li><a href="tel:+554199990000">(41) 99999-0000</a></li>
+            <li><a href="index.html#contato">Fale conosco</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape-base">
+        <span>&copy; 2026 FoodWise. Projeto de Trabalho de Conclusão de Curso.</span>
+        <span>Desenvolvido com dedicação para uma alimentação mais consciente.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

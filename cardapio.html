@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cardápio | FoodWise</title>
+  <meta name="description" content="Explore o cardápio balanceado do FoodWise e monte seu pedido saudável." />
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CABEÇALHO
+       ========================================================================== -->
+  <header class="cabecalho">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icone">🌿</span>
+        Food<span>Wise</span>
+      </a>
+
+      <nav class="nav-principal">
+        <ul class="nav-links">
+          <li><a href="index.html#diferenciais">Diferenciais</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="cardapio.html" class="ativo">Cardápio</a></li>
+        </ul>
+
+        <div class="nav-acoes">
+          <a href="login.html" class="botao botao-secundario">Entrar</a>
+          <a href="cadastro.html" class="botao botao-primario">Criar conta</a>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==========================================================================
+         CABEÇALHO DA PÁGINA
+         ========================================================================== -->
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <div class="trilha"><a href="index.html">Início</a> / Cardápio</div>
+        <h1>Nosso cardápio</h1>
+        <p>Mais de 150 opções balanceadas, incluindo pratos fitness e fast-food equilibrado, com informações nutricionais completas.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CARDÁPIO
+         ========================================================================== -->
+    <section class="secao">
+      <div class="container">
+
+        <div class="barra-filtros">
+          <div class="filtros-categoria">
+            <button class="filtro-tag ativo" data-categoria="todos">Todos</button>
+            <button class="filtro-tag" data-categoria="fitness">Fitness</button>
+            <button class="filtro-tag" data-categoria="fast-food">Fast Food</button>
+            <button class="filtro-tag" data-categoria="saladas">Saladas</button>
+            <button class="filtro-tag" data-categoria="pratos-quentes">Pratos quentes</button>
+            <button class="filtro-tag" data-categoria="sobremesas">Sobremesas</button>
+            <button class="filtro-tag" data-categoria="bebidas">Bebidas</button>
+          </div>
+
+          <div class="busca-cardapio">
+            <span class="icone-busca">🔍</span>
+            <input type="text" id="busca-prato" placeholder="Buscar prato..." />
+          </div>
+        </div>
+
+        <!-- Os cartões de prato são inseridos aqui dinamicamente pelo script.js,
+             a partir do banco de dados (GitHub ou dados-cardapio.js local) -->
+        <div class="grade-cardapio" id="grade-cardapio">
+          <p class="mensagem-vazia">Carregando cardápio...</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Carrinho flutuante -->
+  <div class="carrinho-flutuante">
+    🛒 Ver carrinho
+    <span class="contador">0</span>
+  </div>
+
+  <!-- ==========================================================================
+       RODAPÉ
+       ========================================================================== -->
+  <footer class="rodape">
+    <div class="container">
+      <div class="grade-rodape">
+        <div class="rodape-marca">
+          <a href="index.html" class="logo">
+            <span class="logo-icone">🌿</span>
+            Food<span>Wise</span>
+          </a>
+          <p>Nutrição inteligente e sabor de verdade em cada entrega, todos os dias da semana.</p>
+          <div class="rodape-redes">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Plataforma</h4>
+          <ul>
+            <li><a href="cardapio.html">Cardápio</a></li>
+            <li><a href="cadastro.html">Criar conta</a></li>
+            <li><a href="login.html">Entrar</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="index.html#sobre">Sobre nós</a></li>
+            <li><a href="index.html#como-funciona">Como funciona</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="mailto:contato@foodwise.com.br">contato@foodwise.com.br</a></li>
+            <li><a href="tel:+554199990000">(41) 99999-0000</a></li>
+            <li><a href="index.html#contato">Fale conosco</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape-base">
+        <span>&copy; 2026 FoodWise. Projeto de Trabalho de Conclusão de Curso.</span>
+        <span>Desenvolvido com dedicação para uma alimentação mais consciente.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="dados-cardapio.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

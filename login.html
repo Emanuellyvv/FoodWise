@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrar | FoodWise</title>
+  <meta name="description" content="Acesse sua conta FoodWise e continue sua jornada de alimentação saudável." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CABEÇALHO
+       ========================================================================== -->
+  <header class="cabecalho">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icone">🌿</span>
+        Food<span>Wise</span>
+      </a>
+
+      <nav class="nav-principal">
+        <ul class="nav-links">
+          <li><a href="index.html#diferenciais">Diferenciais</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="cardapio.html">Cardápio</a></li>
+        </ul>
+
+        <div class="nav-acoes">
+          <a href="login.html" class="botao botao-secundario">Entrar</a>
+          <a href="cadastro.html" class="botao botao-primario">Criar conta</a>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==========================================================================
+         CABEÇALHO DA PÁGINA
+         ========================================================================== -->
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <div class="trilha"><a href="index.html">Início</a> / Entrar</div>
+        <h1>Que bom te ver de novo</h1>
+        <p>Acesse sua conta para continuar seu pedido e acompanhar sua evolução.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FORMULÁRIO DE LOGIN
+         ========================================================================== -->
+    <section class="secao-auth">
+      <div class="container">
+        <div class="cartao-auth">
+          <h2>Entrar na conta</h2>
+          <p>Informe seus dados de acesso abaixo.</p>
+
+          <form id="form-login" class="formulario-auth" novalidate>
+            <div class="campo">
+              <label for="email-login">E-mail</label>
+              <input type="email" id="email-login" name="email" placeholder="seuemail@exemplo.com" required />
+              <span class="mensagem-erro"></span>
+            </div>
+
+            <div class="campo">
+              <label for="senha-login">Senha</label>
+              <input type="password" id="senha-login" name="senha" placeholder="Digite sua senha" required />
+              <span class="mensagem-erro"></span>
+            </div>
+
+            <div class="linha-opcoes">
+              <label class="campo-checkbox">
+                <input type="checkbox" />
+                Lembrar de mim
+              </label>
+              <a href="#">Esqueci minha senha</a>
+            </div>
+
+            <button type="submit" class="botao botao-primario botao-bloco">Entrar</button>
+          </form>
+
+          <div class="separador-auth">ou continue com</div>
+
+          <a href="#" class="botao-social">🔵 Continuar com Google</a>
+
+          <p class="rodape-auth">Ainda não tem conta? <a href="cadastro.html">Cadastre-se gratuitamente</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       RODAPÉ
+       ========================================================================== -->
+  <footer class="rodape">
+    <div class="container">
+      <div class="grade-rodape">
+        <div class="rodape-marca">
+          <a href="index.html" class="logo">
+            <span class="logo-icone">🌿</span>
+            Food<span>Wise</span>
+          </a>
+          <p>Nutrição inteligente e sabor de verdade em cada entrega, todos os dias da semana.</p>
+          <div class="rodape-redes">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Plataforma</h4>
+          <ul>
+            <li><a href="cardapio.html">Cardápio</a></li>
+            <li><a href="cadastro.html">Criar conta</a></li>
+            <li><a href="login.html">Entrar</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="index.html#sobre">Sobre nós</a></li>
+            <li><a href="index.html#como-funciona">Como funciona</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="mailto:contato@foodwise.com.br">contato@foodwise.com.br</a></li>
+            <li><a href="tel:+554199990000">(41) 99999-0000</a></li>
+            <li><a href="index.html#contato">Fale conosco</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape-base">
+        <span>&copy; 2026 FoodWise. Projeto de Trabalho de Conclusão de Curso.</span>
+        <span>Desenvolvido com dedicação para uma alimentação mais consciente.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

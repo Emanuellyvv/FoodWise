@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acompanhar Pedido | FoodWise</title>
+  <meta name="description" content="Acompanhe em tempo real cada etapa do seu pedido FoodWise." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CABEÇALHO
+       ========================================================================== -->
+  <header class="cabecalho">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icone">🌿</span>
+        Food<span>Wise</span>
+      </a>
+
+      <nav class="nav-principal">
+        <ul class="nav-links">
+          <li><a href="index.html#diferenciais">Diferenciais</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="cardapio.html">Cardápio</a></li>
+        </ul>
+
+        <div class="nav-acoes">
+          <a href="login.html" class="botao botao-secundario">Entrar</a>
+          <a href="cadastro.html" class="botao botao-primario">Criar conta</a>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==========================================================================
+         CABEÇALHO DA PÁGINA
+         ========================================================================== -->
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <div class="trilha"><a href="index.html">Início</a> / Acompanhar pedido</div>
+        <h1>Acompanhe seu pedido</h1>
+        <p>Veja em tempo real cada etapa até a sua refeição chegar até você.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ACOMPANHAMENTO
+         ========================================================================== -->
+    <section class="secao">
+      <div class="container">
+
+        <div class="status-pedido-topo">
+          <div>
+            <h3 id="numero-pedido">#FW-00000</h3>
+            <p>Previsão de entrega: hoje, às 13h45</p>
+          </div>
+          <span class="selo-status">Em rota de entrega</span>
+        </div>
+
+        <div class="linha-do-tempo">
+          <div class="progresso"></div>
+
+          <div class="etapa-pedido concluida">
+            <div class="circulo">✓</div>
+            <strong>Confirmado</strong>
+            <span>13h02</span>
+          </div>
+
+          <div class="etapa-pedido concluida">
+            <div class="circulo">✓</div>
+            <strong>Em preparo</strong>
+            <span>13h08</span>
+          </div>
+
+          <div class="etapa-pedido atual">
+            <div class="circulo">🛵</div>
+            <strong>Em rota</strong>
+            <span>13h25</span>
+          </div>
+
+          <div class="etapa-pedido">
+            <div class="circulo">🏠</div>
+            <strong>Entregue</strong>
+            <span>Previsão 13h45</span>
+          </div>
+        </div>
+
+        <div class="grade-acompanhamento">
+
+          <div class="mapa-simulado">
+            <div class="pino-entregador">🛵</div>
+          </div>
+
+          <div>
+            <div class="cartao-entregador">
+              <div class="avatar"></div>
+              <div>
+                <strong>Carlos Mendes</strong>
+                <span>Motocicleta • Placa FWX-2025</span>
+              </div>
+              <div class="acoes-entregador">
+                <a href="tel:+554199990000" aria-label="Ligar para o entregador">📞</a>
+                <a href="#" aria-label="Enviar mensagem">💬</a>
+              </div>
+            </div>
+
+            <div class="bloco-pagamento">
+              <h3><span class="numero-bloco">📦</span> Detalhes do pedido</h3>
+              <!-- Preenchido dinamicamente com os itens do último pedido finalizado -->
+              <div id="detalhes-ultimo-pedido">
+                <div class="item-resumo">
+                  <div class="nome-item">
+                    <span>Nenhum pedido recente encontrado</span>
+                    <span class="qtd-item">Faça um pedido no cardápio</span>
+                  </div>
+                  <span>—</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       RODAPÉ
+       ========================================================================== -->
+  <footer class="rodape">
+    <div class="container">
+      <div class="grade-rodape">
+        <div class="rodape-marca">
+          <a href="index.html" class="logo">
+            <span class="logo-icone">🌿</span>
+            Food<span>Wise</span>
+          </a>
+          <p>Nutrição inteligente e sabor de verdade em cada entrega, todos os dias da semana.</p>
+          <div class="rodape-redes">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Plataforma</h4>
+          <ul>
+            <li><a href="cardapio.html">Cardápio</a></li>
+            <li><a href="cadastro.html">Criar conta</a></li>
+            <li><a href="login.html">Entrar</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="index.html#sobre">Sobre nós</a></li>
+            <li><a href="index.html#como-funciona">Como funciona</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="mailto:contato@foodwise.com.br">contato@foodwise.com.br</a></li>
+            <li><a href="tel:+554199990000">(41) 99999-0000</a></li>
+            <li><a href="index.html#contato">Fale conosco</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape-base">
+        <span>&copy; 2026 FoodWise. Projeto de Trabalho de Conclusão de Curso.</span>
+        <span>Desenvolvido com dedicação para uma alimentação mais consciente.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

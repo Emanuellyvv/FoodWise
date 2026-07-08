@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Criar conta | FoodWise</title>
+  <meta name="description" content="Crie sua conta gratuita no FoodWise e comece a comer melhor hoje mesmo." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CABEÇALHO
+       ========================================================================== -->
+  <header class="cabecalho">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icone">🌿</span>
+        Food<span>Wise</span>
+      </a>
+
+      <nav class="nav-principal">
+        <ul class="nav-links">
+          <li><a href="index.html#diferenciais">Diferenciais</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="cardapio.html">Cardápio</a></li>
+        </ul>
+
+        <div class="nav-acoes">
+          <a href="login.html" class="botao botao-secundario">Entrar</a>
+          <a href="cadastro.html" class="botao botao-primario">Criar conta</a>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==========================================================================
+         CABEÇALHO DA PÁGINA
+         ========================================================================== -->
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <div class="trilha"><a href="index.html">Início</a> / Criar conta</div>
+        <h1>Crie sua conta no FoodWise</h1>
+        <p>Leva menos de dois minutos e você já pode montar seu primeiro pedido saudável.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FORMULÁRIO DE CADASTRO
+         ========================================================================== -->
+    <section class="secao-auth">
+      <div class="container">
+        <div class="cartao-auth largo">
+          <h2>Bem-vindo(a)</h2>
+          <p>Preencha os dados abaixo para começar sua jornada saudável.</p>
+
+          <form id="form-cadastro" class="formulario-auth" novalidate>
+            <div class="linha-formulario">
+              <div class="campo">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required />
+                <span class="mensagem-erro"></span>
+              </div>
+
+              <div class="campo">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required />
+                <span class="mensagem-erro"></span>
+              </div>
+            </div>
+
+            <div class="linha-formulario">
+              <div class="campo">
+                <label for="email-cadastro">E-mail</label>
+                <input type="email" id="email-cadastro" name="email" placeholder="seuemail@exemplo.com" required />
+                <span class="mensagem-erro"></span>
+              </div>
+
+              <div class="campo">
+                <label for="data-nascimento">Data de nascimento</label>
+                <input type="date" id="data-nascimento" name="data-nascimento" required />
+                <span class="mensagem-erro"></span>
+              </div>
+            </div>
+
+            <div class="linha-formulario">
+              <div class="campo">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Crie uma senha segura" required />
+                <div class="forca-senha">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <span class="mensagem-erro"></span>
+              </div>
+
+              <div class="campo">
+                <label for="confirmar-senha">Confirmar senha</label>
+                <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Repita sua senha" required />
+                <span class="mensagem-erro"></span>
+              </div>
+            </div>
+
+            <div class="linha-formulario">
+              <div class="campo">
+                <label for="objetivo">Objetivo principal</label>
+                <select id="objetivo" name="objetivo" required>
+                  <option value="">Selecione uma opção</option>
+                  <option value="emagrecimento">Emagrecimento</option>
+                  <option value="ganho-de-massa">Ganho de massa muscular</option>
+                  <option value="alimentacao-equilibrada">Alimentação equilibrada</option>
+                  <option value="performance">Performance esportiva</option>
+                </select>
+                <span class="mensagem-erro"></span>
+              </div>
+
+              <div class="campo">
+                <label for="restricao">Restrição alimentar (opcional)</label>
+                <select id="restricao" name="restricao">
+                  <option value="nenhuma">Nenhuma</option>
+                  <option value="vegetariano">Vegetariano</option>
+                  <option value="vegano">Vegano</option>
+                  <option value="sem-gluten">Sem glúten</option>
+                  <option value="sem-lactose">Sem lactose</option>
+                </select>
+              </div>
+            </div>
+
+            <label class="campo-checkbox">
+              <input type="checkbox" required />
+              Concordo com os Termos de Uso e a Política de Privacidade
+            </label>
+
+            <button type="submit" class="botao botao-primario botao-bloco">Criar minha conta</button>
+          </form>
+
+          <div class="separador-auth">ou continue com</div>
+
+          <a href="#" class="botao-social">🔵 Continuar com Google</a>
+
+          <p class="rodape-auth">Já tem uma conta? <a href="login.html">Entrar agora</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       RODAPÉ
+       ========================================================================== -->
+  <footer class="rodape">
+    <div class="container">
+      <div class="grade-rodape">
+        <div class="rodape-marca">
+          <a href="index.html" class="logo">
+            <span class="logo-icone">🌿</span>
+            Food<span>Wise</span>
+          </a>
+          <p>Nutrição inteligente e sabor de verdade em cada entrega, todos os dias da semana.</p>
+          <div class="rodape-redes">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Plataforma</h4>
+          <ul>
+            <li><a href="cardapio.html">Cardápio</a></li>
+            <li><a href="cadastro.html">Criar conta</a></li>
+            <li><a href="login.html">Entrar</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="index.html#sobre">Sobre nós</a></li>
+            <li><a href="index.html#como-funciona">Como funciona</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="mailto:contato@foodwise.com.br">contato@foodwise.com.br</a></li>
+            <li><a href="tel:+554199990000">(41) 99999-0000</a></li>
+            <li><a href="index.html#contato">Fale conosco</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape-base">
+        <span>&copy; 2026 FoodWise. Projeto de Trabalho de Conclusão de Curso.</span>
+        <span>Desenvolvido com dedicação para uma alimentação mais consciente.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -18,7 +18,6 @@
    embutido em dados-cardapio.js, então tudo continua funcionando.
    ------------------------------------------------------------------ */
 const URL_BANCO_DE_DADOS_GITHUB = "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/refs/heads/main/cardapio-dados.json";
-
 const CHAVE_CARRINHO = "foodwise_carrinho";
 const CHAVE_ULTIMO_PEDIDO = "foodwise_ultimo_pedido";
 const TAXA_ENTREGA = 6.90;

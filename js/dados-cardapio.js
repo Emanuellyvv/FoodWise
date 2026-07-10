@@ -124,14 +124,14 @@ function atualizarContadorCarrinho() {
    assim o cardápio nunca fica vazio.
    ========================================================================== */
 async function carregarCardapio() {
-  const urlConfigurada = URL_BANCO_DE_DADOS_GITHUB.indexOf('SEU-USUARIO') === -1;
+  const urlConfigurada = "https://github.com/Emanuellyvv/foodwise-db.git";
 
   if (urlConfigurada) {
     try {
       const controlador = new AbortController();
       const tempoLimite = setTimeout(function () { controlador.abort(); }, 4000);
 
-      const resposta = await fetch(URL_BANCO_DE_DADOS_GITHUB, { signal: controlador.signal });
+      const resposta = await fetch(https://github.com/Emanuellyvv/foodwise-db.git, { signal: controlador.signal });
       clearTimeout(tempoLimite);
 
       if (resposta.ok) {

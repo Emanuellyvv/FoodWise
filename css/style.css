@@ -985,16 +985,15 @@ p {
 
 .cartao-auth {
   background-color: var(--branco);
-  max-width: 600px;
   width: 100%;
-  padding: var(--espaco-lg) calc(var(--espaco-lg) + 0.5rem);
+  padding: 0px 0px 0px 0px;
   border-radius: var(--raio-borda);
   box-shadow: var(--sombra-forte);
 }
 
 /* Variação mais larga, usada no cadastro (mais campos) */
 .cartao-auth.largo {
-  max-width: 820px;
+  max-width: 1000px;
 }
 
 .cartao-auth h1 {

@@ -17,7 +17,8 @@
    inacessível), o site usa automaticamente o banco de dados local
    embutido em dados-cardapio.js, então tudo continua funcionando.
    ------------------------------------------------------------------ */
-const URL_BANCO_DE_DADOS_GITHUB = "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/refs/heads/main/cardapio-dados.json";
+const URL_BANCO_DE_DADOS_GITHUB = "https://raw.githubusercontent.com/SEU-USUARIO/SEU-REPOSITORIO/main/cardapio-dados.json";
+
 const CHAVE_CARRINHO = "foodwise_carrinho";
 const CHAVE_ULTIMO_PEDIDO = "foodwise_ultimo_pedido";
 const TAXA_ENTREGA = 6.90;
@@ -123,14 +124,14 @@ function atualizarContadorCarrinho() {
    assim o cardápio nunca fica vazio.
    ========================================================================== */
 async function carregarCardapio() {
-  const urlConfigurada = https://github.com/Emanuellyvv/foodwise-db.git;
+  const urlConfigurada = URL_BANCO_DE_DADOS_GITHUB.indexOf('SEU-USUARIO') === -1;
 
   if (urlConfigurada) {
     try {
       const controlador = new AbortController();
       const tempoLimite = setTimeout(function () { controlador.abort(); }, 4000);
 
-      const resposta = await fetch(https://github.com/Emanuellyvv/foodwise-db.git, { signal: controlador.signal });
+      const resposta = await fetch(URL_BANCO_DE_DADOS_GITHUB, { signal: controlador.signal });
       clearTimeout(tempoLimite);
 
       if (resposta.ok) {
@@ -145,7 +146,9 @@ async function carregarCardapio() {
     }
   }
 
-  return typeof DADOS_CARDAPIO_LOCAL !== 'undefined' ? DADOS_CARDAPIO_LOCAL : [];
+  return (typeof window !== 'undefined' && Array.isArray(window.DADOS_CARDAPIO_LOCAL))
+    ? window.DADOS_CARDAPIO_LOCAL
+    : [];
 }
 
 /* ==========================================================================

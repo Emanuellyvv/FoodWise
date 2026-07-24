@@ -986,7 +986,9 @@ p {
 .cartao-auth {
   background-color: var(--branco);
   width: 100%;
-  padding: 0px 0px 0px 0px;
+  padding: 20px 41px 15px 29px;
+  align-items: center;
+  margin: 0px 0px 0px 60px;
   border-radius: var(--raio-borda);
   box-shadow: var(--sombra-forte);
 }

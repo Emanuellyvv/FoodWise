@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha conta | FoodWise</title>
+  <meta name="description" content="Gerencie seus dados, preferências e endereço de entrega no FoodWise." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#1E3309" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Minha conta | FoodWise" />
+  <meta property="og:description" content="Gerencie seus dados, preferências e endereço de entrega no FoodWise." />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CABEÇALHO
+       ========================================================================== -->
+  <header class="cabecalho">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icone">🌿</span>
+        Food<span>Wise</span>
+      </a>
+
+      <nav class="nav-principal">
+        <ul class="nav-links">
+          <li><a href="index.html#diferenciais">Diferenciais</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="cardapio.html">Cardápio</a></li>
+        </ul>
+
+        <div class="nav-acoes">
+          <a href="login.html" class="botao botao-secundario">Entrar</a>
+          <a href="cadastro.html" class="botao botao-primario">Criar conta</a>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==========================================================================
+         CABEÇALHO DA PÁGINA
+         ========================================================================== -->
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <div class="trilha"><a href="index.html">Início</a> / Minha conta</div>
+        <h1>Minha conta</h1>
+        <p>Atualize seus dados, seu avatar e seu endereço de entrega.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FORMULÁRIO DE PERFIL
+         ========================================================================== -->
+    <section class="secao-auth">
+      <div class="container">
+        <div class="cartao-auth largo">
+          <h2>Seus dados</h2>
+          <p>As alterações são salvas no seu navegador e refletem em todo o site.</p>
+
+          <form id="form-minha-conta" class="formulario-auth" novalidate>
+
+            <div class="campo">
+              <label>Avatar</label>
+              <div class="seletor-avatar">
+                <button type="button" class="opcao-avatar" data-avatar="🥑" aria-label="Avatar abacate">🥑</button>
+                <button type="button" class="opcao-avatar" data-avatar="🍉" aria-label="Avatar melancia">🍉</button>
+                <button type="button" class="opcao-avatar" data-avatar="🥦" aria-label="Avatar brócolis">🥦</button>
+                <button type="button" class="opcao-avatar" data-avatar="🍓" aria-label="Avatar morango">🍓</button>
+                <button type="button" class="opcao-avatar" data-avatar="🍋" aria-label="Avatar limão">🍋</button>
+                <button type="button" class="opcao-avatar" data-avatar="🥕" aria-label="Avatar cenoura">🥕</button>
+              </div>
+            </div>
+
+            <div class="linha-formulario">
+              <div class="campo">
+                <label for="nome-conta">Nome completo</label>
+                <input type="text" id="nome-conta" name="nome" autocomplete="name" required />
+                <span class="mensagem-erro"></span>
+              </div>
+
+              <div class="campo">
+                <label for="telefone-conta">Telefone</label>
+                <input type="tel" id="telefone-conta" name="telefone" autocomplete="tel" required />
+                <span class="mensagem-erro"></span>
+              </div>
+            </div>
+
+            <div class="linha-formulario">
+              <div class="campo">
+                <label for="email-conta">E-mail</label>
+                <input type="email" id="email-conta" name="email" disabled />
+                <span class="dica-campo">O e-mail é o identificador da sua conta e não pode ser alterado.</span>
+              </div>
+
+              <div class="campo">
+                <label for="data-nascimento-conta">Data de nascimento</label>
+                <input type="date" id="data-nascimento-conta" name="data-nascimento" autocomplete="bday" required />
+                <span class="mensagem-erro"></span>
+              </div>
+            </div>
+
+            <div class="linha-formulario">
+              <div class="campo">
+                <label for="objetivo-conta">Objetivo principal</label>
+                <select id="objetivo-conta" name="objetivo" required>
+                  <option value="">Selecione uma opção</option>
+                  <option value="emagrecimento">Emagrecimento</option>
+                  <option value="ganho-de-massa">Ganho de massa muscular</option>
+                  <option value="alimentacao-equilibrada">Alimentação equilibrada</option>
+                  <option value="performance">Performance esportiva</option>
+                </select>
+                <span class="mensagem-erro"></span>
+              </div>
+
+              <div class="campo">
+                <label for="restricao-conta">Restrição alimentar</label>
+                <select id="restricao-conta" name="restricao">
+                  <option value="nenhuma">Nenhuma</option>
+                  <option value="vegetariano">Vegetariano</option>
+                  <option value="vegano">Vegano</option>
+                  <option value="sem-gluten">Sem glúten</option>
+                  <option value="sem-lactose">Sem lactose</option>
+                </select>
+              </div>
+            </div>
+
+            <h3 class="subtitulo-formulario">Endereço de entrega</h3>
+
+            <div class="linha-formulario">
+              <div class="campo">
+                <label for="cep-conta">CEP</label>
+                <input type="text" id="cep-conta" name="cep" placeholder="00000-000" autocomplete="postal-code" />
+              </div>
+              <div class="campo">
+                <label for="numero-conta">Número</label>
+                <input type="text" id="numero-conta" name="numero" placeholder="Nº" />
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="endereco-conta">Endereço</label>
+              <input type="text" id="endereco-conta" name="endereco" placeholder="Rua, avenida..." autocomplete="street-address" />
+            </div>
+
+            <div class="linha-formulario">
+              <div class="campo">
+                <label for="bairro-conta">Bairro</label>
+                <input type="text" id="bairro-conta" name="bairro" placeholder="Bairro" />
+              </div>
+              <div class="campo">
+                <label for="cidade-conta">Cidade</label>
+                <input type="text" id="cidade-conta" name="cidade" placeholder="Cidade" autocomplete="address-level2" />
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="complemento-conta">Complemento (opcional)</label>
+              <input type="text" id="complemento-conta" name="complemento" placeholder="Apto, bloco, referência" />
+            </div>
+
+            <div class="linha-acoes-conta">
+              <button type="submit" class="botao botao-primario">Salvar alterações</button>
+              <button type="button" id="botao-sair-conta" class="botao botao-secundario">Sair da conta</button>
+            </div>
+
+            <div id="aviso-conta-salva" class="aviso-conta-salva">✓ Dados atualizados com sucesso.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       RODAPÉ
+       ========================================================================== -->
+  <footer class="rodape">
+    <div class="container">
+      <div class="grade-rodape">
+        <div class="rodape-marca">
+          <a href="index.html" class="logo">
+            <span class="logo-icone">🌿</span>
+            Food<span>Wise</span>
+          </a>
+          <p>Nutrição inteligente e sabor de verdade em cada entrega, todos os dias da semana.</p>
+          <div class="rodape-redes">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Plataforma</h4>
+          <ul>
+            <li><a href="cardapio.html">Cardápio</a></li>
+            <li><a href="cadastro.html">Criar conta</a></li>
+            <li><a href="login.html">Entrar</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="index.html#sobre">Sobre nós</a></li>
+            <li><a href="index.html#como-funciona">Como funciona</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="rodape-coluna">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="mailto:contato@foodwise.com.br">contato@foodwise.com.br</a></li>
+            <li><a href="tel:+554199990000">(41) 99999-0000</a></li>
+            <li><a href="index.html#contato">Fale conosco</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape-base">
+        <span>&copy; 2026 FoodWise. Projeto de Trabalho de Conclusão de Curso.</span>
+        <span>Desenvolvido com dedicação para uma alimentação mais consciente.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

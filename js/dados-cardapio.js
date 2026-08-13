@@ -24,7 +24,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.5,
     "selo": "Sem glúten",
     "descricao": "Quinoa, tomate cereja, pepino, pimentão e molho de ervas frescas.",
-    "imagem": "https://lh3.googleusercontent.com/gg-dl/AAQ_wbG2oN2wdAUTR1V6cJo6H9b4mf49UAKXT5gOZQoQf6X1fBNukUqS8r3lfkcWxX_B-2sWcns1RwDQVTVZNBMBn7JcGMlutNgrFIuMAb1Te2KyVRnL5-Pkz71-0mK_blxqQII8GosnVmBXOmeWJTGs3a-p7kRhWMm9TnfAPlvsAHzYLx-qkg=s1024-rj"
+    "imagem": ""
   },
   {
     "id": 3,

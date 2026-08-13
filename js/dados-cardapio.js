@@ -13,7 +13,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.8,
     "selo": "Vegano",
     "descricao": "Mix de folhas, grão-de-bico, abacate e sementes com molho de limão.",
-    "imagem": "https://images.pexels.com/photos/15780332/pexels-photo-15780332.jpeg"
+    "imagem": "https://lh3.googleusercontent.com/gg-dl/AAQ_wbFOsdzGpCi6lSYdCIGEzMmhei1uLeSNQ8R-49rQJcp5P12ZTpcKRBdrt94CSrJb36BGSW5h8YkZFdRXQ345RxEaWK1bWNv-Yz2cTuEtXmhIrhyJJECNuy0r6XYhKCj8fQcl5rZ8HIBszmQ0Q83wRtElL0zMHLbUru0GU0pEEPiU97pqTw=s1024-rj"
   },
   {
     "id": 2,

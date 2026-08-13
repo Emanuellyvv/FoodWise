@@ -13,7 +13,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.8,
     "selo": "Vegano",
     "descricao": "Mix de folhas, grão-de-bico, abacate e sementes com molho de limão.",
-    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/imagens/Salada-Green-Bowl.jpg"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/Salada-Green-Bowl.jpg"
   },
   {
     "id": 2,

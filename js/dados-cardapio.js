@@ -145,7 +145,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.5,
     "selo": "Alta proteína",
     "descricao": "Mix de folhas, camarão grelhado, manga e molho de gengibre.",
-    "imagem": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-camarao.jpg"
   },
   {
     "id": 14,
@@ -156,7 +156,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.6,
     "selo": "Vegetariano",
     "descricao": "Pepino, tomate, azeitona kalamata e queijo feta light.",
-    "imagem": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-grega.jpg"
   },
   {
     "id": 15,
@@ -167,7 +167,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.8,
     "selo": "Vegano",
     "descricao": "Repolho roxo, cenoura, gergelim e molho de soja.",
-    "imagem": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-repolhoroxo.jpg"
   },
   {
     "id": 16,
@@ -178,7 +178,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.8,
     "selo": "Vegano",
     "descricao": "Couve, maçã verde, pepino e sementes de chia.",
-    "imagem": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/bowl-couve.jpg"
   },
   {
     "id": 17,
@@ -189,7 +189,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.6,
     "selo": "Alta proteína",
     "descricao": "Ovos cozidos, abacate, tomate e azeite.",
-    "imagem": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-ovoseabacate.jpg"
   },
   {
     "id": 18,
@@ -200,7 +200,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.8,
     "selo": "Vegano",
     "descricao": "Mix de folhas, ervilha, rabanete e vinagrete leve.",
-    "imagem": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-primavera.jpg"
   },
   {
     "id": 19,
@@ -211,7 +211,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.9,
     "selo": "Alta proteína",
     "descricao": "Frango grelhado, curry leve, uva passa e amêndoas.",
-    "imagem": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-frangocurry.jpg"
   },
   {
     "id": 20,
@@ -222,7 +222,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.5,
     "selo": "Alta proteína",
     "descricao": "Folhas verdes, salmão defumado, alcaparras e limão.",
-    "imagem": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-salmaodefumado.jpg"
   },
   {
     "id": 21,
@@ -233,7 +233,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.9,
     "selo": "Vegano",
     "descricao": "Berinjela, abobrinha, tomate e manjericão assados.",
-    "imagem": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-caponata.jpg"
   },
   {
     "id": 22,
@@ -244,7 +244,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.8,
     "selo": "Vegetariano",
     "descricao": "Milho, palmito, tomate cereja e ervas finas.",
-    "imagem": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-milhopalmito.jpg"
   },
   {
     "id": 23,
@@ -255,7 +255,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.7,
     "selo": "Vegano",
     "descricao": "Espinafre, abacate, pepino, brócolis e sementes de girassol.",
-    "imagem": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-powerverde.jpg"
   },
   {
     "id": 24,
@@ -266,7 +266,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.6,
     "selo": "Vegano",
     "descricao": "Cuscuz, hortelã, tomate seco e grão-de-bico.",
-    "imagem": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-cuscuzmarroquino.jpg"
   },
   {
     "id": 25,

@@ -24,7 +24,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.5,
     "selo": "Sem glúten",
     "descricao": "Quinoa, tomate cereja, pepino, pimentão e molho de ervas frescas.",
-    "imagem": ""
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-quinoa.jpg"
   },
   {
     "id": 3,
@@ -35,7 +35,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.6,
     "selo": "Alta proteína",
     "descricao": "Alface romana, frango grelhado, croutons integrais e molho light.",
-    "imagem": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-caesar-fit.jpg"
   },
   {
     "id": 4,
@@ -46,7 +46,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.6,
     "selo": "Alta proteína",
     "descricao": "Grão-de-bico, atum, cebola roxa e azeite extra virgem.",
-    "imagem": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/sal-graobico-atum.jpg"
   },
   {
     "id": 5,
@@ -57,7 +57,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.9,
     "selo": "Vegetariano",
     "descricao": "Pepino, tomate, azeitonas, queijo feta e orégano.",
-    "imagem": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-mediterranea.jpg"
   },
   {
     "id": 6,
@@ -68,7 +68,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.8,
     "selo": "Vegetariano",
     "descricao": "Rúcula, morango, nozes e lascas de parmesão.",
-    "imagem": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-rucula-morango.jpg"
   },
   {
     "id": 7,
@@ -79,7 +79,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.9,
     "selo": "Vegetariano",
     "descricao": "Tomate, mussarela de búfala, manjericão e azeite trufado.",
-    "imagem": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-caprese.jpg"
   },
   {
     "id": 8,
@@ -90,7 +90,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.5,
     "selo": "Alta proteína",
     "descricao": "Espinafre, frango desfiado, cenoura e molho tahine.",
-    "imagem": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/bowl-espinafreefrango.jpg"
   },
   {
     "id": 9,
@@ -101,7 +101,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.7,
     "selo": "Vegetariano",
     "descricao": "Maçã, aipo, nozes e iogurte natural.",
-    "imagem": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-waldorf.jpg"
   },
   {
     "id": 10,
@@ -112,7 +112,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.5,
     "selo": "Vegano",
     "descricao": "Lentilha, cenoura, salsinha e limão siciliano.",
-    "imagem": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-lentilha.jpg"
   },
   {
     "id": 11,
@@ -123,7 +123,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.6,
     "selo": "Vegetariano",
     "descricao": "Beterraba assada, queijo de cabra e nozes caramelizadas.",
-    "imagem": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-beterrabaequeijocabra.jpg"
   },
   {
     "id": 12,
@@ -134,7 +134,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.8,
     "selo": "Vegano",
     "descricao": "Alface, manga, castanha de caju e molho cítrico.",
-    "imagem": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&auto=format&fit=crop"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-tropicalmanga.jpg"
   },
   {
     "id": 13,

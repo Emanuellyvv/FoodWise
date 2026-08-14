@@ -123,7 +123,7 @@ window.DADOS_CARDAPIO_LOCAL = [
     "avaliacao": 4.6,
     "selo": "Vegetariano",
     "descricao": "Beterraba assada, queijo de cabra e nozes caramelizadas.",
-    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada- beterrabaequeijocabra.jpg"
+    "imagem": "https://raw.githubusercontent.com/Emanuellyvv/foodwise-db/main/image/salada-beterrabaequeijocabra.jpg"
   },
   {
     "id": 12,

@@ -1,0 +1,9 @@
+<svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(8 8)">
+<circle cx="32" cy="32" r="32" fill="#1E3309"/>
+<path d="M32 49C15 43 15 22 33 12c17 9 17 28-1 37Z" fill="#849A28"/>
+<path d="M32 47c-1-11 0-21 3-29" stroke="#1E3309" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<circle cx="47" cy="47" r="7" fill="#E23260" stroke="#1E3309" stroke-width="3"/>
+</g>
+<text x="86" y="52" font-family="Georgia,'Times New Roman',serif" font-size="40" font-weight="700" fill="#1E3309">Food<tspan fill="#E23260">Wise</tspan></text>
+</svg>

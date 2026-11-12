@@ -1,7 +1,7 @@
 /* ==========================================================================
    FOODWISE — CARDÁPIO E CARRINHO (js/cardapio.js)
    O cardápio vem do GitHub (foodwise-db). Se você editar o JSON lá, o site
-   se atualiza sozinho. O carrinho acompanha as mudanças de preço e nome.
+   se atualiza sozinho. Se algo falhar, a página mostra o MOTIVO na tela.
    ========================================================================== */
 
 const ROTULOS_CATEGORIA = {
@@ -13,27 +13,47 @@ const ROTULOS_OBJETIVO = {
   'alimentacao-equilibrada': 'Alimentação equilibrada', performance: 'Performance esportiva'
 };
 
-let CARDAPIO = ['foodwise-db'];             // lista completa de pratos
-let ASSINATURA_CARDAPIO = '';  // texto usado para perceber se o cardápio mudou
+let CARDAPIO = [];               // lista completa de pratos
+let ASSINATURA_CARDAPIO = '';    // texto usado para perceber se o cardápio mudou
+let CARDAPIO_CARREGADO = false;  // vira true depois da primeira tentativa de carregar
+let ULTIMO_ERRO = '';            // motivo da última falha (aparece na tela)
 const FILTRO = { categoria: 'todos', busca: '' };
 
 /* ---------- 1. Banco de dados (GitHub) ---------- */
 async function carregarCardapio() {
   try {
     const controle = new AbortController();
-    const limite = setTimeout(() => controle.abort(), 8000);
+    const limite = setTimeout(() => controle.abort(), 12000);
     // O "?t=" evita que o navegador/GitHub entreguem uma cópia antiga
-    const resposta = await fetch(CONFIG.urlCardapio + '?t=' + Date.now(), { signal: controle.signal, cache: 'no-store' });
+    const resposta = await fetch(CONFIG.urlCardapio + '?t=' + Date.now(), { signal: controle.signal });
     clearTimeout(limite);
-    if (!resposta.ok) throw new Error('HTTP ' + resposta.status);
-    const dados = await resposta.json();
-    if (!Array.isArray(dados) || !dados.length) throw new Error('JSON vazio');
+    if (!resposta.ok) {
+      throw new Error('o GitHub respondeu HTTP ' + resposta.status + ' (confira o nome do arquivo e a branch em js/config.js)');
+    }
+
+    const texto = await resposta.text();
+    let dados;
+    try {
+      dados = JSON.parse(texto);
+    } catch (erroJson) {
+      throw new Error('o arquivo cardapio-dados.json tem erro de sintaxe: ' + erroJson.message);
+    }
+    if (!Array.isArray(dados) || !dados.length) throw new Error('o arquivo JSON está vazio ou não é uma lista de pratos');
+
+    ULTIMO_ERRO = '';
     gravarJSON(CHAVES.cardapio, { salvoEm: Date.now(), itens: dados });
     return { itens: dados, origem: 'github' };
   } catch (erro) {
-    console.warn('Não foi possível ler o cardápio do GitHub:', erro);
+    ULTIMO_ERRO = erro.name === 'AbortError' ? 'o GitHub demorou demais para responder' : erro.message;
+    console.warn('Não foi possível ler o cardápio do GitHub:', ULTIMO_ERRO);
+
+    // Plano B: última cópia boa guardada neste aparelho
     const copia = lerJSON(CHAVES.cardapio, null);
-    if (copia && Array.isArray(copia.itens)) return { itens: copia.itens, origem: 'copia' };
+    if (copia && Array.isArray(copia.itens) && copia.itens.length) return { itens: copia.itens, origem: 'copia' };
+    // Plano C (opcional): arquivo local, caso você ainda mantenha js/dados-cardapio.js
+    if (Array.isArray(window.DADOS_CARDAPIO_LOCAL) && window.DADOS_CARDAPIO_LOCAL.length) {
+      return { itens: window.DADOS_CARDAPIO_LOCAL, origem: 'local' };
+    }
     return { itens: [], origem: 'erro' };
   }
 }
@@ -140,7 +160,7 @@ function criarCartaoPrato(p) {
       <p class="descricao">${esc(p.descricao)}</p>
       <div class="rodape-prato">
         <span class="avaliacao-prato"><span class="estrela">★</span> ${esc(p.avaliacao)}</span>
-        <button type="button" class="botao-adicionar" aria-label="Adicionar ${esc(p.nome)} ao carrinho" data-id="${p.id}">+</button>
+        <button type="button" class="botao-adicionar" aria-label="Adicionar ${esc(p.nome)} ao carrinho" data-id="${esc(p.id)}">+</button>
       </div>
     </div>`;
   return cartao;
@@ -190,41 +210,64 @@ function abrirDetalhesPrato(p) {
 /* ---------- 5. Lista, filtros e atualização automática ---------- */
 function renderizarCardapio() {
   const grade = $('#grade-cardapio');
-  if (!grade) return;
+  if (!grade || !CARDAPIO_CARREGADO) return;
 
+  // Sem dados: mostra o motivo real na tela
   if (!CARDAPIO.length) {
-    grade.innerHTML = '<p class="mensagem-vazia">Não foi possível carregar o cardápio. <button type="button" class="link-como-botao" id="tentar-novamente">Tentar novamente</button></p>';
+    grade.innerHTML = `
+      <p class="mensagem-vazia">Não foi possível carregar o cardápio.<br>
+        <small>${esc(ULTIMO_ERRO || 'Verifique sua conexão com a internet.')}</small><br>
+        <button type="button" class="link-como-botao" id="tentar-novamente">Tentar novamente</button>
+      </p>`;
     return;
   }
+
   const termo = FILTRO.busca.trim().toLowerCase();
   const lista = CARDAPIO.filter((p) =>
     (FILTRO.categoria === 'todos' || p.categoria === FILTRO.categoria) &&
-    (p.nome.toLowerCase().includes(termo) || (p.descricao || '').toLowerCase().includes(termo)));
+    (String(p.nome || '').toLowerCase().includes(termo) || String(p.descricao || '').toLowerCase().includes(termo)));
 
   grade.innerHTML = '';
   if (!lista.length) { grade.innerHTML = '<p class="mensagem-vazia">Nenhum prato encontrado para essa busca.</p>'; return; }
+
   const fragmento = document.createDocumentFragment();
-  lista.forEach((p) => fragmento.appendChild(criarCartaoPrato(p)));
+  lista.forEach((p) => {
+    // Se um prato do JSON estiver malformado, só ele é ignorado (o resto aparece)
+    try { fragmento.appendChild(criarCartaoPrato(p)); } catch (erro) { console.warn('Prato inválido no JSON:', p, erro); }
+  });
   grade.appendChild(fragmento);
   tratarImagens(grade);
 }
 
 async function atualizarCardapio() {
   const resultado = await carregarCardapio();
-  const status = $('#status-cardapio');
-  const assinatura = JSON.stringify(resultado.itens);
+  CARDAPIO_CARREGADO = true;
 
-  if (assinatura !== ASSINATURA_CARDAPIO) {
-    CARDAPIO = resultado.itens;
-    ASSINATURA_CARDAPIO = assinatura;
-    renderizarCardapio();
-    if (sincronizarCarrinho(CARDAPIO)) mostrarToast('O cardápio foi atualizado e seu carrinho foi ajustado.');
+  // Se a atualização falhou mas já havia pratos na tela, mantém os que estão
+  if (!(resultado.itens.length === 0 && CARDAPIO.length > 0)) {
+    const assinatura = JSON.stringify(resultado.itens);
+    if (assinatura !== ASSINATURA_CARDAPIO) {
+      CARDAPIO = resultado.itens;
+      ASSINATURA_CARDAPIO = assinatura;
+      renderizarCardapio();
+      if (sincronizarCarrinho(CARDAPIO)) mostrarToast('O cardápio foi atualizado e seu carrinho foi ajustado.');
+    }
   }
+
+  const status = $('#status-cardapio');
   if (status) {
     const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    const origem = { github: 'GitHub (ao vivo)', copia: 'cópia salva no aparelho', erro: 'indisponível' }[resultado.origem];
-    status.textContent = `${CARDAPIO.length} pratos · atualizado às ${hora} · fonte: ${origem}`;
+    const origens = { github: 'GitHub (ao vivo)', copia: 'cópia salva neste aparelho', local: 'arquivo local', erro: 'indisponível' };
+    status.textContent = `${CARDAPIO.length} pratos · atualizado às ${hora} · fonte: ${origens[resultado.origem]}` +
+      (resultado.origem !== 'github' && ULTIMO_ERRO ? ' · motivo: ' + ULTIMO_ERRO : '');
   }
+}
+
+// Mostra na tela qualquer erro inesperado (em vez de ficar parado em "Carregando...")
+function mostrarErroCardapio(erro) {
+  console.error('Erro no cardápio:', erro);
+  const grade = $('#grade-cardapio');
+  if (grade) grade.innerHTML = `<p class="mensagem-vazia">Erro ao exibir o cardápio.<br><small>${esc(erro && erro.message ? erro.message : erro)}</small></p>`;
 }
 
 function iniciarCardapio() {
@@ -232,13 +275,13 @@ function iniciarCardapio() {
   const grade = $('#grade-cardapio');
   if (!grade) return;
 
-  // Clique em um cartão: botão "+" adiciona; resto abre os detalhes
+  // Clique em um cartão: botão "+" adiciona; o resto abre os detalhes
   const aoClicar = (evento) => {
-    if (evento.target.closest('#tentar-novamente')) { atualizarCardapio(); return; }
+    if (evento.target.closest('#tentar-novamente')) { atualizarCardapio().catch(mostrarErroCardapio); return; }
     const botao = evento.target.closest('.botao-adicionar');
     const cartao = evento.target.closest('.cartao-prato');
     if (!cartao) return;
-    const prato = CARDAPIO.find((p) => p.id === Number(cartao.dataset.id));
+    const prato = CARDAPIO.find((p) => String(p.id) === cartao.dataset.id);
     if (!prato) return;
     if (botao) {
       adicionarAoCarrinho(prato);
@@ -261,14 +304,19 @@ function iniciarCardapio() {
     FILTRO.categoria = filtro.dataset.categoria;
     renderizarCardapio();
   }));
-  $('#busca-prato').addEventListener('input', (evento) => { FILTRO.busca = evento.target.value; renderizarCardapio(); });
+  const busca = $('#busca-prato');
+  if (busca) busca.addEventListener('input', (evento) => { FILTRO.busca = evento.target.value; renderizarCardapio(); });
 
   const flutuante = $('.carrinho-flutuante');
   if (flutuante) flutuante.addEventListener('click', () => { location.href = 'pagamento.html'; });
 
-  atualizarCardapio();
-  setInterval(atualizarCardapio, CONFIG.atualizarCardapioACadaMs);
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) atualizarCardapio(); });
+  atualizarCardapio().catch(mostrarErroCardapio);
+  setInterval(() => atualizarCardapio().catch((e) => console.warn(e)), CONFIG.atualizarCardapioACadaMs);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) atualizarCardapio().catch((e) => console.warn(e));
+  });
 }
 
-document.addEventListener('DOMContentLoaded', iniciarCardapio);
+document.addEventListener('DOMContentLoaded', () => {
+  try { iniciarCardapio(); } catch (erro) { mostrarErroCardapio(erro); }
+});

@@ -13,7 +13,7 @@ const ROTULOS_OBJETIVO = {
   'alimentacao-equilibrada': 'Alimentação equilibrada', performance: 'Performance esportiva'
 };
 
-let CARDAPIO = [foodwise-db];             // lista completa de pratos
+let CARDAPIO = ['foodwise-db'];             // lista completa de pratos
 let ASSINATURA_CARDAPIO = '';  // texto usado para perceber se o cardápio mudou
 const FILTRO = { categoria: 'todos', busca: '' };
 

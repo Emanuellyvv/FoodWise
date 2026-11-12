@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 56" width="500" height="112">
+  <g transform="translate(4 4)">
+    <circle cx="24" cy="24" r="23" fill="#1E3309"/>
+    <circle cx="24" cy="24" r="18" fill="none" stroke="#FFF8F6" stroke-width="1.6"/>
+    <path d="M24 35V23" stroke="#FFF8F6" stroke-width="2" stroke-linecap="round"/>
+    <path d="M24 24C24 17 19 13 12.5 13.5C12.5 20 17 24.5 24 24Z" fill="#849A28"/>
+    <path d="M24 28C24 21.5 28.5 17.5 35 18C35 24.5 30.5 29 24 28Z" fill="#E23260"/>
+  </g>
+  <text x="62" y="38" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700" fill="#1E3309">Food<tspan fill="#E23260">Wise</tspan></text>
+</svg>

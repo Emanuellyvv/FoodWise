@@ -8,7 +8,7 @@ const CONFIG = {
   atualizarCardapioACadaMs: 60000,
 
   /* Ponto de saída das entregas (Curitiba). Troque pelas coordenadas da sua cozinha */
-  restaurante: { lat: -25.4296, lng: -49.2713 },
+  restaurante: { lat: -25.4565, lng: -49.1880 },
 
   /* Frete = base + (quilômetros × valor por km). "padrao" é usado se o cálculo falhar */
   frete: { base: 4.0, porKm: 1.5, maxKm: 15, padrao: 6.9 },

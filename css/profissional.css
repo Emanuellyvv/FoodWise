@@ -1,19 +1,27 @@
 /* ==========================================================================
    FOODWISE — ESTILO PROFISSIONAL (css/profissional.css)
    Carregar DEPOIS do style.css. Refina o visual e estiliza os recursos novos.
+
+   ÍNDICE
+   1. Base                 7. Janelas (modais)
+   2. Logo                 8. Entrega e pagamento
+   3. Cabeçalho e menu     9. Minha conta
+   4. Títulos e cartões   10. Acompanhamento
+   5. Formulários         11. Responsivo
+   6. Equipe e avisos
    ========================================================================== */
 
-/* ---------- Base ---------- */
+/* ---------- 1. Base ---------- */
 html { scroll-padding-top: 96px; }
 [hidden] { display: none !important; }
 body.modal-aberto { overflow: hidden; }
 
-/* ---------- Logo (sem espaço entre as letras) ---------- */
-.logo { gap: 0.55rem; align-items: center; }
+/* ---------- 2. Logo (símbolo + nome juntos, sem espaço entre as letras) ---------- */
+.logo { gap: 0.55rem; align-items: center; flex-shrink: 0; }
 .logo svg { width: 42px; height: 42px; flex-shrink: 0; }
 .logo-texto {
   font-family: var(--fonte-titulo);
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.01em;
@@ -22,10 +30,59 @@ body.modal-aberto { overflow: hidden; }
 .logo-texto em { font-style: normal; color: var(--rosa-forte); }
 .rodape .logo-texto { color: var(--branco); }
 
-/* ---------- Cabeçalho e títulos ---------- */
+/* ---------- 3. Cabeçalho e menu ---------- */
 .cabecalho { background-color: rgba(255, 255, 255, 0.92); }
 .cabecalho.rolou { box-shadow: 0 8px 24px rgba(30, 51, 9, 0.1); }
-.nav-links a { font-size: 0.92rem; letter-spacing: 0.01em; }
+.cabecalho .container { max-width: 1320px; gap: 2rem; }
+
+.nav-principal { flex: 1; justify-content: flex-end; gap: 2rem; }
+.nav-links { gap: 1.5rem; }
+.nav-links a { font-size: 0.9rem; letter-spacing: 0.01em; white-space: nowrap; }
+.nav-acoes { gap: 0.8rem; flex-shrink: 0; }
+.nav-acoes .botao { padding: 0.65rem 1.4rem; font-size: 0.88rem; }
+
+/* O botão do menu fica sempre acima do menu aberto (para poder fechar) */
+.menu-toggle { position: relative; z-index: 1200; }
+
+/* Notebook pequeno: aperta um pouco */
+@media (max-width: 1180px) {
+  .cabecalho .container { gap: 1.2rem; }
+  .nav-principal { gap: 1.2rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.84rem; }
+  .nav-acoes .botao { padding: 0.55rem 1rem; font-size: 0.82rem; }
+}
+
+/* Entre 861px e 1020px o menu não cabe: usa o menu hambúrguer */
+@media (min-width: 861px) and (max-width: 1020px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: flex; }
+  .nav-principal { margin-left: auto; }
+  .nav-principal.aberto .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100vh;
+    padding: 6rem var(--espaco-md) var(--espaco-md);
+    gap: var(--espaco-md);
+    background-color: var(--branco);
+    box-shadow: var(--sombra-forte);
+    z-index: 1150;
+  }
+}
+
+/* Celular: logo à esquerda; botão de ação e hambúrguer juntos à direita */
+@media (max-width: 860px) {
+  .cabecalho .container { gap: 0.8rem; }
+  .nav-principal { gap: 0.6rem; }
+  .logo svg { width: 38px; height: 38px; }
+  .logo-texto { font-size: 1.5rem; }
+}
+
+/* ---------- 4. Títulos e cartões ---------- */
 .secao-titulo h2::after {
   content: '';
   display: block;
@@ -37,17 +94,36 @@ body.modal-aberto { overflow: hidden; }
 }
 .fundo-verde .secao-titulo h2::after { background-color: var(--rosa-claro); }
 .cartao-prato, .cartao-diferencial, .cartao-criadora { border: 1px solid rgba(30, 51, 9, 0.06); }
-.cartao-prato { cursor: pointer; }
-.carrinho-flutuante { cursor: pointer; }
+.cartao-prato, .carrinho-flutuante { cursor: pointer; }
+.status-cardapio { margin-bottom: 1rem; font-size: 0.82rem; color: var(--cinza-texto); }
 
-/* ---------- Formulários ---------- */
-.campo input.invalido, .campo select.invalido, .campo textarea.invalido { border-color: var(--rosa-forte); }
-.status-form { font-size: 0.9rem; font-weight: 600; min-height: 1.4em; }
+/* ---------- 5. Formulários ---------- */
+.campo input.invalido,
+.campo select.invalido,
+.campo textarea.invalido { border-color: var(--rosa-forte); }
+
+.status-form { min-height: 1.4em; font-size: 0.9rem; font-weight: 600; }
 .status-form.ok { color: var(--verde-oliva); }
 .status-form.erro { color: var(--rosa-forte); }
 
-/* ---------- Equipe (criadoras) ---------- */
-.foto-equipe { margin: 0 auto var(--espaco-lg); max-width: 900px; }
+/* Campo de data: nunca passa da caixa (corrige o celular) */
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 3.2rem;
+  box-sizing: border-box;
+  text-align: left;
+}
+input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; }
+
+/* ---------- 6. Equipe e avisos na tela ---------- */
+.foto-equipe { max-width: 900px; margin: 0 auto var(--espaco-lg); }
+
 .foto-moldura {
   position: relative;
   overflow: hidden;
@@ -68,12 +144,36 @@ body.modal-aberto { overflow: hidden; }
   font-weight: 700;
 }
 .foto-moldura img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Foto do grupo: mostra a imagem inteira, sem cortar ninguém */
+.foto-moldura.larga { height: auto; background: none; border-radius: var(--raio-borda); box-shadow: var(--sombra-suave); }
+.foto-moldura.larga::before { display: none; }
+.foto-moldura.larga img { position: static; display: block; width: 100%; height: auto; }
+
+/* Fotos redondas individuais (rosto centralizado) */
+.foto-moldura.redonda {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 1rem;
+  border: 4px solid var(--branco);
+  border-radius: 50%;
+  box-shadow: var(--sombra-suave);
+}
+.foto-moldura.redonda img { object-position: center 20%; }
+
+/* Se a foto não existir, mostra o espaço reservado */
 .foto-moldura.sem-foto img { display: none; }
-.foto-moldura.larga { height: 360px; border-radius: var(--raio-borda); box-shadow: var(--sombra-suave); }
-.foto-moldura.larga::before { font-family: var(--fonte-corpo); font-size: 1.05rem; font-weight: 500; }
-.foto-moldura.redonda { width: 160px; height: 160px; margin: 0 auto 1rem; border-radius: 50%; border: 4px solid var(--branco); box-shadow: var(--sombra-suave); }
-.grade-equipe { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--espaco-md); }
-.cartao-criadora { background: var(--branco); border-radius: var(--raio-borda); padding: var(--espaco-md); text-align: center; box-shadow: var(--sombra-suave); }
+.foto-moldura.larga.sem-foto { height: 300px; background: linear-gradient(135deg, var(--verde-oliva), var(--rosa-medio)); }
+.foto-moldura.larga.sem-foto::before { display: flex; font-family: var(--fonte-corpo); font-size: 1.05rem; font-weight: 500; }
+
+.grade-equipe { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--espaco-md); }
+.cartao-criadora {
+  padding: var(--espaco-md) 1.2rem;
+  text-align: center;
+  background: var(--branco);
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-suave);
+}
 .cartao-criadora h3 { margin-bottom: 0.2rem; }
 .cartao-criadora .funcao {
   display: inline-block;
@@ -85,9 +185,9 @@ body.modal-aberto { overflow: hidden; }
   font-size: 0.78rem;
   font-weight: 600;
 }
-.cartao-criadora p { font-size: 0.92rem; }
+.cartao-criadora p { font-size: 0.9rem; }
 
-/* ---------- Avisos na tela (toasts) ---------- */
+/* Avisos na tela (toasts) */
 #toasts {
   position: fixed;
   top: calc(88px + env(safe-area-inset-top, 0px));
@@ -110,9 +210,12 @@ body.modal-aberto { overflow: hidden; }
 }
 .toast-erro { background: #9b1c3f; }
 .toast.saindo { opacity: 0; transform: translateX(20px); }
-@keyframes toast-entrada { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: none; } }
+@keyframes toast-entrada {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: none; }
+}
 
-/* ---------- Janelas (modais) ---------- */
+/* ---------- 7. Janelas (modais) ---------- */
 .modal {
   position: fixed;
   inset: 0;
@@ -125,163 +228,134 @@ body.modal-aberto { overflow: hidden; }
   backdrop-filter: blur(3px);
 }
 .modal.aberto { display: flex; }
-.modal-caixa { position: relative; width: 100%; max-width: 780px; max-height: 92vh; overflow: auto; background: var(--branco); border-radius: var(--raio-borda); box-shadow: var(--sombra-forte); }
+.modal-caixa {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  max-height: 92vh;
+  overflow: auto;
+  background: var(--branco);
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-forte);
+}
 .modal-pequeno { max-width: 520px; }
-.modal-fechar { position: absolute; top: 10px; right: 10px; z-index: 2; width: 38px; height: 38px; border-radius: 50%; background: var(--branco); box-shadow: var(--sombra-suave); }
-.modal-imagem { width: 100%; height: 320px; object-fit: cover; display: block; }
+.modal-fechar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--branco);
+  box-shadow: var(--sombra-suave);
+}
+.modal-imagem { display: block; width: 100%; height: 320px; object-fit: cover; }
 .modal-corpo { padding: 1.6rem; }
 .modal-corpo h2, .modal-corpo h3 { margin-bottom: 0.4rem; }
+
 .tabela-nutri { width: 100%; margin: 0.8rem 0; border-collapse: collapse; }
 .tabela-nutri td { padding: 0.5rem 0; border-bottom: 1px solid var(--cinza-claro); font-size: 0.92rem; }
 .tabela-nutri td:last-child { text-align: right; font-weight: 600; color: var(--verde-escuro); }
+
 .tags-objetivo { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.6rem 0 1.2rem; }
-.tags-objetivo span { padding: 0.3rem 0.8rem; border-radius: 50px; background: var(--rosa-claro); color: var(--verde-escuro); font-size: 0.8rem; font-weight: 600; }
+.tags-objetivo span {
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  background: var(--rosa-claro);
+  color: var(--verde-escuro);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
 .tags-objetivo span.destaque { background: var(--verde-oliva); color: var(--branco); }
 .nota-pequena { font-size: 0.78rem; opacity: 0.75; }
-.status-cardapio { margin-bottom: 1rem; font-size: 0.82rem; color: var(--cinza-texto); }
 
-/* ---------- Entrega, avisos e pagamento ---------- */
+/* ---------- 8. Entrega, avisos e pagamento ---------- */
 .opcoes-entrega { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-.opcao-entrega { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; padding: 1rem; text-align: center; cursor: pointer; border: 1.5px solid var(--cinza-claro); border-radius: var(--raio-borda-sm); transition: var(--transicao); }
+.opcao-entrega {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  border: 1.5px solid var(--cinza-claro);
+  border-radius: var(--raio-borda-sm);
+  transition: var(--transicao);
+}
 .opcao-entrega input { display: none; }
 .opcao-entrega.selecionada { border-color: var(--rosa-forte); background: var(--creme); }
 .opcao-entrega.desativada { opacity: 0.45; cursor: not-allowed; }
 .opcao-entrega .icone { font-size: 1.7rem; }
 .opcao-entrega small { color: var(--verde-oliva); font-weight: 600; }
+
 .aviso { margin: 1rem 0; padding: 0.8rem 1rem; border-radius: var(--raio-borda-sm); font-size: 0.88rem; }
 .aviso-info { background: #eef3dc; color: var(--verde-escuro); }
 .aviso-perto { background: #fff3cd; color: #664d03; }
 .aviso-estourou { background: #fde2e8; color: #9b1c3f; }
+
 .linha-total .valor { font-weight: 600; }
 .bloco-cashback { margin: 0.8rem 0; padding: 0.8rem 1rem; border-radius: var(--raio-borda-sm); background: #eef3dc; font-size: 0.88rem; }
+
 .processando { padding: 2rem 1rem; text-align: center; }
-.spinner { width: 46px; height: 46px; margin: 0 auto 1rem; border: 4px solid var(--cinza-claro); border-top-color: var(--rosa-forte); border-radius: 50%; animation: girar 0.8s linear infinite; }
+.spinner {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 1rem;
+  border: 4px solid var(--cinza-claro);
+  border-top-color: var(--rosa-forte);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
 @keyframes girar { to { transform: rotate(360deg); } }
-.sucesso-icone { width: 64px; height: 64px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--verde-oliva); color: var(--branco); font-size: 2rem; }
+.sucesso-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--verde-oliva);
+  color: var(--branco);
+  font-size: 2rem;
+}
 .resumo-modal { display: flex; justify-content: space-between; margin: 1rem 0; padding: 0.8rem 1rem; border-radius: var(--raio-borda-sm); background: var(--creme); font-weight: 600; }
 .qr-pix { display: flex; justify-content: center; margin: 1rem 0; }
 .qr-pix svg { width: 190px; height: 190px; border: 1px solid var(--cinza-claro); border-radius: var(--raio-borda-sm); }
 .codigo-copia { margin: 0.6rem 0; padding: 0.7rem; border-radius: var(--raio-borda-sm); background: var(--cinza-claro); font-family: monospace; font-size: 0.78rem; word-break: break-all; }
 
-/* ---------- Minha conta ---------- */
+/* ---------- 9. Minha conta ---------- */
 .barra-gastos { height: 10px; margin: 0.5rem 0; overflow: hidden; border-radius: 10px; background: var(--cinza-claro); }
-.barra-gastos-preench { height: 100%; width: 0; background: var(--verde-oliva); transition: width 0.4s ease; }
+.barra-gastos-preench { width: 0; height: 100%; background: var(--verde-oliva); transition: width 0.4s ease; }
 .barra-gastos-preench.perto { background: #e0a800; }
 .barra-gastos-preench.estourou { background: var(--rosa-forte); }
 .saldo-cashback { display: inline-block; padding: 0.4rem 1rem; border-radius: 50px; background: #eef3dc; color: var(--verde-escuro); font-weight: 700; }
 .linha-pedido { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--cinza-claro); font-size: 0.9rem; }
 .linha-pedido a { color: var(--rosa-forte); font-weight: 600; }
 
-/* ---------- Acompanhamento ---------- */
+/* ---------- 10. Acompanhamento ---------- */
 .acoes-topo { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
 .acoes-topo select { padding: 0.5rem 0.8rem; border: 1.5px solid var(--cinza-claro); border-radius: var(--raio-borda-sm); background: var(--branco); }
 .tempo-restante { font-weight: 600; color: var(--rosa-forte); }
 .estado-vazio { padding: var(--espaco-lg) 0; text-align: center; }
 .estado-vazio .botao { margin-top: 1rem; }
 
-/* ---------- Responsivo ---------- */
+/* ---------- 11. Responsivo ---------- */
+@media (max-width: 1024px) {
+  .grade-equipe { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 860px) {
-  .grade-equipe { grid-template-columns: 1fr; }
-  .foto-moldura.larga { height: 240px; }
-  .logo-texto { font-size: 1.55rem; }
+  .foto-moldura.larga.sem-foto { height: 240px; }
 }
 @media (max-width: 640px) {
+  .grade-equipe { grid-template-columns: 1fr; }
   .opcoes-entrega { grid-template-columns: 1fr; }
   .modal-imagem { height: 220px; }
-}
-/* ---------- Foto do grupo: mostra a imagem inteira, centralizada, sem cortar ninguém ---------- */
-.foto-equipe { max-width: 900px; margin-left: auto; margin-right: auto; }
-.foto-moldura.larga { height: auto; background: none; }
-.foto-moldura.larga::before { display: none; }
-.foto-moldura.larga img { position: static; display: block; width: 100%; height: auto; object-fit: contain; }
 
-/* Se a foto ainda não existir, volta a mostrar o espaço reservado */
-.foto-moldura.larga.sem-foto { height: 300px; background: linear-gradient(135deg, var(--verde-oliva), var(--rosa-medio)); }
-.foto-moldura.larga.sem-foto::before { display: flex; }
-.foto-moldura.larga.sem-foto img { display: none; }
-
-/* Fotos redondas individuais: mantém o rosto centralizado */
-.foto-moldura.redonda img { object-position: center 20%; }
-
-/*AJUSTES FINAIS*/
-
-/* ---------- Cabeçalho: espaços iguais entre logo, menu e botões ---------- */
-.cabecalho .container {
-  max-width: 1320px;           /* mais largura para respirar */
-  gap: 2rem;                   /* espaço entre logo e menu */
-}
-.logo { flex-shrink: 0; }
-.logo-texto { font-size: 1.7rem; }
-
-.nav-principal {
-  flex: 1;                     /* ocupa o espaço restante */
-  justify-content: flex-end;
-  gap: 2rem;                   /* espaço entre menu e botões */
-}
-.nav-links { gap: 1.5rem; }
-.nav-links a {
-  white-space: nowrap;         /* "Como funciona" não quebra mais */
-  font-size: 0.9rem;
-}
-.nav-acoes { gap: 0.8rem; flex-shrink: 0; }
-.nav-acoes .botao {
-  padding: 0.65rem 1.4rem;     /* botões mais compactos e alinhados */
-  font-size: 0.88rem;
-}
-
-/* Telas médias (notebook pequeno / tablet deitado): aperta um pouco */
-@media (max-width: 1180px) {
-  .cabecalho .container { gap: 1.2rem; }
-  .nav-principal { gap: 7.8rem; }
-  .nav-links { gap: 1rem; }
-  .nav-links a { font-size: 0.84rem; }
-  .nav-acoes .botao { padding: 0.55rem 1rem; font-size: 0.82rem; }
-}
-
-/* Entre 861px e 1020px o menu não cabe: usa o menu hambúrguer */
-@media (min-width: 861px) and (max-width: 1020px) {
-  .nav-links { display: none; }
-  .menu-toggle { display: flex; position: static; }
-  .nav-principal { margin-left: auto; }
-  .nav-principal.aberto .nav-links {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 320px;
-    height: 100vh;
-    padding: 6rem var(--espaco-md) var(--espaco-md);
-    gap: var(--espaco-md);
-    background-color: var(--branco);
-    box-shadow: var(--sombra-forte);
-    z-index: 1150;
-  }
-}
-
-/* ---------- Campos de data: nunca passam da caixa ---------- */
-input[type="date"] {
-  -webkit-appearance: none;
-  appearance: none;
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  min-height: 3.2rem;          /* altura igual à dos outros campos */
-  box-sizing: border-box;
-  text-align: left;
-}
-input[type="date"]::-webkit-date-and-time-value { text-align: left; }
-input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; }
-
-/* ---------- Formulários no celular: uma coluna só ---------- */
-@media (max-width: 640px) {
-  .formulario-auth .linha-formulario {
-    grid-template-columns: 1fr;   /* vence a regra de 2 colunas do style.css */
-    gap: var(--espaco-sm);
-  }
+  /* Formulários em uma coluna só (vence a regra de 2 colunas do style.css) */
+  .formulario-auth .linha-formulario { grid-template-columns: 1fr; gap: var(--espaco-sm); }
   .formulario-auth { gap: 1.2rem; }
   .cartao-auth, .cartao-auth.largo { padding: var(--espaco-md) 1.1rem; }
-  .logo svg { width: 36px; height: 36px; }
-  .logo-texto { font-size: 1.5rem; }
 }

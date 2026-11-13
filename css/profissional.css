@@ -29,27 +29,60 @@ body.modal-aberto { overflow: hidden; }
 /* ---------- 3. Cabeçalho e menu ---------- */
 .cabecalho { background-color: rgba(255, 255, 255, 0.92); }
 .cabecalho.rolou { box-shadow: 0 8px 24px rgba(30, 51, 9, 0.1); }
-.cabecalho .container { max-width: 1320px; gap: 2rem; }
-.nav-principal { flex: 1; justify-content: flex-end; gap: 2rem; }
-.nav-links { gap: 1.5rem; }
+
+/* Garante que o container use flexbox para espaçar a logo e o menu */
+.cabecalho .container {
+  max-width: 1320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* O nav-principal ocupa o espaço restante e distribui seus elementos */
+.nav-principal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  gap: 2rem;
+}
+
+/* Centraliza os links do menu no espaço entre a logo e os botões */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0 auto;
+}
+
 .nav-links a { font-size: 0.9rem; letter-spacing: 0.01em; white-space: nowrap; }
-.nav-acoes { gap: 0.8rem; flex-shrink: 0; }
+
+.nav-acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
 .nav-acoes .botao { padding: 0.65rem 1.4rem; font-size: 0.88rem; }
+
 /* O botão do menu fica sempre acima do menu aberto (para poder fechar) */
 .menu-toggle { position: relative; z-index: 1200; }
+
 /* Notebook pequeno: aperta um pouco */
 @media (max-width: 1180px) {
   .cabecalho .container { gap: 1.2rem; }
-  .nav-principal { gap: 18.2rem; }
+  .nav-principal { gap: 1rem; }
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: 0.84rem; }
   .nav-acoes .botao { padding: 0.55rem 1rem; font-size: 0.82rem; }
 }
+
 /* Entre 861px e 1020px o menu não cabe: usa o menu hambúrguer */
 @media (min-width: 861px) and (max-width: 1020px) {
   .nav-links { display: none; }
   .menu-toggle { display: flex; }
-  .nav-principal { margin-left: auto; }
+  .nav-principal { margin-left: auto; justify-content: flex-end; }
   .nav-principal.aberto .nav-links {
     display: flex;
     flex-direction: column;
@@ -65,10 +98,11 @@ body.modal-aberto { overflow: hidden; }
     z-index: 1150;
   }
 }
+
 /* Celular: logo à esquerda; botão de ação e hambúrguer juntos à direita */
 @media (max-width: 860px) {
   .cabecalho .container { gap: 0.8rem; }
-  .nav-principal { gap: 0.6rem; }
+  .nav-principal { gap: 0.6rem; justify-content: flex-end; }
   .logo svg { width: 38px; height: 38px; }
   .logo-texto { font-size: 1.5rem; }
 }

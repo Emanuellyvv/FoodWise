@@ -47,7 +47,7 @@ body.modal-aberto { overflow: hidden; }
 /* Notebook pequeno: aperta um pouco */
 @media (max-width: 1180px) {
   .cabecalho .container { gap: 1.2rem; }
-  .nav-principal { gap: 1.2rem; }
+  .nav-principal { gap: 18.2rem; }
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: 0.84rem; }
   .nav-acoes .botao { padding: 0.55rem 1rem; font-size: 0.82rem; }
